@@ -58,14 +58,17 @@ function DesktopNav({ activeNavKey }: SiteHeaderProps) {
             </Link>
 
             <div className="pointer-events-none absolute top-full left-1/2 z-50 -translate-x-1/2 pt-8 opacity-0 transition-all duration-150 group-hover:pointer-events-auto group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:opacity-100">
-              <div className="min-w-[184px] overflow-hidden border border-black/10 bg-[#fbfaf8] shadow-[0_10px_24px_rgba(0,0,0,0.06)]">
+              <div className="min-w-[240px] overflow-hidden border border-black/10 bg-[#fbfaf8] shadow-[0_10px_24px_rgba(0,0,0,0.06)]">
                 {item.children.map((child) => (
                   <Link
                     key={child.label}
                     href={child.href}
-                    className="block border-b border-black/8 px-6 py-4 text-left font-body text-[16px] leading-[18px] text-[var(--brand)] transition-colors duration-200 hover:bg-[#f7f2e9] hover:text-black last:border-b-0"
+                    className="group/submenu block px-6 py-4 text-left font-body text-[16px] leading-[18px] text-[var(--brand)] transition-colors duration-200 hover:bg-[#f7f2e9] hover:text-black focus-visible:bg-[#f7f2e9] focus-visible:text-black"
                   >
-                    {child.label}
+                    <span className="inline-flex flex-col items-start whitespace-nowrap">
+                      <span>{child.label}</span>
+                      <span className="mt-1 block h-px w-0 bg-current transition-all duration-200 group-hover/submenu:w-full group-focus-visible/submenu:w-full" />
+                    </span>
                   </Link>
                 ))}
               </div>
