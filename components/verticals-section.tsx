@@ -132,7 +132,7 @@ export function VerticalsSection() {
               }
             }}
           >
-            <div className="flex w-max items-start gap-5 pl-6 md:gap-14 md:pl-20">
+            <div className="flex w-max items-start gap-5 pl-6 pr-6 md:gap-14 md:pl-20 md:pr-20">
               {verticalCards.map((card) => (
                 <div key={card.id} className="shrink-0">
                   <VerticalCard
