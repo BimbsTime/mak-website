@@ -12,6 +12,7 @@ import type { NavKey } from "@/lib/types";
 
 type SiteHeaderProps = {
   activeNavKey?: NavKey;
+  forceTransparent?: boolean;
 };
 
 function DesktopNav({ activeNavKey }: SiteHeaderProps) {
@@ -189,12 +190,17 @@ function MobileOverlay() {
   );
 }
 
-export function SiteHeader({ activeNavKey }: SiteHeaderProps) {
+export function SiteHeader({ activeNavKey, forceTransparent = false }: SiteHeaderProps) {
   const { openMenu } = useMobileMenuStore();
   const [isScrolled, setIsScrolled] = useState(false);
   const isIntroComplete = useIntroAnimationStore((state) => state.isComplete);
 
   useEffect(() => {
+    if (forceTransparent) {
+      setIsScrolled(false);
+      return;
+    }
+
     const update = () => {
       if (window.scrollY <= 1) {
         setIsScrolled(false);
@@ -218,7 +224,7 @@ export function SiteHeader({ activeNavKey }: SiteHeaderProps) {
       window.removeEventListener("scroll", update);
       window.removeEventListener("resize", update);
     };
-  }, []);
+  }, [forceTransparent]);
 
   const logoStyle = {
     opacity: isIntroComplete ? 1 : 0,
@@ -234,7 +240,7 @@ export function SiteHeader({ activeNavKey }: SiteHeaderProps) {
     <>
       <header
         className={`fixed inset-x-0 top-0 z-50 w-full border-b transition-colors duration-300 ${
-          isScrolled ? "border-black/5 bg-[#fbfaf8]" : "border-transparent bg-transparent"
+          !forceTransparent && isScrolled ? "border-black/5 bg-[#fbfaf8]" : "border-transparent bg-transparent"
         }`}
       >
         <div className="mx-auto flex max-w-[1695px] items-center justify-between px-6 py-4 md:flex-row md:gap-10 md:px-20 md:py-4">

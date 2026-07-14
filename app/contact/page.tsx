@@ -11,14 +11,14 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-[var(--background)] pt-[70px] md:pt-20">
-      <SiteHeader />
+    <div className="min-h-screen bg-[var(--background)]">
+      <SiteHeader forceTransparent />
       <ImmersiveScene
         backgroundSrc="/images/contact/background.png"
         foregroundSrc="/images/contact/foreground.png"
         backgroundAlt="Blurred branded development entrance used as the MĀK contact page background."
       >
-        <div className="flex min-h-[calc(100vh-70px)] items-center justify-center px-6 py-10 md:min-h-[calc(100vh-80px)] md:px-20">
+        <div className="flex min-h-screen items-center justify-center px-6 pb-6 pt-[70px] md:px-20 md:pb-10 md:pt-20">
           <div className="w-full max-w-[816px] md:max-w-[1110px]">
             <ContactForm />
           </div>

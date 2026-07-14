@@ -85,12 +85,12 @@ export function ContactForm() {
       onSubmit={handleSubmit}
       className="grid overflow-hidden bg-[var(--background)] md:grid-cols-[1fr_1.03fr]"
     >
-      <div className="flex min-h-[560px] flex-col items-center px-8 py-12 md:min-h-[650px] md:px-[133px] md:py-[70px]">
+      <div className="flex min-h-[500px] flex-col items-center px-8 py-10 md:min-h-[560px] md:px-[120px] md:py-12">
         <ScrollReveal delay={0}>
           <Image src="/images/brand/mak-logo.png" alt="MĀK" width={101} height={48} className="h-12 w-[101px]" />
         </ScrollReveal>
 
-        <div className="mt-12 flex w-full flex-col gap-10 md:mt-16">
+        <div className="mt-10 flex w-full flex-col gap-8 md:mt-12">
           {[
             { key: "fullName", label: "Full name*", type: "text", autoComplete: "name" },
             { key: "phoneNumber", label: "Phone number*", type: "tel", autoComplete: "tel" },
@@ -101,7 +101,7 @@ export function ContactForm() {
 
             return (
               <ScrollReveal key={field.key} delay={220 + index * 110}>
-                <label className="flex flex-col gap-4 md:gap-10">
+                <label className="flex flex-col gap-4 md:gap-8">
                   <span
                     className={`font-body text-[16px] leading-[18px] ${
                       hasError ? "text-[#a33a3a]" : "text-[#a6a6a6]"
@@ -116,7 +116,7 @@ export function ContactForm() {
                     value={values[key]}
                     disabled={isSubmitted}
                     onChange={(event) => handleChange(key, event.target.value)}
-                    className={`border-b bg-transparent pb-2 font-body text-[22px] leading-7 text-black outline-none transition-colors placeholder:text-[#d0cbc2] ${
+                    className={`border-b bg-transparent pb-2 font-body text-[20px] leading-6 text-black outline-none transition-colors placeholder:text-[#d0cbc2] ${
                       hasError ? "border-[#d06464]" : "border-[#a0a0a0] focus:border-black"
                     } ${isSubmitted ? "opacity-75" : ""}`}
                     placeholder=""
@@ -131,7 +131,7 @@ export function ContactForm() {
           <button
             type="submit"
             disabled={isSubmitting || isSubmitted}
-            className="mt-10 inline-flex h-12 w-full items-center justify-center bg-[var(--brand)] px-8 font-display text-[20px] leading-[21px] font-light text-[#f7f5f2] transition-colors duration-300 hover:bg-[var(--brand-hover)] disabled:cursor-default disabled:hover:bg-[var(--brand)] md:mt-16"
+            className="mt-8 inline-flex h-12 w-full items-center justify-center bg-[var(--brand)] px-8 font-display text-[20px] leading-[21px] font-light text-[#f7f5f2] transition-colors duration-300 hover:bg-[var(--brand-hover)] disabled:cursor-default disabled:hover:bg-[var(--brand)] md:mt-10"
           >
             {isSubmitting ? (
               <LoaderCircle aria-label="Submitting form" className="size-5 animate-spin" strokeWidth={1.5} />
@@ -148,7 +148,7 @@ export function ContactForm() {
         </ScrollReveal>
       </div>
 
-      <div className="relative hidden min-h-[650px] bg-[#ddd6c8] md:block">
+      <div className="relative hidden min-h-[560px] bg-[#ddd6c8] md:block">
         <ScrollReveal delay={140} className="absolute inset-0">
           <Image
             src="/images/contact/panel-image.png"
