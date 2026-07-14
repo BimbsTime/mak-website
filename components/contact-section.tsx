@@ -88,7 +88,7 @@ export function ContactSection() {
       <div className="relative mx-auto flex min-h-[460px] max-w-[1695px] items-end px-6 py-[48px] text-[#f7f5f2] md:min-h-[97vh] md:px-20 md:py-[48px]">
         <div className="flex max-w-[340px] flex-col items-start gap-5 md:max-w-[520px] md:gap-8">
           <div className="flex items-start">
-            <VerticalLineReveal className="mt-2 mr-6 h-[132px] w-px shrink-0 bg-[#f7f5f2] md:mr-10 md:h-[135px]" />
+            <VerticalLineReveal className="mt-2 mr-6 h-[90px] w-px shrink-0 bg-[#f7f5f2] md:mr-10 md:h-[135px]" />
             <div className="flex flex-col items-start gap-3 md:min-w-[440px] md:gap-6">
               <ScrollReveal delay={0}>
                 <h2 className="font-display text-[24px] leading-[26px] md:whitespace-nowrap md:text-[48px] md:leading-[48px]">
