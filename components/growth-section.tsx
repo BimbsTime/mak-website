@@ -98,7 +98,7 @@ export function GrowthSection() {
         <div className="px-6 md:px-20">
           <div className="grid gap-4 md:max-w-[1076px] md:grid-cols-[324px_1fr] md:items-end md:gap-x-14">
             <ScrollReveal delay={0}>
-              <h2 className="font-display text-[24px] leading-[26px] text-[var(--brand)] md:text-[48px] md:leading-[44px]">
+              <h2 className="font-display text-[24px] leading-[26px] text-[var(--brand)] md:text-[36px] md:leading-[44px]">
                 <span className="block whitespace-normal md:whitespace-nowrap">Project Pipeline</span>
                 <span className="block whitespace-normal md:whitespace-nowrap">and Growth.</span>
               </h2>
