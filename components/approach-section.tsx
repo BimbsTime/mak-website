@@ -191,7 +191,7 @@ export function ApproachSection() {
     <section
       ref={sectionRef}
       id="approach"
-      className="w-full px-6 py-[72px] md:pt-[116px] md:pr-0 md:pb-20 md:pl-20"
+      className="w-full px-6 py-[72px] md:pt-[80px] md:pr-0 md:pb-20 md:pl-20"
     >
       <ApproachContent activeIndex={activeIndex} onPointClick={handlePointClick} />
     </section>

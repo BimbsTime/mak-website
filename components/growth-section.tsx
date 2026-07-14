@@ -2,12 +2,58 @@
 
 import Image from "next/image";
 
+import { useEffect } from "react";
+
 import { ExploreLink } from "@/components/ui/explore-link";
 import { useDragScroll } from "@/hooks/use-drag-scroll";
 import { growthCards } from "@/lib/content";
 
 export function GrowthSection() {
   const { ref, isDragging, dragHandlers } = useDragScroll<HTMLDivElement>();
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) {
+      return;
+    }
+
+    const handleWheel = (event: WheelEvent) => {
+      if (event.shiftKey) {
+        return;
+      }
+
+      const { deltaX, deltaY } = event;
+      const shouldTranslate = Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 0.1;
+
+      if (!shouldTranslate) {
+        return;
+      }
+
+      const maxScrollLeft = node.scrollWidth - node.clientWidth;
+      const currentScrollLeft = node.scrollLeft;
+      const nextScrollLeft = currentScrollLeft + deltaY;
+      const canScrollLeft = currentScrollLeft > 0;
+      const canScrollRight = currentScrollLeft < maxScrollLeft;
+      const isScrollingLeft = deltaY < 0;
+      const isScrollingRight = deltaY > 0;
+
+      const shouldConsume =
+        (isScrollingLeft && canScrollLeft) || (isScrollingRight && canScrollRight);
+
+      if (!shouldConsume) {
+        return;
+      }
+
+      event.preventDefault();
+      event.stopPropagation();
+      node.scrollLeft = Math.max(0, Math.min(maxScrollLeft, nextScrollLeft));
+    };
+
+    node.addEventListener("wheel", handleWheel, { passive: false });
+    return () => {
+      node.removeEventListener("wheel", handleWheel);
+    };
+  }, [ref]);
 
   return (
     <section className="w-full px-6 py-10 md:pt-[116px] md:pr-0 md:pb-[116px] md:pl-20">
