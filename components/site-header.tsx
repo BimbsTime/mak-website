@@ -268,7 +268,6 @@ export function SiteHeader({ activeNavKey, forceTransparent = false }: SiteHeade
         }`}
       >
         <div className="mx-auto flex max-w-[1695px] items-center justify-between px-6 py-4 md:flex-row md:gap-10 md:px-20 md:py-4">
-          <div className="w-6 md:hidden" />
           <Link href="/" style={logoStyle}>
             <Image
               src="/images/brand/mak-logo.png"

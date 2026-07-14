@@ -120,7 +120,7 @@ export function VerticalsSection() {
         <div ref={arrowFrameRef} className="relative mt-10 md:mt-[56px]">
           <div
             ref={ref}
-            className={`no-scrollbar overflow-x-auto pb-4 select-none overscroll-x-contain [touch-action:pan-y] ${
+            className={`no-scrollbar overflow-x-auto pb-4 select-none overscroll-x-contain md:[touch-action:pan-y] ${
               isDragging ? "cursor-grabbing" : "cursor-grab"
             }`}
             {...dragHandlers}

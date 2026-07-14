@@ -101,7 +101,7 @@ export function GrowthSection() {
         <ScrollReveal delay={240}>
           <div
             ref={ref}
-            className={`no-scrollbar overflow-x-auto pb-4 select-none [touch-action:pan-y] transition-[padding] duration-300 md:pb-0 ${
+            className={`no-scrollbar overflow-x-auto pb-4 select-none transition-[padding] duration-300 md:[touch-action:pan-y] md:pb-0 ${
               hasScrolledTrack ? "md:pl-0" : "md:pl-20"
             } ${
               isDragging ? "cursor-grabbing" : "cursor-grab"
