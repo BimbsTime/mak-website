@@ -11,11 +11,6 @@ export function IntroSection() {
     >
       <div className="mx-auto flex max-w-[1177px] flex-col items-center gap-14 md:gap-12">
         <div className="flex max-w-[1177px] flex-col items-center gap-4 text-center md:gap-6">
-          <ScrollReveal delay={0}>
-            <p className="font-body text-[12px] uppercase tracking-[0.24em] text-[var(--brand)] md:hidden">
-              {introContent.eyebrow}
-            </p>
-          </ScrollReveal>
           <ScrollReveal delay={100}>
             <h1 className="max-w-[342px] whitespace-pre-line font-display text-[32px] leading-[32px] text-[var(--brand)] md:max-w-none md:text-[48px] md:leading-[48px]">
               {introContent.title}

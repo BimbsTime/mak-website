@@ -21,11 +21,7 @@ export function VerticalCard({ card, isActive, onActivate }: VerticalCardProps) 
       onMouseEnter={onActivate}
       onFocus={onActivate}
     >
-      <div
-        className={`relative overflow-hidden bg-[#d8d2c7] ${
-          isActive ? "aspect-[282/330]" : "aspect-[226/330]"
-        } md:h-[480px] md:aspect-auto`}
-      >
+      <div className="relative h-[330px] overflow-hidden bg-[#d8d2c7] md:h-[480px] md:aspect-auto">
         <Image
           src={card.image.src}
           alt={card.image.alt}

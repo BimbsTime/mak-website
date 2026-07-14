@@ -29,9 +29,9 @@ export function Hero({ overlayOpacity = 0, mediaScale = 1 }: HeroProps) {
         </div>
       </ScrollReveal>
       <ScrollReveal distance={28} duration={950} scale={0.985} threshold={0.01} className="md:hidden">
-        <div className="relative aspect-square w-full overflow-hidden">
+        <div className="relative h-[80vh] w-full overflow-hidden">
           <div className="absolute inset-0 will-change-transform" style={{ transform: `scale(${mediaScale})` }}>
-            <Image src={heroImage.src} alt={heroImage.alt} fill priority sizes="100vw" className="object-cover" />
+            <Image src={heroImage.src} alt={heroImage.alt} fill priority sizes="100vw" className="object-cover object-center-bottom" />
           </div>
           <div className="absolute inset-0 bg-black" style={{ opacity: overlayOpacity }} />
         </div>

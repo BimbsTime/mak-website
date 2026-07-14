@@ -53,7 +53,6 @@ export const heroImage = {
 };
 
 export const introContent = {
-  eyebrow: "MĀK",
   title: "Considered places.\nComposed to endure.",
   summary:
     "A Mumbai-based, design-led real estate developer with expertise spanning land aggregation, regulatory liaisoning, clearances, and execution shaped by design and strong architectural intent.",

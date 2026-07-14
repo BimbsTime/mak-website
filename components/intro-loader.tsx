@@ -2,16 +2,29 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 import { useIntroAnimationStore } from "@/hooks/use-intro-animation-store";
 
 type LoaderPhase = "enter" | "exit" | "done";
 
 export function IntroLoader() {
+  const pathname = usePathname();
   const complete = useIntroAnimationStore((state) => state.complete);
   const [phase, setPhase] = useState<LoaderPhase>("enter");
 
   useEffect(() => {
+    if (pathname !== "/") {
+      setPhase("done");
+      complete();
+    }
+  }, [complete, pathname]);
+
+  useEffect(() => {
+    if (pathname !== "/") {
+      return;
+    }
+
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
@@ -39,9 +52,9 @@ export function IntroLoader() {
       window.removeEventListener("load", onLoad);
       document.body.style.overflow = previousOverflow;
     };
-  }, [complete]);
+  }, [complete, pathname]);
 
-  if (phase === "done") {
+  if (pathname !== "/" || phase === "done") {
     return null;
   }
 

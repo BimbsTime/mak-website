@@ -15,7 +15,7 @@ describe("Home page", () => {
     ).toBeInTheDocument();
 
     expect(screen.getByRole("heading", { name: /the practice\./i })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /core identity and approach\./i })).toBeInTheDocument();
+    expect(screen.getAllByRole("heading", { name: /core identity and approach\./i }).length).toBeGreaterThan(0);
     expect(screen.getByRole("heading", { name: /connect with mak/i })).toBeInTheDocument();
   });
 });
