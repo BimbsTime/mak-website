@@ -127,10 +127,10 @@ export function GrowthSection() {
                   </div>
                   <div className="mt-4 flex flex-col gap-4 md:mt-10 md:flex-row md:items-start md:justify-between md:gap-[270px] md:pr-4">
                     <div className="flex max-w-[250px] flex-col gap-3 md:max-w-[765px] md:gap-8">
-                      <h3 className="font-display text-[20px] leading-[21px] text-black md:text-[24px] md:leading-[25px]">
+                      <h3 className="font-display text-[18px] leading-[21px] text-black md:text-[24px] md:leading-[25px]">
                         {card.title}
                       </h3>
-                      <p className="font-body text-[12px] leading-4 tracking-[0.04em] text-black md:text-[20px] md:leading-6">
+                      <p className="font-body text-[12px] leading-4 tracking-[0.04em] text-black md:text-[18px] md:leading-6">
                         {card.description}
                       </p>
                     </div>

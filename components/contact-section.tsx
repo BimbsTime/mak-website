@@ -94,7 +94,7 @@ export function ContactSection() {
           <ScrollReveal delay={140}>
             <a
               href="mailto:inquiry@makdevelopers.com"
-              className="font-body text-[12px] leading-4 tracking-[0.04em] transition-opacity duration-300 hover:opacity-70 md:text-[20px] md:leading-6"
+              className="font-body text-[12px] leading-4 tracking-[0.04em] transition-opacity duration-300 hover:opacity-70 md:text-[16px] md:leading-6"
             >
               inquiry@makdevelopers.com
             </a>
@@ -102,7 +102,7 @@ export function ContactSection() {
           <ScrollReveal delay={240}>
             <a
               href="tel:+913456868982"
-              className="font-body text-[12px] leading-4 tracking-[0.04em] transition-opacity duration-300 hover:opacity-70 md:text-[20px] md:leading-6"
+              className="font-body text-[12px] leading-4 tracking-[0.04em] transition-opacity duration-300 hover:opacity-70 md:text-[16px] md:leading-6"
             >
               +91-3456868982
             </a>
