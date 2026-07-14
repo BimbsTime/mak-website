@@ -100,7 +100,7 @@ export function GrowthSection() {
             <ScrollReveal delay={0}>
               <h2 className="font-display text-[24px] leading-[26px] text-[var(--brand)] md:text-[36px] md:leading-[44px]">
                 <span className="block whitespace-normal md:whitespace-nowrap">Project Pipeline and</span>
-                <span class="block whitespace-normal md:whitespace-nowrap">Growth.</span>
+                <span className="block whitespace-normal md:whitespace-nowrap">Growth.</span>
               </h2>
             </ScrollReveal>
 
