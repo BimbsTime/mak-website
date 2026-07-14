@@ -99,7 +99,7 @@ function ApproachContent({ activeIndex, onPointClick, pointsRef, mediaRef }: App
               <div className="absolute inset-0 flex items-end px-6 py-6 md:px-10 md:py-10">
                 <div className="flex w-full max-w-[560px] flex-col gap-4 md:gap-5">
                   <ScrollReveal delay={0}>
-                    <h2 className="font-display text-[24px] leading-[26px] text-[#f7f5f2] md:text-[48px] md:leading-[44px]">
+                    <h2 className="font-display text-[24px] leading-[26px] text-[#f7f5f2] md:text-[36px] md:leading-[44px]">
                       <span className="block whitespace-normal md:whitespace-nowrap">Core Identity and</span>
                       <span className="block whitespace-normal md:whitespace-nowrap">Approach.</span>
                     </h2>
