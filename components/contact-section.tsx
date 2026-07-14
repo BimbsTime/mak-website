@@ -84,11 +84,11 @@ export function ContactSection() {
       </div>
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.10)_0%,rgba(0,0,0,0.72)_100%)]" />
 
-      <div className="relative mx-auto flex min-h-[460px] max-w-[1695px] items-end px-6 py-[32px] text-[#f7f5f2] md:min-h-[720px] md:px-20 md:py-[32px]">
+      <div className="relative mx-auto flex min-h-[460px] max-w-[1695px] items-end px-6 py-[48px] text-[#f7f5f2] md:min-h-[720px] md:px-20 md:py-[48px]">
         <div className="flex max-w-[340px] flex-col items-start gap-3 md:max-w-[420px] md:gap-6">
           <ScrollReveal delay={0}>
             <h2 className="font-display text-[24px] leading-[26px] md:text-[48px] md:leading-[48px]">
-              Connect with MĀK
+              Connect with MAK
             </h2>
           </ScrollReveal>
           <ScrollReveal delay={140}>

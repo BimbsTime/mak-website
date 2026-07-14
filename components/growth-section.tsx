@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { ExploreLink } from "@/components/ui/explore-link";
@@ -11,6 +11,7 @@ import { growthCards } from "@/lib/content";
 
 export function GrowthSection() {
   const { ref, isDragging, dragHandlers } = useDragScroll<HTMLDivElement>();
+  const [hasScrolledTrack, setHasScrolledTrack] = useState(false);
 
   useEffect(() => {
     const node = ref.current;
@@ -60,36 +61,49 @@ export function GrowthSection() {
     };
 
     node.addEventListener("wheel", handleWheel, { passive: false });
+
+    const updateTrackState = () => {
+      setHasScrolledTrack(node.scrollLeft > 2);
+    };
+
+    updateTrackState();
+    node.addEventListener("scroll", updateTrackState, { passive: true });
+
     return () => {
       node.removeEventListener("wheel", handleWheel);
+      node.removeEventListener("scroll", updateTrackState);
     };
   }, [ref]);
 
   return (
-    <section className="w-full px-6 py-[32px] md:pt-[32px] md:pr-0 md:pb-[32px] md:pl-20">
+    <section className="w-full py-[32px] md:pt-[48px] md:pb-[96px]">
       <div className="flex flex-col gap-12 md:gap-[84px]">
-        <div className="grid gap-4 md:max-w-[1076px] md:grid-cols-[324px_1fr] md:items-end md:gap-x-14">
-          <ScrollReveal delay={0}>
-            <h2 className="font-display text-[24px] leading-[26px] text-[var(--brand)] md:text-[48px] md:leading-[44px]">
-              <span className="block whitespace-normal md:whitespace-nowrap">Project Pipeline</span>
-              <span className="block whitespace-normal md:whitespace-nowrap">and Growth.</span>
-            </h2>
-          </ScrollReveal>
-
-          <div className="flex max-w-[672px] items-end gap-5">
-            <div className="hidden h-[106px] w-px bg-black md:block" />
-            <ScrollReveal delay={140}>
-              <p className="max-w-[336px] font-body text-[12px] leading-4 tracking-[0.04em] text-black md:max-w-[560px] md:text-[20px] md:leading-6">
-                The firm is set to launch 3-4 new projects across residential and commercial sectors, with a projected portfolio expansion of ₹4000-5000 Cr. GDV over the next two years.
-              </p>
+        <div className="px-6 md:px-20">
+          <div className="grid gap-4 md:max-w-[1076px] md:grid-cols-[324px_1fr] md:items-end md:gap-x-14">
+            <ScrollReveal delay={0}>
+              <h2 className="font-display text-[24px] leading-[26px] text-[var(--brand)] md:text-[48px] md:leading-[44px]">
+                <span className="block whitespace-normal md:whitespace-nowrap">Project Pipeline</span>
+                <span className="block whitespace-normal md:whitespace-nowrap">and Growth.</span>
+              </h2>
             </ScrollReveal>
+
+            <div className="flex max-w-[672px] items-end gap-5">
+              <div className="hidden h-[106px] w-px bg-black md:block" />
+              <ScrollReveal delay={140}>
+                <p className="max-w-[336px] font-body text-[12px] leading-4 tracking-[0.04em] text-black md:max-w-[560px] md:text-[16px] md:leading-6">
+                  The firm is set to launch 3-4 new projects across residential and commercial sectors, with a projected portfolio expansion of ₹4000-5000 Cr. GDV over the next two years.
+                </p>
+              </ScrollReveal>
+            </div>
           </div>
         </div>
 
         <ScrollReveal delay={240}>
           <div
             ref={ref}
-            className={`no-scrollbar overflow-x-auto pb-4 select-none [touch-action:pan-y] md:pb-0 ${
+            className={`no-scrollbar overflow-x-auto pb-4 select-none [touch-action:pan-y] transition-[padding] duration-300 md:pb-0 ${
+              hasScrolledTrack ? "md:pl-0" : "md:pl-20"
+            } ${
               isDragging ? "cursor-grabbing" : "cursor-grab"
             }`}
             {...dragHandlers}

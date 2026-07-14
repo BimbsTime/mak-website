@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronDown, ChevronUp, Menu, X } from "lucide-react";
@@ -15,8 +15,12 @@ type SiteHeaderProps = {
   forceTransparent?: boolean;
 };
 
-function DesktopNav({ activeNavKey }: SiteHeaderProps) {
+type HeaderTone = "light" | "brand";
+
+function DesktopNav({ activeNavKey, tone }: SiteHeaderProps & { tone: HeaderTone }) {
   const isIntroComplete = useIntroAnimationStore((state) => state.isComplete);
+  const textClass = tone === "light" ? "text-white hover:text-white/80" : "text-[var(--brand)] hover:text-black";
+  const underlineClass = tone === "light" ? "bg-white" : "bg-[var(--brand)]";
 
   return (
     <div className="hidden flex-1 items-center justify-end gap-14 md:flex">
@@ -37,13 +41,13 @@ function DesktopNav({ activeNavKey }: SiteHeaderProps) {
               key={item.label}
               href={item.href}
               style={baseStyle}
-              className="group flex flex-col items-center gap-0 font-display text-[16px] leading-4 text-[var(--brand)] transition-colors duration-300 hover:text-black"
+              className={`group flex flex-col items-center gap-0 font-display text-[16px] leading-4 transition-colors duration-300 ${textClass}`}
             >
               <span className="inline-flex items-center gap-0">
                 <span>{item.label}</span>
               </span>
               <span
-                className={`mt-0.5 block h-px bg-[var(--brand)] transition-all duration-300 group-hover:w-full ${
+                className={`mt-0.5 block h-px transition-all duration-300 group-hover:w-full ${underlineClass} ${
                   activeNavKey === item.key ? "w-full" : "w-0"
                 }`}
               />
@@ -59,7 +63,7 @@ function DesktopNav({ activeNavKey }: SiteHeaderProps) {
           >
             <Link
               href={item.href}
-              className="flex flex-col items-center gap-0 font-display text-[16px] leading-4 text-[var(--brand)] transition-colors duration-300 hover:text-black"
+              className={`flex flex-col items-center gap-0 font-display text-[16px] leading-4 transition-colors duration-300 ${textClass}`}
             >
               <span className="inline-flex items-center gap-0">
                 <span>{item.label}</span>
@@ -70,7 +74,7 @@ function DesktopNav({ activeNavKey }: SiteHeaderProps) {
                 />
               </span>
               <span
-                className={`mt-0.5 block h-px bg-[var(--brand)] transition-all duration-300 group-hover:w-full group-focus-within:w-full ${
+                className={`mt-0.5 block h-px transition-all duration-300 group-hover:w-full group-focus-within:w-full ${underlineClass} ${
                   activeNavKey === item.key ? "w-full" : "w-0"
                 }`}
               />
@@ -192,31 +196,44 @@ function MobileOverlay() {
 
 export function SiteHeader({ activeNavKey, forceTransparent = false }: SiteHeaderProps) {
   const { openMenu } = useMobileMenuStore();
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isOnHeroFold, setIsOnHeroFold] = useState(true);
+  const [isVisible, setIsVisible] = useState(true);
   const isIntroComplete = useIntroAnimationStore((state) => state.isComplete);
+  const lastScrollYRef = useRef(0);
 
   useEffect(() => {
     if (forceTransparent) {
-      setIsScrolled(false);
+      setIsOnHeroFold(true);
+      setIsVisible(true);
       return;
     }
 
     const update = () => {
-      if (window.scrollY <= 1) {
-        setIsScrolled(false);
+      const currentScrollY = window.scrollY;
+      const scrollingUp = currentScrollY < lastScrollYRef.current;
+      lastScrollYRef.current = currentScrollY;
+
+      if (currentScrollY <= 1) {
+        setIsOnHeroFold(true);
+        setIsVisible(true);
         return;
       }
 
       const trigger = document.getElementById("considered-places");
       if (!trigger) {
-        setIsScrolled(window.scrollY > 8);
+        const nearTop = currentScrollY <= 8;
+        setIsOnHeroFold(nearTop);
+        setIsVisible(nearTop || scrollingUp);
         return;
       }
 
       const triggerTop = trigger.getBoundingClientRect().top;
-      setIsScrolled(triggerTop <= 88);
+      const onHeroFold = triggerTop > 88;
+      setIsOnHeroFold(onHeroFold);
+      setIsVisible(onHeroFold || scrollingUp);
     };
 
+    lastScrollYRef.current = window.scrollY;
     update();
     window.addEventListener("scroll", update, { passive: true });
     window.addEventListener("resize", update);
@@ -225,6 +242,11 @@ export function SiteHeader({ activeNavKey, forceTransparent = false }: SiteHeade
       window.removeEventListener("resize", update);
     };
   }, [forceTransparent]);
+
+  const tone: HeaderTone = forceTransparent || isOnHeroFold ? "light" : "brand";
+  const isTransparent = forceTransparent || isOnHeroFold;
+  const headerTextClass = tone === "light" ? "text-white" : "text-[var(--brand)]";
+  const logoFilterClass = tone === "light" ? "brightness-0 invert" : "";
 
   const logoStyle = {
     opacity: isIntroComplete ? 1 : 0,
@@ -239,8 +261,10 @@ export function SiteHeader({ activeNavKey, forceTransparent = false }: SiteHeade
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-0 z-50 w-full border-b transition-colors duration-300 ${
-          !forceTransparent && isScrolled ? "border-black/5 bg-[#fbfaf8]" : "border-transparent bg-transparent"
+        className={`fixed inset-x-0 top-0 z-50 w-full border-b transition-[transform,opacity,background-color,border-color] duration-300 ${
+          isVisible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none"
+        } ${
+          isTransparent ? "border-transparent bg-transparent" : "border-black/5 bg-[#fbfaf8]"
         }`}
       >
         <div className="mx-auto flex max-w-[1695px] items-center justify-between px-6 py-4 md:flex-row md:gap-10 md:px-20 md:py-4">
@@ -252,15 +276,15 @@ export function SiteHeader({ activeNavKey, forceTransparent = false }: SiteHeade
               width={101}
               height={48}
               priority
-              className="h-[38px] w-20 md:h-12 md:w-[101px]"
+              className={`h-[38px] w-20 md:h-12 md:w-[101px] ${logoFilterClass}`}
             />
           </Link>
-          <DesktopNav activeNavKey={activeNavKey} />
+          <DesktopNav activeNavKey={activeNavKey} tone={tone} />
           <button
             type="button"
             aria-label="Open navigation menu"
             onClick={openMenu}
-            className="inline-flex size-6 items-center justify-center text-black md:hidden"
+            className={`inline-flex size-6 items-center justify-center md:hidden ${headerTextClass}`}
           >
             <Menu className="size-6" strokeWidth={1.5} />
           </button>

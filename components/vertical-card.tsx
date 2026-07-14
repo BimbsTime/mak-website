@@ -33,6 +33,12 @@ export function VerticalCard({ card, isActive, onActivate }: VerticalCardProps) 
           sizes={isActive ? "(min-width: 768px) 520px, 282px" : "(min-width: 768px) 400px, 226px"}
           className="pointer-events-none object-cover transition-transform duration-500"
         />
+        <div
+          aria-hidden="true"
+          className={`absolute inset-0 pointer-events-none transition-opacity duration-500 ${
+            isActive ? "opacity-0" : "bg-black/40 opacity-100"
+          }`}
+        />
       </div>
 
       <div className="flex w-full flex-col items-start gap-3 md:gap-6">

@@ -88,7 +88,7 @@ export function PracticeSection() {
       </div>
       <div className="absolute inset-0 bg-linear-to-b from-black/10 via-black/10 to-black/80 md:bg-[linear-gradient(197deg,rgba(0,0,0,0.10)_19%,rgba(0,0,0,0.80)_76%)]" />
 
-      <div className="relative mx-auto flex min-h-[560px] max-w-[1695px] items-end gap-6 px-6 py-[32px] text-[#f7f5f2] md:min-h-[660px] md:gap-10 md:px-20 md:py-[32px]">
+      <div className="relative mx-auto flex min-h-[560px] max-w-[1695px] items-end gap-6 px-6 py-[48px] text-[#f7f5f2] md:min-h-[720px] md:gap-10 md:px-20 md:py-[48px]">
         <div className="mt-2 hidden h-[248px] w-px shrink-0 bg-[#f7f5f2] md:block" />
         <div className="flex max-w-[840px] flex-col items-start">
           <div className="flex max-w-[344px] flex-col gap-3 md:max-w-none md:gap-3">
@@ -98,7 +98,7 @@ export function PracticeSection() {
               </h2>
             </ScrollReveal>
             <ScrollReveal delay={140}>
-              <p className="max-w-[206px] font-body text-[12px] leading-4 tracking-[0.04em] md:max-w-[344px] md:text-[20px] md:leading-6">
+              <p className="max-w-[206px] font-body text-[12px] leading-4 tracking-[0.04em] md:max-w-[344px] md:text-[16px] md:leading-6">
                 An integrated practice. Translating land into built form through a process that is both precise and considered.
               </p>
             </ScrollReveal>
