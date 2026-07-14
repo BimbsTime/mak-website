@@ -90,7 +90,7 @@ export function PracticeSection() {
       <div className="absolute inset-0 bg-linear-to-b from-black/10 via-black/10 to-black/80 md:bg-[linear-gradient(197deg,rgba(0,0,0,0.10)_19%,rgba(0,0,0,0.80)_76%)]" />
 
       <div className="relative mx-auto flex min-h-[560px] max-w-[1695px] items-end gap-6 px-6 py-[48px] text-[#f7f5f2] md:min-h-[97vh] md:gap-10 md:px-20 md:py-[48px]">
-        <VerticalLineReveal className="mt-2 h-[132px] w-px shrink-0 bg-[#f7f5f2] md:h-[248px]" />
+        <VerticalLineReveal className="mt-2 h-[245px] w-px shrink-0 bg-[#f7f5f2] md:h-[248px]" />
         <div className="flex max-w-[840px] flex-col items-start">
           <div className="flex max-w-[344px] flex-col gap-3 md:max-w-none md:gap-3">
             <ScrollReveal delay={0}>
