@@ -125,7 +125,7 @@ export function GrowthSection() {
             }`}
             {...dragHandlers}
           >
-            <div className="flex w-max snap-x snap-mandatory gap-4 pl-6 pr-6 md:pl-0 md:pr-0 md:gap-14">
+            <div className="flex w-max snap-x snap-mandatory gap-4 pl-6 pr-6 md:pl-0 md:pr-20 md:gap-14">
               {growthCards.map((card) => (
                 <article
                   key={card.id}
