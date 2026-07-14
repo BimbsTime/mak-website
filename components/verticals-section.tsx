@@ -98,7 +98,7 @@ export function VerticalsSection() {
     <section id="verticals" className="w-full py-[48px] md:pt-[96px] md:pb-[48px]">
       <div className="mx-auto max-w-[1615px] px-6 md:px-20">
         <div className="flex flex-col gap-4 md:max-w-[1114px] md:flex-row md:items-end md:gap-14">
-          <h2 className="max-w-[510px] font-display text-[24px] leading-[26px] text-[var(--brand)] md:text-[48px] md:leading-[40px]">
+          <h2 className="max-w-[510px] font-display text-[24px] leading-[26px] text-[var(--brand)] md:text-[36px] md:leading-[40px]">
             <ScrollReveal as="span" delay={0} distance={18} className="block whitespace-normal md:whitespace-nowrap">
               An Active Presence
             </ScrollReveal>
