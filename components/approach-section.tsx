@@ -101,7 +101,7 @@ function ApproachContent({ activeIndex, onPointClick, pointsRef, mediaRef }: App
 
       <div className="flex flex-col gap-8 md:grid md:grid-cols-[360px_minmax(0,980px)] md:items-start md:justify-between md:gap-8">
         <ScrollReveal delay={280} className="order-1 md:order-2">
-          <div ref={mediaRef} className="md:pt-0 md:max-w-[980px]">
+          <div ref={mediaRef} className="-mx-6 md:mx-0 md:pt-0 md:max-w-[980px]">
             <div className="relative aspect-square overflow-hidden bg-[#d8d2c7] md:h-[520px] md:aspect-auto">
               <video
                 autoPlay
@@ -181,9 +181,11 @@ export function ApproachSection() {
         return;
       }
 
+      const isDesktop = window.innerWidth >= 768;
       const progress = clamp((visibilityTravel - mediaRect.top + frameTop) / visibilityTravel, 0, 1);
       const easedProgress = 1 - Math.pow(1 - progress, 1.35);
-      const nextIndex = getApproachActiveIndex(easedProgress, totalPoints);
+      const adjustedProgress = isDesktop ? easedProgress : Math.pow(easedProgress, 1.6);
+      const nextIndex = getApproachActiveIndex(adjustedProgress, totalPoints);
 
       setActiveIndex((current) => (current === nextIndex ? current : nextIndex));
     };
