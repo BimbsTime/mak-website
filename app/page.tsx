@@ -1,8 +1,7 @@
 import { ApproachSection } from "@/components/approach-section";
 import { ContactSection } from "@/components/contact-section";
 import { GrowthSection } from "@/components/growth-section";
-import { Hero } from "@/components/hero";
-import { IntroSection } from "@/components/intro-section";
+import { HeroIntroStage } from "@/components/hero-intro-stage";
 import { PracticeSection } from "@/components/practice-section";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -16,8 +15,7 @@ export default function Home() {
       </a>
       <SiteHeader />
       <main id="main-content" className="overflow-x-hidden">
-        <Hero />
-        <IntroSection />
+        <HeroIntroStage />
         <PracticeSection />
         <VerticalsSection />
         <ApproachSection />

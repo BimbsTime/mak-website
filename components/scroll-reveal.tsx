@@ -5,6 +5,7 @@ import type { ReactNode } from "react";
 
 type ScrollRevealProps = {
   children: ReactNode;
+  as?: "div" | "span";
   className?: string;
   delay?: number;
   distance?: number;
@@ -16,15 +17,16 @@ type ScrollRevealProps = {
 
 export function ScrollReveal({
   children,
+  as = "div",
   className,
   delay = 0,
-  distance = 24,
+  distance = 0,
   duration = 800,
   scale = 1,
   threshold = 0.18,
   once = true,
 }: ScrollRevealProps) {
-  const ref = useRef<HTMLDivElement | null>(null);
+  const ref = useRef<HTMLElement | null>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
@@ -84,9 +86,11 @@ export function ScrollReveal({
     };
   }, [once, prefersReducedMotion, threshold]);
 
+  const Component = as;
+
   return (
-    <div
-      ref={ref}
+    <Component
+      ref={ref as unknown as React.RefObject<HTMLDivElement>}
       className={className}
       style={{
         opacity: isVisible ? 1 : 0,
@@ -101,6 +105,6 @@ export function ScrollReveal({
       }}
     >
       {children}
-    </div>
+    </Component>
   );
 }

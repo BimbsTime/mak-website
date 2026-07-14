@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { ImmersiveScene } from "@/components/immersive-scene";
+import { ScrollReveal } from "@/components/scroll-reveal";
 import { SiteHeader } from "@/components/site-header";
 import { resolveNavKey } from "@/lib/content";
 
@@ -26,9 +27,11 @@ export default async function ComingSoonPage({ searchParams }: ComingSoonPagePro
         backgroundAlt="Softly blurred architectural development view used as the MĀK coming soon background."
       >
         <div className="flex min-h-[calc(100vh-70px)] items-center justify-center px-6 md:min-h-[calc(100vh-146px)]">
-          <h1 className="font-display text-[32px] leading-[36px] text-white md:text-[36px] md:leading-9">
-            Coming Soon
-          </h1>
+          <ScrollReveal delay={0}>
+            <h1 className="font-display text-[32px] leading-[36px] text-white md:text-[36px] md:leading-9">
+              Coming Soon
+            </h1>
+          </ScrollReveal>
         </div>
       </ImmersiveScene>
     </div>

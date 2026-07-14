@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronDown, ChevronUp, Menu, X } from "lucide-react";
 
+import { useIntroAnimationStore } from "@/hooks/use-intro-animation-store";
 import { useMobileMenuStore } from "@/hooks/use-mobile-menu-store";
 import { navItems } from "@/lib/content";
 import type { NavKey } from "@/lib/types";
@@ -14,17 +15,30 @@ type SiteHeaderProps = {
 };
 
 function DesktopNav({ activeNavKey }: SiteHeaderProps) {
+  const isIntroComplete = useIntroAnimationStore((state) => state.isComplete);
+
   return (
-    <div className="hidden items-center justify-center gap-14 md:flex">
-      {navItems.map((item) => {
+    <div className="hidden flex-1 items-center justify-end gap-14 md:flex">
+      {navItems.map((item, index) => {
+        const baseStyle = {
+          opacity: isIntroComplete ? 1 : 0,
+          transform: isIntroComplete ? "translate3d(0,0,0)" : "translate3d(0, 14px, 0)",
+          transitionProperty: "opacity, transform",
+          transitionDuration: "700ms",
+          transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)",
+          transitionDelay: `${400 + index * 90}ms`,
+          pointerEvents: isIntroComplete ? ("auto" as const) : ("none" as const),
+        };
+
         if (!item.children) {
           return (
             <Link
               key={item.label}
               href={item.href}
-              className="group flex flex-col items-center gap-1 font-display text-[16px] leading-4 text-[var(--brand)] transition-colors duration-300 hover:text-black"
+              style={baseStyle}
+              className="group flex flex-col items-center gap-0 font-display text-[16px] leading-4 text-[var(--brand)] transition-colors duration-300 hover:text-black"
             >
-              <span className="inline-flex items-center gap-1">
+              <span className="inline-flex items-center gap-0">
                 <span>{item.label}</span>
               </span>
               <span
@@ -37,12 +51,16 @@ function DesktopNav({ activeNavKey }: SiteHeaderProps) {
         }
 
         return (
-          <div key={item.label} className="group relative flex flex-col items-center">
+          <div
+            key={item.label}
+            style={baseStyle}
+            className="group relative flex flex-col items-center"
+          >
             <Link
               href={item.href}
-              className="flex flex-col items-center gap-1 font-display text-[16px] leading-4 text-[var(--brand)] transition-colors duration-300 hover:text-black"
+              className="flex flex-col items-center gap-0 font-display text-[16px] leading-4 text-[var(--brand)] transition-colors duration-300 hover:text-black"
             >
-              <span className="inline-flex items-center gap-1">
+              <span className="inline-flex items-center gap-0">
                 <span>{item.label}</span>
                 <ChevronDown
                   aria-hidden="true"
@@ -173,13 +191,55 @@ function MobileOverlay() {
 
 export function SiteHeader({ activeNavKey }: SiteHeaderProps) {
   const { openMenu } = useMobileMenuStore();
+  const [isScrolled, setIsScrolled] = useState(false);
+  const isIntroComplete = useIntroAnimationStore((state) => state.isComplete);
+
+  useEffect(() => {
+    const update = () => {
+      if (window.scrollY <= 1) {
+        setIsScrolled(false);
+        return;
+      }
+
+      const trigger = document.getElementById("considered-places");
+      if (!trigger) {
+        setIsScrolled(window.scrollY > 8);
+        return;
+      }
+
+      const triggerTop = trigger.getBoundingClientRect().top;
+      setIsScrolled(triggerTop <= 88);
+    };
+
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, []);
+
+  const logoStyle = {
+    opacity: isIntroComplete ? 1 : 0,
+    transform: isIntroComplete ? "translate3d(0,0,0)" : "translate3d(0, 14px, 0)",
+    transitionProperty: "opacity, transform",
+    transitionDuration: "800ms",
+    transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)",
+    transitionDelay: "220ms",
+    pointerEvents: isIntroComplete ? ("auto" as const) : ("none" as const),
+  };
 
   return (
     <>
-      <header className="w-full border-b border-black/5 bg-[#fbfaf8]">
-        <div className="mx-auto flex max-w-[1695px] items-center justify-between px-6 py-4 md:flex-col md:gap-8 md:px-20 md:pt-4 md:pb-8">
+      <header
+        className={`fixed inset-x-0 top-0 z-50 w-full border-b transition-colors duration-300 ${
+          isScrolled ? "border-black/5 bg-[#fbfaf8]" : "border-transparent bg-transparent"
+        }`}
+      >
+        <div className="mx-auto flex max-w-[1695px] items-center justify-between px-6 py-4 md:flex-row md:gap-10 md:px-20 md:py-4">
           <div className="w-6 md:hidden" />
-          <Link href="/">
+          <Link href="/" style={logoStyle}>
             <Image
               src="/images/brand/mak-logo.png"
               alt="MĀK"

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { IntroLoader } from "@/components/intro-loader";
 import { siteMeta } from "@/lib/content";
 import "./globals.css";
 
@@ -34,7 +35,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full antialiased">
-      <body className="min-h-full">{children}</body>
+      <body className="min-h-full">
+        <IntroLoader />
+        {children}
+      </body>
     </html>
   );
 }
