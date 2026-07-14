@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import type { RefObject } from "react";
 
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { approachImage, approachPoints, approachVideo } from "@/lib/content";
@@ -17,10 +18,10 @@ export function getApproachActiveIndex(progress: number, totalPoints: number) {
   const safeProgress = clamp(progress, 0, 0.9999);
 
   if (totalPoints === 3) {
-    if (safeProgress < 0.3) {
+    if (safeProgress < 0.4) {
       return 0;
     }
-    if (safeProgress < 0.75) {
+    if (safeProgress < 0.82) {
       return 1;
     }
     return 2;
@@ -32,21 +33,23 @@ export function getApproachActiveIndex(progress: number, totalPoints: number) {
 type ApproachContentProps = {
   activeIndex: number;
   onPointClick: (index: number) => void;
+  pointsRef: RefObject<HTMLDivElement | null>;
+  mediaRef: RefObject<HTMLDivElement | null>;
 };
 
-function ApproachContent({ activeIndex, onPointClick }: ApproachContentProps) {
+function ApproachContent({ activeIndex, onPointClick, pointsRef, mediaRef }: ApproachContentProps) {
   return (
     <div className="mx-auto flex w-full max-w-[1480px] flex-col gap-8 md:gap-10">
       <div className="flex flex-col gap-8 md:grid md:grid-cols-[360px_minmax(0,980px)] md:items-start md:justify-between md:gap-8">
         <ScrollReveal delay={220}>
-          <div className="flex flex-col gap-6 md:gap-10 md:pt-2 md:pb-2">
+          <div ref={pointsRef} className="flex flex-col gap-6 md:gap-10 md:pt-2 md:pb-2">
             {approachPoints.map((point, index) => {
               const isActive = index === activeIndex;
 
               return (
                 <div
                   key={point.title}
-                  className={`flex flex-col transition-[gap] duration-300 ${
+                  className={`flex flex-col transition-[gap] duration-500 ${
                     isActive ? "gap-4 md:gap-5" : "gap-0"
                   }`}
                 >
@@ -57,7 +60,7 @@ function ApproachContent({ activeIndex, onPointClick }: ApproachContentProps) {
                     className="w-full text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--brand)]"
                   >
                     <h3
-                      className={`font-display text-[20px] leading-[21px] transition-colors duration-300 md:text-[32px] md:leading-[38px] ${
+                      className={`font-display text-[20px] leading-[21px] transition-colors duration-300 md:text-[36px] md:leading-[38px] ${
                         isActive ? "text-black" : "text-black/40"
                       }`}
                     >
@@ -65,8 +68,8 @@ function ApproachContent({ activeIndex, onPointClick }: ApproachContentProps) {
                     </h3>
                   </button>
                   <p
-                    className={`max-w-[320px] overflow-hidden font-body text-[12px] leading-4 tracking-[0.04em] text-black transition-all duration-300 md:max-w-[360px] md:text-[16px] md:leading-[22px] ${
-                      isActive ? "max-h-[180px] opacity-100" : "max-h-0 opacity-0"
+                    className={`max-w-[320px] overflow-hidden font-body text-[12px] leading-4 tracking-[0.04em] text-black transition-all duration-500 md:max-w-[360px] md:text-[16px] md:leading-[22px] ${
+                      isActive ? "max-h-[220px] opacity-100" : "max-h-0 opacity-0"
                     }`}
                   >
                     {point.description}
@@ -78,7 +81,7 @@ function ApproachContent({ activeIndex, onPointClick }: ApproachContentProps) {
         </ScrollReveal>
 
         <ScrollReveal delay={280}>
-          <div className="md:pt-0 md:max-w-[980px]">
+          <div ref={mediaRef} className="md:pt-0 md:max-w-[980px]">
             <div className="relative aspect-[390/211] overflow-hidden bg-[#d8d2c7] md:h-[520px] md:aspect-auto">
               <video
                 autoPlay
@@ -118,6 +121,8 @@ function ApproachContent({ activeIndex, onPointClick }: ApproachContentProps) {
 
 export function ApproachSection() {
   const sectionRef = useRef<HTMLElement | null>(null);
+  const pointsRef = useRef<HTMLDivElement | null>(null);
+  const mediaRef = useRef<HTMLDivElement | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const totalPoints = approachPoints.length;
 
@@ -134,29 +139,28 @@ export function ApproachSection() {
         return;
       }
 
-      const rect = sectionRef.current.getBoundingClientRect();
+      const pointsRect = pointsRef.current?.getBoundingClientRect();
+      const mediaRect = mediaRef.current?.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
-      if (rect.height < viewportHeight) {
-        const isFullyVisible = rect.top >= 0 && rect.bottom <= viewportHeight;
-        if (!isFullyVisible) {
-          return;
-        }
-
-        const travel = viewportHeight - rect.height;
-        const progress = travel > 0 ? clamp((travel - rect.top) / travel, 0, 1) : 0;
-        const nextIndex = getApproachActiveIndex(progress, totalPoints);
-        setActiveIndex((current) => (current === nextIndex ? current : nextIndex));
+      if (!pointsRect || !mediaRect) {
         return;
       }
 
-      const activationStart = viewportHeight * 0.72;
-      const activationEndTop = viewportHeight * 0.35 - rect.height;
-      const progress = clamp(
-        (activationStart - rect.top) / Math.max(activationStart - activationEndTop, 1),
-        0,
-        1,
-      );
-      const nextIndex = getApproachActiveIndex(progress, totalPoints);
+      const frameTop = 16;
+      const pointsVisible = pointsRect.top >= frameTop && pointsRect.bottom <= viewportHeight;
+      const mediaVisible = mediaRect.top >= frameTop && mediaRect.bottom <= viewportHeight;
+      if (!pointsVisible || !mediaVisible) {
+        return;
+      }
+
+      const visibilityTravel = viewportHeight - Math.max(pointsRect.height, mediaRect.height) - frameTop;
+      if (visibilityTravel <= 0) {
+        return;
+      }
+
+      const progress = clamp((visibilityTravel - mediaRect.top + frameTop) / visibilityTravel, 0, 1);
+      const easedProgress = 1 - Math.pow(1 - progress, 1.35);
+      const nextIndex = getApproachActiveIndex(easedProgress, totalPoints);
 
       setActiveIndex((current) => (current === nextIndex ? current : nextIndex));
     };
@@ -195,7 +199,12 @@ export function ApproachSection() {
       id="approach"
       className="w-full px-6 py-[48px] md:pt-[48px] md:pr-0 md:pb-[48px] md:pl-20"
     >
-      <ApproachContent activeIndex={activeIndex} onPointClick={handlePointClick} />
+      <ApproachContent
+        activeIndex={activeIndex}
+        onPointClick={handlePointClick}
+        pointsRef={pointsRef}
+        mediaRef={mediaRef}
+      />
     </section>
   );
 }

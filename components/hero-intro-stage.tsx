@@ -21,6 +21,7 @@ export function HeroIntroStage() {
   const [introHeight, setIntroHeight] = useState(0);
   const [mode, setMode] = useState<HeroMode>("top");
   const [overlayOpacity, setOverlayOpacity] = useState(0);
+  const [mediaScale, setMediaScale] = useState(1);
 
   const heroStyle = useMemo(() => {
     if (mode === "fixed") {
@@ -102,6 +103,7 @@ export function HeroIntroStage() {
 
       setMode((current) => (current === nextMode ? current : nextMode));
       setOverlayOpacity(progress * 0.52);
+      setMediaScale(1 + progress * 0.035);
     };
 
     const schedule = () => {
@@ -136,7 +138,7 @@ export function HeroIntroStage() {
       </div>
       <div style={{ height: heroHeight, ...heroStyle }}>
         <div ref={heroMeasureRef}>
-          <Hero overlayOpacity={overlayOpacity} />
+          <Hero overlayOpacity={overlayOpacity} mediaScale={mediaScale} />
         </div>
       </div>
     </div>

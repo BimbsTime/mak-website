@@ -1,4 +1,3 @@
-import React from "react";
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
@@ -17,6 +16,6 @@ describe("Home page", () => {
 
     expect(screen.getByRole("heading", { name: /the practice\./i })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /core identity and approach\./i })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /connect with māk/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /connect with mak/i })).toBeInTheDocument();
   });
 });

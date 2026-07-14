@@ -6,8 +6,23 @@ import { useEffect, useState } from "react";
 
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { ExploreLink } from "@/components/ui/explore-link";
+import { VerticalLineReveal } from "@/components/vertical-line-reveal";
 import { useDragScroll } from "@/hooks/use-drag-scroll";
 import { growthCards } from "@/lib/content";
+
+type VerticalBounds = {
+  top: number;
+  bottom: number;
+};
+
+export function isGrowthTrackFullyVisible(
+  rect: VerticalBounds,
+  viewportHeight: number,
+  deltaY: number,
+) {
+  const visibilityInset = Math.min(Math.max(Math.abs(deltaY) * 0.12, 8), 56);
+  return rect.top >= visibilityInset && rect.bottom <= viewportHeight - visibilityInset;
+}
 
 export function GrowthSection() {
   const { ref, isDragging, dragHandlers } = useDragScroll<HTMLDivElement>();
@@ -28,15 +43,17 @@ export function GrowthSection() {
         return;
       }
 
-      const nodeRect = node.getBoundingClientRect();
-      if (nodeRect.bottom > window.innerHeight - 8) {
-        return;
-      }
-
       const { deltaX, deltaY } = event;
       const shouldTranslate = Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 0.1;
 
       if (!shouldTranslate) {
+        return;
+      }
+
+      const nodeRect = node.getBoundingClientRect();
+      const isFullyVisible = isGrowthTrackFullyVisible(nodeRect, window.innerHeight, deltaY);
+
+      if (!isFullyVisible) {
         return;
       }
 
@@ -88,7 +105,7 @@ export function GrowthSection() {
             </ScrollReveal>
 
             <div className="flex max-w-[672px] items-end gap-5">
-              <div className="hidden h-[106px] w-px bg-black md:block" />
+              <VerticalLineReveal className="hidden h-[106px] w-px bg-black md:block" delay={120} />
               <ScrollReveal delay={140}>
                 <p className="max-w-[336px] font-body text-[12px] leading-4 tracking-[0.04em] text-black md:max-w-[560px] md:text-[16px] md:leading-6">
                   The firm is set to launch 3-4 new projects across residential and commercial sectors, with a projected portfolio expansion of ₹4000-5000 Cr. GDV over the next two years.
@@ -125,22 +142,24 @@ export function GrowthSection() {
                       className="pointer-events-none object-cover"
                     />
                   </div>
-                  <div className="mt-4 flex flex-col gap-4 md:mt-10 md:flex-row md:items-start md:justify-between md:gap-[270px] md:pr-4">
-                    <div className="flex max-w-[250px] flex-col gap-3 md:max-w-[765px] md:gap-8">
-                      <h3 className="font-display text-[18px] leading-[21px] text-black md:text-[24px] md:leading-[25px]">
-                        {card.title}
-                      </h3>
-                      <p className="font-body text-[12px] leading-4 tracking-[0.04em] text-black md:text-[18px] md:leading-6">
-                        {card.description}
-                      </p>
+                  <ScrollReveal delay={220}>
+                    <div className="mt-4 flex flex-col gap-4 md:mt-10 md:flex-row md:items-start md:justify-between md:gap-[270px] md:pr-4">
+                      <div className="flex max-w-[250px] flex-col gap-3 md:max-w-[765px] md:gap-8">
+                        <h3 className="font-display text-[18px] leading-[21px] text-black md:text-[32px] md:leading-[25px]">
+                          {card.title}
+                        </h3>
+                        <p className="font-body text-[12px] leading-4 tracking-[0.04em] text-black md:text-[16px] md:leading-6">
+                          {card.description}
+                        </p>
+                      </div>
+                      <div className="hidden shrink-0 md:block">
+                        <ExploreLink href={card.href} />
+                      </div>
                     </div>
-                    <div className="hidden shrink-0 md:block">
+                    <div className="md:hidden">
                       <ExploreLink href={card.href} />
                     </div>
-                  </div>
-                  <div className="md:hidden">
-                    <ExploreLink href={card.href} />
-                  </div>
+                  </ScrollReveal>
                 </article>
               ))}
             </div>

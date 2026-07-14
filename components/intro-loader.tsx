@@ -76,43 +76,11 @@ export function IntroLoader() {
       <div className="relative flex h-full w-full items-center justify-center">
         <div className="relative h-[66px] w-[140px]">
           <div
-            className={`absolute inset-0 transition-opacity duration-[500ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
-              isExiting ? "opacity-0" : "opacity-100"
-            }`}
-          >
-            <div
-              className={`absolute inset-y-0 left-0 w-1/2 overflow-hidden transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                isExiting ? "-translate-x-5" : "translate-x-0"
-              }`}
-            >
-              <div className="absolute inset-y-0 left-0 w-[140px]">
-                <Image src="/images/brand/mak-logo.png" alt="MĀK" fill priority sizes="140px" className="object-contain" />
-              </div>
-            </div>
-
-            <div
-              className={`absolute inset-y-0 right-0 w-1/2 overflow-hidden transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                isExiting ? "translate-x-5" : "translate-x-0"
-              }`}
-            >
-              <div className="absolute inset-y-0 right-0 w-[140px]">
-                <Image src="/images/brand/mak-logo.png" alt="MĀK" fill priority sizes="140px" className="object-contain" />
-              </div>
-            </div>
-          </div>
-
-          <div
-            className={`absolute left-1/2 top-1/2 h-[74px] w-px -translate-x-1/2 -translate-y-1/2 bg-black/18 transition-all duration-[700ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
-              isExiting ? "scale-y-0 opacity-0" : "scale-y-100 opacity-100"
-            }`}
-          />
-
-          <div
             className={`absolute inset-0 transition-all duration-[650ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
-              isExiting ? "scale-95 opacity-0" : "scale-100 opacity-100"
+              isExiting ? "translate-y-1 scale-95 opacity-0" : "translate-y-0 scale-100 opacity-100"
             }`}
           >
-            <Image src="/images/brand/mak-logo.png" alt="" fill priority sizes="140px" className="object-contain opacity-[0.06]" />
+            <Image src="/images/brand/mak-logo.png" alt="MĀK" fill priority sizes="140px" className="object-contain" />
           </div>
         </div>
       </div>

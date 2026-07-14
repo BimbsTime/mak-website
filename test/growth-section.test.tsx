@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
-import { GrowthSection } from "@/components/growth-section";
+import { GrowthSection, isGrowthTrackFullyVisible } from "@/components/growth-section";
 
 describe("GrowthSection", () => {
   it("renders the project pipeline slides", () => {
@@ -14,5 +14,10 @@ describe("GrowthSection", () => {
     const slides = container.querySelectorAll("article");
     expect(slides).toHaveLength(2);
     expect(slides[0]?.className).toContain("snap-start");
+  });
+
+  it("requires a deeper fully-visible frame for faster wheel gestures", () => {
+    expect(isGrowthTrackFullyVisible({ top: 10, bottom: 790 }, 800, 20)).toBe(true);
+    expect(isGrowthTrackFullyVisible({ top: 10, bottom: 790 }, 800, 320)).toBe(false);
   });
 });

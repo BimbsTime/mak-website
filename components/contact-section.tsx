@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { ScrollReveal } from "@/components/scroll-reveal";
+import { VerticalLineReveal } from "@/components/vertical-line-reveal";
 import { contactImage } from "@/lib/content";
 
 function clamp(value: number, min: number, max: number) {
@@ -84,29 +85,34 @@ export function ContactSection() {
       </div>
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.10)_0%,rgba(0,0,0,0.72)_100%)]" />
 
-      <div className="relative mx-auto flex min-h-[460px] max-w-[1695px] items-end px-6 py-[48px] text-[#f7f5f2] md:min-h-[720px] md:px-20 md:py-[48px]">
-        <div className="flex max-w-[340px] flex-col items-start gap-3 md:max-w-[420px] md:gap-6">
-          <ScrollReveal delay={0}>
-            <h2 className="font-display text-[24px] leading-[26px] md:text-[48px] md:leading-[48px]">
-              Connect with MAK
-            </h2>
-          </ScrollReveal>
-          <ScrollReveal delay={140}>
-            <a
-              href="mailto:inquiry@makdevelopers.com"
-              className="font-body text-[12px] leading-4 tracking-[0.04em] transition-opacity duration-300 hover:opacity-70 md:text-[16px] md:leading-6"
-            >
-              inquiry@makdevelopers.com
-            </a>
-          </ScrollReveal>
-          <ScrollReveal delay={240}>
-            <a
-              href="tel:+913456868982"
-              className="font-body text-[12px] leading-4 tracking-[0.04em] transition-opacity duration-300 hover:opacity-70 md:text-[16px] md:leading-6"
-            >
-              +91-3456868982
-            </a>
-          </ScrollReveal>
+      <div className="relative mx-auto flex min-h-[460px] max-w-[1695px] items-end px-6 py-[48px] text-[#f7f5f2] md:min-h-[97vh] md:px-20 md:py-[48px]">
+        <div className="flex max-w-[340px] flex-col items-start gap-5 md:max-w-[520px] md:gap-8">
+          <div className="flex items-start">
+            <VerticalLineReveal className="mt-2 mr-10 hidden h-[135px] w-px shrink-0 bg-[#f7f5f2] md:block" />
+            <div className="flex flex-col items-start gap-3 md:min-w-[440px] md:gap-6">
+              <ScrollReveal delay={0}>
+                <h2 className="font-display text-[24px] leading-[26px] md:whitespace-nowrap md:text-[48px] md:leading-[48px]">
+                  Connect with MAK
+                </h2>
+              </ScrollReveal>
+              <ScrollReveal delay={140}>
+                <a
+                  href="mailto:inquiry@makdevelopers.com"
+                  className="font-body text-[12px] leading-4 tracking-[0.04em] transition-opacity duration-300 hover:opacity-70 md:text-[16px] md:leading-6"
+                >
+                  inquiry@makdevelopers.com
+                </a>
+              </ScrollReveal>
+              <ScrollReveal delay={240}>
+                <a
+                  href="tel:+913456868982"
+                  className="font-body text-[12px] leading-4 tracking-[0.04em] transition-opacity duration-300 hover:opacity-70 md:text-[16px] md:leading-6"
+                >
+                  +91-3456868982
+                </a>
+              </ScrollReveal>
+            </div>
+          </div>
           <ScrollReveal delay={340}>
             <div className="mt-2">
               <Link

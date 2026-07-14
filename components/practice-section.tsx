@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 
 import { ScrollReveal } from "@/components/scroll-reveal";
+import { VerticalLineReveal } from "@/components/vertical-line-reveal";
 import { practiceMetrics, practiceVideo } from "@/lib/content";
 
 function clamp(value: number, min: number, max: number) {
@@ -88,8 +89,8 @@ export function PracticeSection() {
       </div>
       <div className="absolute inset-0 bg-linear-to-b from-black/10 via-black/10 to-black/80 md:bg-[linear-gradient(197deg,rgba(0,0,0,0.10)_19%,rgba(0,0,0,0.80)_76%)]" />
 
-      <div className="relative mx-auto flex min-h-[560px] max-w-[1695px] items-end gap-6 px-6 py-[48px] text-[#f7f5f2] md:min-h-[720px] md:gap-10 md:px-20 md:py-[48px]">
-        <div className="mt-2 hidden h-[248px] w-px shrink-0 bg-[#f7f5f2] md:block" />
+      <div className="relative mx-auto flex min-h-[560px] max-w-[1695px] items-end gap-6 px-6 py-[48px] text-[#f7f5f2] md:min-h-[97vh] md:gap-10 md:px-20 md:py-[48px]">
+        <VerticalLineReveal className="mt-2 hidden h-[248px] w-px shrink-0 bg-[#f7f5f2] md:block" />
         <div className="flex max-w-[840px] flex-col items-start">
           <div className="flex max-w-[344px] flex-col gap-3 md:max-w-none md:gap-3">
             <ScrollReveal delay={0}>
@@ -111,7 +112,7 @@ export function PracticeSection() {
                   <p className="font-body text-[20px] leading-5 font-extralight md:text-[32px] md:leading-8">
                     {metric.value}
                   </p>
-                  <p className="font-body text-[12px] leading-[13px] tracking-[0.04em] md:text-[20px] md:leading-[22px]">
+                  <p className="font-body text-[12px] leading-[13px] tracking-[0.04em] md:text-[16px] md:leading-[22px]">
                     {metric.label}
                   </p>
                 </div>

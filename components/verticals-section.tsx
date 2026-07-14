@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { VerticalCard } from "@/components/vertical-card";
+import { VerticalLineReveal } from "@/components/vertical-line-reveal";
 import { useDragScroll } from "@/hooks/use-drag-scroll";
 import { verticalCards } from "@/lib/content";
 
@@ -106,7 +107,7 @@ export function VerticalsSection() {
             </ScrollReveal>
           </h2>
           <div className="flex max-w-[524px] items-end gap-5">
-            <div className="hidden h-[106px] w-px bg-black md:block" />
+            <VerticalLineReveal className="hidden h-[106px] w-px bg-black md:block" delay={120} />
             <ScrollReveal delay={140}>
               <p className="max-w-[296px] font-body text-[12px] leading-4 tracking-[0.04em] text-black md:max-w-[492px] md:text-[16px] md:leading-[22px]">
                 Bringing together residential and hospitality, as well as lifestyle-oriented, leisure-based retail and wellness components within integrated developments.

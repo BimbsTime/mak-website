@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { ScrollReveal } from "@/components/scroll-reveal";
 import { footerDisabledLinks, footerPrimaryLinks, footerSecondaryLinks } from "@/lib/content";
 
 function FooterLinkRow({ links }: { links: typeof footerPrimaryLinks }) {
@@ -50,24 +51,28 @@ export function SiteFooter() {
   return (
     <footer className="w-full bg-[#fbfaf8] px-6 py-8 md:px-20 md:py-10">
       <div className="mx-auto flex max-w-[1695px] flex-col gap-8 md:flex-row md:items-end md:justify-between">
-        <div className="flex max-w-[260px] flex-col gap-3">
-          <Link href="/">
-            <Image src="/images/brand/mak-logo.png" alt="MĀK" width={80} height={38} className="h-[38px] w-20" />
-          </Link>
-          <p className="font-body text-[12px] leading-4 tracking-[0.04em] text-black md:text-[14px] md:leading-[18px]">
-            A Mumbai-based, design-led real estate developer.
-          </p>
-        </div>
-
-        <div className="flex flex-col gap-6 md:items-end">
-          <div className="flex flex-col gap-3 md:items-end">
-            <FooterLinkRow links={footerPrimaryLinks} />
-            <FooterUtilityRow />
+        <ScrollReveal delay={0}>
+          <div className="flex max-w-[260px] flex-col gap-3">
+            <Link href="/">
+              <Image src="/images/brand/mak-logo.png" alt="MĀK" width={80} height={38} className="h-[38px] w-20" />
+            </Link>
+            <p className="font-body text-[12px] leading-4 tracking-[0.04em] text-black md:text-[14px] md:leading-[18px]">
+              A Mumbai-based, design-led real estate developer.
+            </p>
           </div>
-          <p className="font-body text-[12px] leading-4 tracking-[0.04em] text-black/70">
-            © MĀK. All rights reserved.
-          </p>
-        </div>
+        </ScrollReveal>
+
+        <ScrollReveal delay={140}>
+          <div className="flex flex-col gap-6 md:items-end">
+            <div className="flex flex-col gap-3 md:items-end">
+              <FooterLinkRow links={footerPrimaryLinks} />
+              <FooterUtilityRow />
+            </div>
+            <p className="font-body text-[12px] leading-4 tracking-[0.04em] text-black/70">
+              © MĀK. All rights reserved.
+            </p>
+          </div>
+        </ScrollReveal>
       </div>
     </footer>
   );

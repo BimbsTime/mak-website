@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { ScrollReveal } from "@/components/scroll-reveal";
 import { ExploreLink } from "@/components/ui/explore-link";
 import type { VerticalCard as VerticalCardData } from "@/lib/types";
 
@@ -41,17 +42,19 @@ export function VerticalCard({ card, isActive, onActivate }: VerticalCardProps) 
         />
       </div>
 
-      <div className="flex w-full flex-col items-start gap-3 md:gap-6">
-        <div className="flex w-full flex-col gap-3 md:gap-6">
-          <h3 className="w-full font-display text-[20px] leading-[21px] text-black md:text-[24px] md:leading-[26px]">
-            {card.title}
-          </h3>
-          <p className="w-full font-body text-[12px] leading-4 tracking-[0.04em] text-black md:text-[16px] md:leading-[22px]">
-            {card.description}
-          </p>
+      <ScrollReveal delay={140}>
+        <div className="flex w-full flex-col items-start gap-3 md:gap-6">
+          <div className="flex w-full flex-col gap-3 md:gap-6">
+            <h3 className="w-full font-display text-[20px] leading-[21px] text-black md:text-[32px] md:leading-[26px]">
+              {card.title}
+            </h3>
+            <p className="w-full font-body text-[12px] leading-4 tracking-[0.04em] text-black md:text-[16px] md:leading-[22px]">
+              {card.description}
+            </p>
+          </div>
+          <ExploreLink href={card.href} />
         </div>
-        <ExploreLink href={card.href} />
-      </div>
+      </ScrollReveal>
     </article>
   );
 }
