@@ -114,7 +114,7 @@ export const verticalCards: VerticalCard[] = [
   },
   {
     id: "retail-dining",
-    title: "Botique Retail and Dining",
+    title: "Boutique Retail and Dining",
     description:
       "An 80,000 sq. ft. design-led retail destination combining curated dining, shopping, and leisure within a hospitality-driven lifestyle experience.",
     href: comingSoonHref("retail-dining"),
