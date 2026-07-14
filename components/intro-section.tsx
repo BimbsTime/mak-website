@@ -17,7 +17,7 @@ export function IntroSection() {
             </p>
           </ScrollReveal>
           <ScrollReveal delay={100}>
-            <h1 className="max-w-[342px] whitespace-pre-line font-display text-[32px] leading-[32px] text-[var(--brand)] md:max-w-none md:text-[60px] md:leading-[60px]">
+            <h1 className="max-w-[342px] whitespace-pre-line font-display text-[32px] leading-[32px] text-[var(--brand)] md:max-w-none md:text-[48px] md:leading-[48px]">
               {introContent.title}
             </h1>
           </ScrollReveal>
