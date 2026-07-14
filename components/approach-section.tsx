@@ -116,6 +116,8 @@ export function ApproachSection() {
   const totalPoints = approachPoints.length;
 
   useEffect(() => {
+    let frameId: number | null = null;
+
     const updateActivePoint = () => {
       if (typeof window === "undefined" || !sectionRef.current) {
         return;
@@ -128,28 +130,39 @@ export function ApproachSection() {
 
       const rect = sectionRef.current.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
-      const firstThreshold = viewportHeight * 0.08;
-      const secondThreshold = viewportHeight * 0.62;
-      let nextIndex = 0;
-
-      if (rect.top <= firstThreshold) {
-        nextIndex = 1;
-      }
-
-      if (rect.bottom <= secondThreshold) {
-        nextIndex = totalPoints - 1;
-      }
+      const activationStart = viewportHeight * 0.72;
+      const activationEndTop = viewportHeight * 0.35 - rect.height;
+      const progress = clamp(
+        (activationStart - rect.top) / Math.max(activationStart - activationEndTop, 1),
+        0,
+        1,
+      );
+      const nextIndex = getApproachActiveIndex(progress, totalPoints);
 
       setActiveIndex((current) => (current === nextIndex ? current : nextIndex));
     };
 
-    updateActivePoint();
-    window.addEventListener("scroll", updateActivePoint, { passive: true });
-    window.addEventListener("resize", updateActivePoint);
+    const scheduleUpdate = () => {
+      if (frameId !== null) {
+        cancelAnimationFrame(frameId);
+      }
+
+      frameId = requestAnimationFrame(() => {
+        updateActivePoint();
+        frameId = null;
+      });
+    };
+
+    scheduleUpdate();
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate);
 
     return () => {
-      window.removeEventListener("scroll", updateActivePoint);
-      window.removeEventListener("resize", updateActivePoint);
+      if (frameId !== null) {
+        cancelAnimationFrame(frameId);
+      }
+      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", scheduleUpdate);
     };
   }, [totalPoints]);
 
@@ -162,16 +175,14 @@ export function ApproachSection() {
 
     const rect = sectionRef.current.getBoundingClientRect();
     const viewportHeight = window.innerHeight;
-    const targetTopOffsets = [
-      viewportHeight * 0.2,
-      viewportHeight * 0.08,
-      rect.height - viewportHeight * 0.62,
-    ];
-    const targetTop =
-      window.scrollY + rect.top - (targetTopOffsets[index] ?? targetTopOffsets[0] ?? 0);
+    const activationStart = viewportHeight * 0.72;
+    const activationEndTop = viewportHeight * 0.35 - rect.height;
+    const segmentSize = Math.max((activationStart - activationEndTop) / totalPoints, 1);
+    const targetTop = activationStart - segmentSize * index - segmentSize * 0.12;
+    const nextScrollTop = window.scrollY + rect.top - targetTop;
 
     window.scrollTo({
-      top: targetTop,
+      top: nextScrollTop,
       behavior: "smooth",
     });
   };

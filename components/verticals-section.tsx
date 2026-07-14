@@ -1,14 +1,34 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { VerticalCard } from "@/components/vertical-card";
+import { useDragScroll } from "@/hooks/use-drag-scroll";
 import { verticalCards } from "@/lib/content";
 
 export function VerticalsSection() {
   const defaultActiveId = verticalCards[0]?.id ?? "";
   const [activeId, setActiveId] = useState(defaultActiveId);
+  const { ref, isDragging, dragHandlers } = useDragScroll<HTMLDivElement>();
+  const resetTimeoutRef = useRef<number | null>(null);
+
+  const clearResetTimeout = () => {
+    if (resetTimeoutRef.current !== null) {
+      window.clearTimeout(resetTimeoutRef.current);
+      resetTimeoutRef.current = null;
+    }
+  };
+
+  const scheduleReset = () => {
+    clearResetTimeout();
+    resetTimeoutRef.current = window.setTimeout(() => {
+      setActiveId(defaultActiveId);
+      resetTimeoutRef.current = null;
+    }, 120);
+  };
+
+  useEffect(() => clearResetTimeout, []);
 
   return (
     <section id="verticals" className="w-full px-6 py-[72px] md:px-20 md:pt-[116px] md:pb-20">
@@ -31,17 +51,31 @@ export function VerticalsSection() {
         </div>
 
         <ScrollReveal delay={220}>
-          <div className="no-scrollbar mt-12 overflow-x-auto pb-4 md:mt-[120px]">
-            <div
-              className="flex w-max items-start gap-5 md:gap-14"
-              onMouseLeave={() => setActiveId(defaultActiveId)}
-            >
+          <div
+            ref={ref}
+            className={`no-scrollbar mt-12 overflow-x-auto pb-4 select-none [touch-action:pan-y] md:mt-[120px] ${
+              isDragging ? "cursor-grabbing" : "cursor-grab"
+            }`}
+            {...dragHandlers}
+            onMouseEnter={clearResetTimeout}
+            onMouseLeave={() => {
+              if (!isDragging) {
+                scheduleReset();
+              }
+            }}
+          >
+            <div className="flex w-max items-start gap-5 md:gap-14">
               {verticalCards.map((card) => (
                 <div key={card.id} className="shrink-0">
                   <VerticalCard
                     card={card}
                     isActive={card.id === activeId}
-                    onActivate={() => setActiveId(card.id)}
+                    onActivate={() => {
+                      clearResetTimeout();
+                      if (!isDragging) {
+                        setActiveId(card.id);
+                      }
+                    }}
                   />
                 </div>
               ))}

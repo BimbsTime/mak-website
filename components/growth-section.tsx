@@ -1,9 +1,14 @@
+"use client";
+
 import Image from "next/image";
 
 import { ExploreLink } from "@/components/ui/explore-link";
+import { useDragScroll } from "@/hooks/use-drag-scroll";
 import { growthCards } from "@/lib/content";
 
 export function GrowthSection() {
+  const { ref, isDragging, dragHandlers } = useDragScroll<HTMLDivElement>();
+
   return (
     <section className="w-full px-6 py-10 md:pt-[116px] md:pr-0 md:pb-[116px] md:pl-20">
       <div className="flex flex-col gap-12 md:gap-[120px]">
@@ -21,7 +26,13 @@ export function GrowthSection() {
           </div>
         </div>
 
-        <div className="no-scrollbar overflow-x-auto pb-4 md:pb-0">
+        <div
+          ref={ref}
+          className={`no-scrollbar overflow-x-auto pb-4 select-none [touch-action:pan-y] md:pb-0 ${
+            isDragging ? "cursor-grabbing" : "cursor-grab"
+          }`}
+          {...dragHandlers}
+        >
           <div className="flex w-max snap-x snap-mandatory gap-4 md:gap-14">
             {growthCards.map((card) => (
               <article
@@ -34,8 +45,9 @@ export function GrowthSection() {
                     src={card.image.src}
                     alt={card.image.alt}
                     fill
+                    draggable={false}
                     sizes="(min-width: 768px) 1051px, 316px"
-                    className="object-cover"
+                    className="pointer-events-none object-cover"
                   />
                 </div>
                 <div className="mt-4 flex flex-col gap-4 md:mt-10 md:flex-row md:items-start md:justify-between md:gap-[270px] md:pr-4">

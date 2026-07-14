@@ -9,6 +9,7 @@ type ScrollRevealProps = {
   delay?: number;
   distance?: number;
   duration?: number;
+  scale?: number;
   threshold?: number;
   once?: boolean;
 };
@@ -19,6 +20,7 @@ export function ScrollReveal({
   delay = 0,
   distance = 24,
   duration = 800,
+  scale = 1,
   threshold = 0.18,
   once = true,
 }: ScrollRevealProps) {
@@ -88,7 +90,9 @@ export function ScrollReveal({
       className={className}
       style={{
         opacity: isVisible ? 1 : 0,
-        transform: isVisible ? "translate3d(0, 0, 0)" : `translate3d(0, ${distance}px, 0)`,
+        transform: isVisible
+          ? "translate3d(0, 0, 0) scale(1)"
+          : `translate3d(0, ${distance}px, 0) scale(${scale})`,
         transitionProperty: prefersReducedMotion ? "none" : "opacity, transform",
         transitionDuration: prefersReducedMotion ? "0ms" : `${duration}ms`,
         transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)",
