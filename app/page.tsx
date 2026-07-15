@@ -14,7 +14,7 @@ export default function Home() {
         Skip to content
       </a>
       <SiteHeader />
-      <main id="main-content" className="overflow-x-hidden">
+      <main id="main-content" className="overflow-x-clip">
         <HeroIntroStage />
         <PracticeSection />
         <VerticalsSection />

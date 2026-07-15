@@ -1,19 +1,21 @@
+import React from "react";
+import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
-import { getApproachActiveIndex } from "@/components/approach-section";
+import { ApproachSection } from "@/components/approach-section";
 
-describe("getApproachActiveIndex", () => {
-  it("defaults to the first point before the section has progressed", () => {
-    expect(getApproachActiveIndex(-0.25, 3)).toBe(0);
-    expect(getApproachActiveIndex(0.1, 3)).toBe(0);
-  });
+describe("ApproachSection", () => {
+  it("renders the compact approach list and continuous video media", () => {
+    const { container } = render(<ApproachSection />);
 
-  it("advances through the three approach points as scroll progress increases", () => {
-    expect(getApproachActiveIndex(0.34, 3)).toBe(0);
-    expect(getApproachActiveIndex(0.4, 3)).toBe(1);
-    expect(getApproachActiveIndex(0.67, 3)).toBe(1);
-    expect(getApproachActiveIndex(0.78, 3)).toBe(1);
-    expect(getApproachActiveIndex(0.82, 3)).toBe(2);
-    expect(getApproachActiveIndex(1.5, 3)).toBe(2);
+    expect(screen.getByRole("button", { name: /integrated capability/i })).toHaveAttribute("aria-pressed", "true");
+    expect(screen.getByRole("button", { name: /spatial intent/i })).toHaveAttribute("aria-pressed", "false");
+    expect(screen.getByRole("button", { name: /micro-hospitality/i })).toHaveAttribute("aria-pressed", "false");
+
+    const video = container.querySelector("video");
+    expect(video).toHaveAttribute("autoplay");
+    expect(video).toHaveAttribute("loop");
+    expect(container.querySelectorAll("[data-approach-point]")).toHaveLength(3);
+    expect(container.querySelectorAll("[data-approach-scroll-zone]")).toHaveLength(3);
   });
 });
