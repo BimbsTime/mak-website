@@ -20,18 +20,19 @@ export function GrowthSectionV2() {
 
   return (
     <section className="w-full py-8 md:pt-12 md:pb-24">
-      <div className="px-6 md:px-20">
-        <div className="grid gap-4 md:mx-auto md:max-w-[1076px] md:grid-cols-[324px_1fr] md:items-end md:gap-x-14">
-          <ScrollReveal delay={0}>
-            <h2 className="font-display text-[24px] leading-[26px] text-[var(--brand)] md:text-[36px] md:leading-[44px]">
-              <span className="block whitespace-normal md:whitespace-nowrap">Project Pipeline and Growth.</span>
-            </h2>
-          </ScrollReveal>
+      <div className="mx-auto max-w-[1615px] px-6 md:px-20">
+        <div className="flex flex-col gap-4 md:max-w-[1114px] md:flex-row md:items-end md:gap-14">
+          <h2 className="max-w-[510px] font-display text-[24px] leading-[26px] text-[var(--brand)] md:text-[36px] md:leading-[40px]">
+            <ScrollReveal as="span" delay={0} distance={18} className="block whitespace-normal md:whitespace-nowrap">
+              Project Pipeline and<br />
+              Growth.
+            </ScrollReveal>
+          </h2>
 
-          <div className="flex max-w-[672px] items-end gap-5">
+          <div className="flex max-w-[524px] items-end gap-5">
             <VerticalLineReveal className="hidden h-[106px] w-px bg-black md:block" delay={120} />
             <ScrollReveal delay={140}>
-              <p className="max-w-[336px] font-body text-[12px] leading-4 tracking-[0.04em] text-black md:max-w-[560px] md:text-[16px] md:leading-6">
+              <p className="max-w-[296px] font-body text-[12px] leading-4 tracking-[0.04em] text-black md:max-w-[492px] md:text-[16px] md:leading-[22px]">
                 The firm is set to launch 3-4 new projects across residential and commercial sectors, with a projected portfolio expansion of ₹4000-5000 Cr. GDV over the next two years.
               </p>
             </ScrollReveal>
@@ -42,7 +43,7 @@ export function GrowthSectionV2() {
       <section
         ref={pinnedSectionRef}
         aria-label="Project pipeline"
-        className={`mt-12 md:mt-[84px] ${
+        className={`mt-8 md:mt-8 ${
           isDesktopMotionEnabled ? "overflow-hidden md:h-[100vh]" : "overflow-visible"
         }`}
       >
