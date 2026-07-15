@@ -1,6 +1,6 @@
 import { ApproachSection } from "@/components/approach-section";
 import { ContactSection } from "@/components/contact-section";
-import { GrowthSection } from "@/components/growth-section";
+import { GrowthSectionV2 } from "@/components/growth-section-v2";
 import { HeroIntroStage } from "@/components/hero-intro-stage";
 import { PracticeSection } from "@/components/practice-section";
 import { SiteFooter } from "@/components/site-footer";
@@ -19,7 +19,7 @@ export default function Home() {
         <PracticeSection />
         <VerticalsSection />
         <ApproachSection />
-        <GrowthSection />
+        <GrowthSectionV2 />
         <ContactSection />
       </main>
       <SiteFooter />
