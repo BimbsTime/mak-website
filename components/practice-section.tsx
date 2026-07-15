@@ -94,7 +94,7 @@ export function PracticeSection() {
         <div className="flex max-w-[840px] flex-col items-start">
           <div className="flex max-w-[344px] flex-col gap-3 md:max-w-none md:gap-3">
             <ScrollReveal delay={0}>
-              <h2 className="font-display text-[32px] leading-[32px] md:text-[48px] md:leading-[48px]">
+              <h2 className="font-display text-[32px] leading-[32px] md:text-[36px] md:leading-[36px]">
                 The Practice.
               </h2>
             </ScrollReveal>
