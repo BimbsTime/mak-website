@@ -18,11 +18,11 @@ describe("GrowthSectionV2", () => {
     expect(container.querySelector("[data-growth-content]")).toBeInTheDocument();
   });
 
-  it("does not render a native horizontal scroll or snap container", () => {
+  it("uses a touch-swipable mobile track without scroll snapping", () => {
     const { container } = render(<GrowthSectionV2 />);
 
     const pinnedSection = screen.getByRole("region", { name: /project pipeline/i });
-    expect(pinnedSection.className).not.toContain("overflow-x-auto");
+    expect(pinnedSection.className).toContain("overflow-x-auto");
     expect(container.querySelector(".snap-start")).not.toBeInTheDocument();
   });
 });

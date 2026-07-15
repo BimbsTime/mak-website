@@ -32,7 +32,7 @@ export function GrowthSectionV2() {
           <div className="flex max-w-[524px] items-end gap-5">
             <VerticalLineReveal className="hidden h-[106px] w-px bg-black md:block" delay={120} />
             <ScrollReveal delay={140}>
-              <p className="max-w-[296px] font-body text-[12px] leading-4 tracking-[0.04em] text-black md:max-w-[492px] md:text-[16px] md:leading-[22px]">
+              <p className="max-w-[600px] font-body text-[12px] leading-4 tracking-[0.04em] text-black md:max-w-[492px] md:text-[16px] md:leading-[22px]">
                 The firm is set to launch 3-4 new projects across residential and commercial sectors, with a projected portfolio expansion of ₹4000-5000 Cr. GDV over the next two years.
               </p>
             </ScrollReveal>
@@ -43,13 +43,13 @@ export function GrowthSectionV2() {
       <section
         ref={pinnedSectionRef}
         aria-label="Project pipeline"
-        className={`mt-8 md:mt-8 ${
-          isDesktopMotionEnabled ? "overflow-hidden md:h-[100vh]" : "overflow-visible"
+        className={`no-scrollbar mt-8 overflow-x-auto md:mt-8 ${
+          isDesktopMotionEnabled ? "md:h-[100vh] md:overflow-hidden" : ""
         }`}
       >
         <div
           ref={trackRef}
-          className={`flex flex-col gap-12 ${
+          className={`flex w-max items-start gap-8 px-6 ${
             isDesktopMotionEnabled ? "md:h-full md:w-max md:flex-row md:gap-[4vw] md:px-[6vw]" : ""
           }`}
         >
@@ -58,13 +58,13 @@ export function GrowthSectionV2() {
               key={card.id}
               id={card.id}
               data-growth-card
-              className={`w-full shrink-0 ${
+              className={`w-[78vw] shrink-0 ${
                 isDesktopMotionEnabled
                   ? "md:flex md:h-full md:w-[72vw] md:items-center"
                   : ""
               }`}
             >
-              <div className="mx-auto w-[calc(100%-3rem)] max-w-[1051px] md:w-full md:max-w-none">
+              <div className="w-full max-w-[1051px] md:max-w-none">
                 <div className="relative aspect-[316/178] overflow-hidden bg-[#d8d2c7] md:aspect-[1051/594]">
                   <Image
                     src={card.image.src}
@@ -88,7 +88,7 @@ export function GrowthSectionV2() {
                       {card.description}
                     </p>
                   </div>
-                  <div className="shrink-0">
+                  <div className="mt-6 shrink-0 md:mt-0">
                     <ExploreLink href={card.href} />
                   </div>
                 </div>
