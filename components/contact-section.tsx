@@ -91,7 +91,7 @@ export function ContactSection() {
             <VerticalLineReveal className="mt-2 mr-6 h-[90px] w-px shrink-0 bg-[#f7f5f2] md:mr-10 md:h-[135px]" />
             <div className="flex flex-col items-start gap-3 md:min-w-[440px] md:gap-6">
               <ScrollReveal delay={0}>
-                <h2 className="font-display text-[24px] leading-[26px] md:whitespace-nowrap md:text-[48px] md:leading-[48px]">
+                <h2 className="font-display text-[24px] leading-[26px] md:whitespace-nowrap md:text-[36px] md:leading-[36px]">
                   Connect with MAK
                 </h2>
               </ScrollReveal>
