@@ -40,7 +40,7 @@ function ApproachPointsList({ activeIndex, onPointClick, pointRefs }: ApproachPo
             >
               <h3
                 data-approach-title
-                className={`font-display text-[20px] leading-[21px] transition-colors duration-300 md:text-[36px] md:leading-[38px] ${
+                className={`font-display text-[20px] leading-[21px] transition-colors duration-300 md:text-[24px] md:leading-[38px] ${
                   isActive ? "text-black" : "text-black/40"
                 }`}
               >
