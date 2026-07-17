@@ -4,6 +4,7 @@ import { useCallback, useRef, useState } from "react";
 import type { MutableRefObject, RefObject } from "react";
 
 import { ScrollReveal } from "@/components/scroll-reveal";
+import { VerticalLineReveal } from "@/components/vertical-line-reveal";
 import { useApproachScroll } from "@/hooks/use-approach-scroll";
 import { approachImage, approachPoints, approachVideo } from "@/lib/content";
 
@@ -79,38 +80,33 @@ function StickyMedia({ mediaRef }: { mediaRef: RefObject<HTMLDivElement | null> 
           >
             <source src={approachVideo.src} type="video/mp4" />
           </video>
-          <div data-approach-overlay className="absolute inset-0 hidden bg-[linear-gradient(90deg,rgba(0,0,0,0.58)_0%,rgba(0,0,0,0.14)_58%,rgba(0,0,0,0)_78%)] opacity-50 md:block" />
-          <div data-approach-overlay-text className="absolute inset-0 hidden items-end px-6 py-6 md:flex md:px-10 md:py-10">
-            <div className="flex w-full max-w-[560px] flex-col gap-4 md:gap-5">
-              <h2 className="font-display text-[24px] leading-[26px] text-[#f7f5f2] md:text-[36px] md:leading-[44px]">
-                <span className="block whitespace-normal md:whitespace-nowrap">Core Identity and</span>
-                <span className="block whitespace-normal md:whitespace-nowrap">Approach.</span>
-              </h2>
-              <p className="max-w-[336px] font-body text-[12px] leading-4 tracking-[0.04em] text-[#f7f5f2] md:max-w-[560px] md:text-[16px] md:leading-6">
-                MĀK is a real estate developer focused on delivering high-quality projects with an emphasis on spatial experience, creating developments that are functional, thoughtful, and enduring.
-              </p>
-            </div>
-          </div>
         </div>
       </ScrollReveal>
     </div>
   );
 }
 
-function MobileIntro() {
+function ApproachIntro() {
   return (
-    <div className="flex flex-col gap-4 md:hidden">
-      <ScrollReveal delay={0}>
-        <h2 className="font-display text-[24px] leading-[26px] text-[var(--brand)]">
-          <span className="block">Core Identity and</span>
-          <span className="block">Approach.</span>
-        </h2>
-      </ScrollReveal>
-      <ScrollReveal delay={140}>
-        <p className="max-w-[336px] font-body text-[12px] leading-4 tracking-[0.04em] text-black">
-          MĀK is a real estate developer focused on delivering high-quality projects with an emphasis on spatial experience, creating developments that are functional, thoughtful, and enduring.
-        </p>
-      </ScrollReveal>
+    <div className="max-w-[1615px] px-6 md:px-20">
+    <div className="flex flex-col gap-4 md:max-w-[1114px] md:flex-row md:items-end md:gap-14">
+      <h2 className="max-w-[510px] font-display text-[24px] leading-[26px] text-[var(--brand)] md:text-[36px] md:leading-[40px]">
+        <ScrollReveal as="span" delay={0} distance={18} className="block whitespace-normal md:whitespace-nowrap">
+          Core Identity and
+        </ScrollReveal>
+        <ScrollReveal as="span" delay={120} distance={18} className="block whitespace-normal md:whitespace-nowrap">
+          Approach.
+        </ScrollReveal>
+      </h2>
+      <div className="flex max-w-[524px] items-end gap-5">
+        <VerticalLineReveal className="hidden h-[106px] w-px bg-black md:block" delay={120} />
+        <ScrollReveal delay={140}>
+          <p className="max-w-[296px] font-body text-[12px] leading-4 tracking-[0.04em] text-black md:max-w-[492px] md:text-[16px] md:leading-[22px]">
+            MĀK is a real estate developer focused on delivering high-quality projects with an emphasis on spatial experience, creating developments that are functional, thoughtful, and enduring.
+          </p>
+        </ScrollReveal>
+      </div>
+    </div>
     </div>
   );
 }
@@ -149,7 +145,7 @@ export function ApproachSection() {
     >
       <div className="relative mx-auto w-full max-w-[1480px] md:h-[calc(100vh+1200px)]">
         <div className="flex flex-col gap-8 md:sticky md:top-24 md:gap-10">
-          <MobileIntro />
+          <ApproachIntro />
           <div className="flex flex-col gap-8 md:grid md:grid-cols-[minmax(0,980px)_360px] md:items-start md:justify-between md:gap-12">
             <StickyMedia mediaRef={mediaRef} />
             <ScrollReveal delay={220} className="order-2 md:order-2">

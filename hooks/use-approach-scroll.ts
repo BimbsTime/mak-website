@@ -80,8 +80,6 @@ export function useApproachScroll({
     gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
 
     const context = gsap.context(() => {
-      const overlay = media.querySelector<HTMLElement>("[data-approach-overlay]");
-      const overlayText = media.querySelector<HTMLElement>("[data-approach-overlay-text]");
       const pointTimelines = points.map((point) => {
         const title = point.querySelector<HTMLElement>("[data-approach-title]");
         const description = point.querySelector<HTMLElement>("[data-approach-description]");
@@ -104,11 +102,6 @@ export function useApproachScroll({
           }, 0.05);
       });
 
-      const overlayTimeline = gsap.timeline({ paused: true })
-        .fromTo(overlay, { autoAlpha: 0.35 }, { autoAlpha: 0.62, duration: 0.2, ease: "power1.out" })
-        .to(overlay, { autoAlpha: 0.5, duration: 0.25, ease: "power1.inOut" })
-        .fromTo(overlayText, { autoAlpha: 0.45, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.35, ease: "power2.out" }, 0);
-
       const activatePoint = (index: number) => {
         if (activeIndexRef.current === index) {
           return;
@@ -125,14 +118,11 @@ export function useApproachScroll({
           }
         });
 
-        overlayTimeline.restart();
         activeIndexRef.current = index;
         onActiveIndexChange(index);
       };
 
       pointTimelines[0]?.progress(1);
-      gsap.set(overlay, { autoAlpha: 0.5 });
-      gsap.set(overlayText, { autoAlpha: 1, y: 0 });
 
       zones.forEach((zone, index) => {
         ScrollTrigger.create({
