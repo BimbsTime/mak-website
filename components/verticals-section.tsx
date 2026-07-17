@@ -19,6 +19,24 @@ export function VerticalsSection() {
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
   const [arrowTop, setArrowTop] = useState<number | null>(null);
+  const [activeGalleryIndex, setActiveGalleryIndex] = useState<number | null>(null);
+
+  const toggleGalleryPanel = (index: number) => {
+    if (window.innerWidth >= 768) {
+      return;
+    }
+
+    setActiveGalleryIndex((current) => (current === index ? null : index));
+  };
+
+  const handleGalleryPanelKeyDown = (event: React.KeyboardEvent<HTMLDivElement>, index: number) => {
+    if (event.key !== "Enter" && event.key !== " ") {
+      return;
+    }
+
+    event.preventDefault();
+    toggleGalleryPanel(index);
+  };
 
   const clearResetTimeout = () => {
     if (resetTimeoutRef.current !== null) {
@@ -36,6 +54,18 @@ export function VerticalsSection() {
   };
 
   useEffect(() => clearResetTimeout, []);
+
+  useEffect(() => {
+    const clearDesktopGallerySelection = () => {
+      if (window.innerWidth >= 768) {
+        setActiveGalleryIndex(null);
+      }
+    };
+
+    clearDesktopGallerySelection();
+    window.addEventListener("resize", clearDesktopGallerySelection);
+    return () => window.removeEventListener("resize", clearDesktopGallerySelection);
+  }, []);
 
   useEffect(() => {
     const node = ref.current;
@@ -143,41 +173,74 @@ export function VerticalsSection() {
 
       <ScrollReveal delay={220}>
         <div className="mt-10 w-full md:mt-[56px]">
-          <div className="group relative h-svh min-h-[560px] overflow-hidden">
+          <div
+            role="button"
+            tabIndex={0}
+            aria-pressed={activeGalleryIndex === 0}
+            onClick={() => toggleGalleryPanel(0)}
+            onKeyDown={(event) => handleGalleryPanelKeyDown(event, 0)}
+            className="group relative h-[60svh] min-h-[360px] cursor-pointer overflow-hidden focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--brand)] md:h-svh md:min-h-[560px]"
+          >
             <Image
               src="/images/home/verticals-gallery/partners-wide.png"
               alt="Forum retail and office development with the MĀK and Forum marks."
               fill
               sizes="100vw"
-              className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+              className={`object-cover transition-transform duration-500 ${
+                activeGalleryIndex === 0 ? "scale-[1.02]" : "group-hover:scale-[1.02]"
+              }`}
             />
-            <div className="absolute inset-0 flex items-end justify-start bg-black/65 p-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:p-10">
-              <p className="max-w-[620px] font-display text-[18px] leading-[1.35] text-white md:text-[24px]">The aggregated residential scale includes approximately 1.7 million sq. ft. within the non urban ecosystem and approximately 2 lakh sq. ft. across multiple projects.</p>
+            <div className={`absolute inset-0 flex items-end justify-start bg-black/65 p-6 transition-opacity duration-300 md:p-10 ${
+              activeGalleryIndex === 0 ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+            }`}>
+              <p className="max-w-[620px] font-display text-[16px] leading-[1.35] text-white md:text-[24px]">The aggregated residential scale includes approximately 1.7 million sq. ft. within the non urban ecosystem and approximately 2 lakh sq. ft. across multiple projects.</p>
             </div>
           </div>
-          <div className="mt-1 grid grid-cols-1 gap-1 md:h-svh md:grid-cols-[3fr_2fr]">
-            <div className="group relative min-h-[70svh] overflow-hidden md:min-h-0">
+          <div className="mt-1 grid grid-cols-1 gap-1 md:h-svh md:grid-cols-[3fr_2fr] md:min-h-0">
+            <div
+              role="button"
+              tabIndex={0}
+              aria-pressed={activeGalleryIndex === 1}
+              onClick={() => toggleGalleryPanel(1)}
+              onKeyDown={(event) => handleGalleryPanelKeyDown(event, 1)}
+              className="group relative h-[50svh] min-h-[320px] cursor-pointer overflow-hidden focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--brand)] md:h-auto md:min-h-0"
+            >
               <Image
                 src="/images/home/verticals-gallery/partners-left.png"
                 alt="Detail of the Forum development facade and retail frontage."
                 fill
                 sizes="(min-width: 768px) 60vw, 100vw"
-                className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                className={`object-cover transition-transform duration-500 ${
+                  activeGalleryIndex === 1 ? "scale-[1.02]" : "group-hover:scale-[1.02]"
+                }`}
               />
-              <div className="absolute inset-0 flex items-end justify-start bg-black/65 p-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:p-10">
-                <p className="max-w-[620px] font-display text-[18px] leading-[1.35] text-white md:text-[24px]">The aggregated residential scale includes approximately 1.7 million sq. ft. within the non urban ecosystem and approximately 2 lakh sq. ft. across multiple projects.</p>
+              <div className={`absolute inset-0 flex items-end justify-start bg-black/65 p-6 transition-opacity duration-300 md:p-10 ${
+                activeGalleryIndex === 1 ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+              }`}>
+                <p className="max-w-[620px] font-display text-[16px] leading-[1.35] text-white md:text-[24px]">The aggregated residential scale includes approximately 1.7 million sq. ft. within the non urban ecosystem and approximately 2 lakh sq. ft. across multiple projects.</p>
               </div>
             </div>
-            <div className="group relative min-h-[70svh] overflow-hidden md:min-h-0">
+            <div
+              role="button"
+              tabIndex={0}
+              aria-pressed={activeGalleryIndex === 2}
+              onClick={() => toggleGalleryPanel(2)}
+              onKeyDown={(event) => handleGalleryPanelKeyDown(event, 2)}
+              className="group relative h-[50svh] min-h-[320px] cursor-pointer overflow-hidden focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--brand)] md:h-auto md:min-h-0"
+            >
               <Image
                 src="/images/home/verticals-gallery/partners-right.png"
                 alt="Detail of the Forum development's glazed office facade."
                 fill
                 sizes="(min-width: 768px) 40vw, 100vw"
-                className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                className={`object-cover transition-transform duration-500 ${
+                  activeGalleryIndex === 2 ? "scale-[1.02]" : "group-hover:scale-[1.02]"
+                }`}
               />
-              <div className="absolute inset-0 flex items-end justify-start bg-black/65 p-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:p-10">
-                <p className="max-w-[620px] font-display text-[18px] leading-[1.35] text-white md:text-[24px]">The aggregated residential scale includes approximately 1.7 million sq. ft. within the non urban ecosystem and approximately 2 lakh sq. ft. across multiple projects.</p>
+              <div className={`absolute inset-0 flex items-end justify-start bg-black/65 p-6 transition-opacity duration-300 md:p-10 ${
+                activeGalleryIndex === 2 ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+              }`}>
+                <p className="max-w-[620px] font-display text-[16px] leading-[1.35] text-white md:text-[24px]">The aggregated residential scale includes approximately 1.7 million sq. ft. within the non urban ecosystem and approximately 2 lakh sq. ft. across multiple projects.</p>
               </div>
             </div>
           </div>
