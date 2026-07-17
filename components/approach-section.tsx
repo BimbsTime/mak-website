@@ -39,14 +39,14 @@ function ApproachPointsList({ activeIndex, onPointClick, pointRefs }: ApproachPo
               aria-pressed={isActive}
               className="w-full text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--brand)]"
             >
-              <h2
+              <h3
                 data-approach-title
-                className={`font-display text-[20px] leading-[21px] transition-colors duration-300 md:text-[36px] md:leading-[38px] ${
+                className={`font-display text-[20px] leading-[21px] transition-colors duration-300 md:text-[24px] md:leading-[24px] ${
                   isActive ? "text-black" : "text-black/40"
                 }`}
               >
                 {point.title}
-              </h2>
+              </h3>
             </button>
             <p
               data-approach-description
