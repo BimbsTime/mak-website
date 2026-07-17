@@ -17,7 +17,7 @@ type SiteHeaderProps = {
 
 type HeaderTone = "light" | "brand";
 
-function DesktopNav({ activeNavKey, tone }: SiteHeaderProps & { tone: HeaderTone }) {
+function DesktopNav({ activeNavKey, tone, isCompact }: SiteHeaderProps & { tone: HeaderTone; isCompact: boolean }) {
   const isIntroComplete = useIntroAnimationStore((state) => state.isComplete);
   const textClass = tone === "light" ? "text-white hover:text-white/80" : "text-[var(--brand)] hover:text-black";
   const underlineClass = tone === "light" ? "bg-white" : "bg-[var(--brand)]";
@@ -80,7 +80,11 @@ function DesktopNav({ activeNavKey, tone }: SiteHeaderProps & { tone: HeaderTone
               />
             </Link>
 
-            <div className="pointer-events-none absolute top-full left-1/2 z-50 -translate-x-1/2 pt-8 opacity-0 transition-all duration-150 group-hover:pointer-events-auto group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:opacity-100">
+            <div
+              className={`pointer-events-none absolute top-full left-1/2 z-50 -translate-x-1/2 opacity-0 transition-[padding,opacity] duration-300 group-hover:pointer-events-auto group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:opacity-100 ${
+                isCompact ? "pt-0" : "pt-8"
+              }`}
+            >
               <div className="min-w-[240px] overflow-hidden border border-black/10 bg-[#fbfaf8] shadow-[0_10px_24px_rgba(0,0,0,0.06)]">
                 {item.children.map((child) => (
                   <Link
@@ -200,11 +204,35 @@ export function SiteHeader({ activeNavKey, forceTransparent = false }: SiteHeade
   const [isVisible, setIsVisible] = useState(true);
   const isIntroComplete = useIntroAnimationStore((state) => state.isComplete);
   const lastScrollYRef = useRef(0);
+  const hideTimeoutRef = useRef<number | null>(null);
 
   useEffect(() => {
+    const clearHideTimeout = () => {
+      if (hideTimeoutRef.current !== null) {
+        window.clearTimeout(hideTimeoutRef.current);
+        hideTimeoutRef.current = null;
+      }
+    };
+
+    const showHeader = () => {
+      clearHideTimeout();
+      setIsVisible(true);
+    };
+
+    const hideHeader = () => {
+      if (hideTimeoutRef.current !== null) {
+        return;
+      }
+
+      hideTimeoutRef.current = window.setTimeout(() => {
+        setIsVisible(false);
+        hideTimeoutRef.current = null;
+      }, 300);
+    };
+
     if (forceTransparent) {
       setIsOnHeroFold(true);
-      setIsVisible(true);
+      showHeader();
       return;
     }
 
@@ -215,7 +243,7 @@ export function SiteHeader({ activeNavKey, forceTransparent = false }: SiteHeade
 
       if (currentScrollY <= 1) {
         setIsOnHeroFold(true);
-        setIsVisible(true);
+        showHeader();
         return;
       }
 
@@ -223,14 +251,22 @@ export function SiteHeader({ activeNavKey, forceTransparent = false }: SiteHeade
       if (!trigger) {
         const nearTop = currentScrollY <= 8;
         setIsOnHeroFold(nearTop);
-        setIsVisible(nearTop || scrollingUp);
+        if (nearTop || scrollingUp) {
+          showHeader();
+        } else {
+          hideHeader();
+        }
         return;
       }
 
       const triggerTop = trigger.getBoundingClientRect().top;
       const onHeroFold = triggerTop > 88;
       setIsOnHeroFold(onHeroFold);
-      setIsVisible(onHeroFold || scrollingUp);
+      if (onHeroFold || scrollingUp) {
+        showHeader();
+      } else {
+        hideHeader();
+      }
     };
 
     lastScrollYRef.current = window.scrollY;
@@ -238,6 +274,7 @@ export function SiteHeader({ activeNavKey, forceTransparent = false }: SiteHeade
     window.addEventListener("scroll", update, { passive: true });
     window.addEventListener("resize", update);
     return () => {
+      clearHideTimeout();
       window.removeEventListener("scroll", update);
       window.removeEventListener("resize", update);
     };
@@ -245,6 +282,7 @@ export function SiteHeader({ activeNavKey, forceTransparent = false }: SiteHeade
 
   const tone: HeaderTone = forceTransparent || isOnHeroFold ? "light" : "brand";
   const isTransparent = forceTransparent || isOnHeroFold;
+  const isCompact = !isTransparent;
   const headerTextClass = tone === "light" ? "text-white" : "text-[var(--brand)]";
   const logoFilterClass = tone === "light" ? "brightness-0 invert" : "";
 
@@ -267,7 +305,11 @@ export function SiteHeader({ activeNavKey, forceTransparent = false }: SiteHeade
           isTransparent ? "border-transparent bg-transparent" : "border-black/5 bg-[#fbfaf8]"
         }`}
       >
-        <div className="mx-auto flex max-w-[1695px] items-center justify-between px-6 py-4 md:flex-row md:gap-10 md:px-20 md:py-4">
+        <div
+          className={`mx-auto flex max-w-[1695px] items-center justify-between px-6 transition-[padding] duration-300 md:flex-row md:gap-10 md:px-20 ${
+            isCompact ? "py-0.5 md:py-0.5" : "py-4 md:py-4"
+          }`}
+        >
           <Link href="/" style={logoStyle}>
             <Image
               src="/images/brand/mak-logo.png"
@@ -275,10 +317,12 @@ export function SiteHeader({ activeNavKey, forceTransparent = false }: SiteHeade
               width={101}
               height={48}
               priority
-              className={`h-[38px] w-20 md:h-12 md:w-[101px] ${logoFilterClass}`}
+              className={`origin-left transition-[width,height,filter] duration-300 ${
+                isCompact ? "h-7 w-[59px] md:h-8 md:w-[67px]" : "h-[38px] w-20 md:h-12 md:w-[101px]"
+              } ${logoFilterClass}`}
             />
           </Link>
-          <DesktopNav activeNavKey={activeNavKey} tone={tone} />
+          <DesktopNav activeNavKey={activeNavKey} tone={tone} isCompact={isCompact} />
           <button
             type="button"
             aria-label="Open navigation menu"

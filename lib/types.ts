@@ -4,7 +4,8 @@ export type NavKey =
   | "aggregation"
   | "wellness"
   | "hospitality"
-  | "retail-dining";
+  | "retail-dining"
+  | "partners";
 
 export type NavChild = {
   label: string;

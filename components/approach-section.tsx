@@ -15,7 +15,7 @@ type ApproachPointsListProps = {
 
 function ApproachPointsList({ activeIndex, onPointClick, pointRefs }: ApproachPointsListProps) {
   return (
-    <div className="flex flex-col gap-5 md:gap-10 md:pt-2 md:pb-2">
+    <div className="flex flex-col gap-5 md:gap-16 md:pt-6 md:pb-6">
       {approachPoints.map((point, index) => {
         const isActive = index === activeIndex;
 
@@ -29,7 +29,7 @@ function ApproachPointsList({ activeIndex, onPointClick, pointRefs }: ApproachPo
             }}
             data-approach-point
             className={`flex flex-col transition-[gap] duration-500 ${
-              isActive ? "gap-3 md:gap-0" : "gap-0"
+              isActive ? "gap-3 md:gap-4" : "gap-0"
             }`}
           >
             <button
@@ -64,7 +64,7 @@ function ApproachPointsList({ activeIndex, onPointClick, pointRefs }: ApproachPo
 
 function StickyMedia({ mediaRef }: { mediaRef: RefObject<HTMLDivElement | null> }) {
   return (
-    <div ref={mediaRef} className="order-1 -mx-6 md:order-2 md:sticky md:top-24 md:mx-0 md:max-w-[980px] md:self-start">
+    <div ref={mediaRef} className="order-1 -mx-6 md:order-1 md:sticky md:top-24 md:mx-0 md:max-w-[980px] md:self-start">
       <ScrollReveal delay={280}>
         <div className="relative aspect-square overflow-hidden bg-[#d8d2c7] md:h-[520px] md:aspect-auto">
           <video
@@ -142,13 +142,17 @@ export function ApproachSection() {
   }, [isDesktopMotionEnabled, scrollToPoint]);
 
   return (
-    <section ref={sectionRef} id="approach" className="w-full px-6 py-[48px] md:pt-[48px] md:pr-0 md:pb-[48px] md:pl-20">
+    <section
+      ref={sectionRef}
+      id="approach"
+      className="relative w-full px-6 py-[48px] before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-black/20 before:to-transparent after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-gradient-to-r after:from-transparent after:via-black/20 after:to-transparent md:before:hidden md:after:hidden md:pt-[48px] md:pl-0 md:pb-[48px] md:pr-20"
+    >
       <div className="relative mx-auto w-full max-w-[1480px] md:h-[calc(100vh+1200px)]">
         <div className="flex flex-col gap-8 md:sticky md:top-24 md:gap-10">
           <MobileIntro />
-          <div className="flex flex-col gap-8 md:grid md:grid-cols-[360px_minmax(0,980px)] md:items-start md:justify-between md:gap-8">
+          <div className="flex flex-col gap-8 md:grid md:grid-cols-[minmax(0,980px)_360px] md:items-start md:justify-between md:gap-12">
             <StickyMedia mediaRef={mediaRef} />
-            <ScrollReveal delay={220} className="order-2 md:order-1">
+            <ScrollReveal delay={220} className="order-2 md:order-2">
               <ApproachPointsList
                 activeIndex={activeIndex}
                 onPointClick={handlePointClick}

@@ -45,6 +45,7 @@ export const navItems: NavItem[] = [
   { key: "wellness", label: "Wellness", href: comingSoonHref("wellness") },
   { key: "hospitality", label: "Hospitality", href: comingSoonHref("hospitality") },
   { key: "retail-dining", label: "Retail & Dining", href: comingSoonHref("retail-dining") },
+  { key: "partners", label: "Our Partners", href: comingSoonHref("partners") },
 ];
 
 export const heroImage = {
@@ -212,7 +213,7 @@ export const footerPrimaryLinks: FooterLink[] = [
 ];
 
 export const footerSecondaryLinks: FooterLink[] = [
-  { label: "Contact", href: "/contact" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export const footerDisabledLinks: DisabledFooterLink[] = [

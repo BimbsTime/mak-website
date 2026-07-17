@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import { ScrollReveal } from "@/components/scroll-reveal";
@@ -47,6 +48,29 @@ export function VerticalsSection() {
       const nextScrollLeft = node.scrollLeft;
       setCanScrollLeft(nextScrollLeft > 2);
       setCanScrollRight(nextScrollLeft < maxScrollLeft - 2);
+
+      if (window.innerWidth >= 768) {
+        return;
+      }
+
+      const scrollRect = node.getBoundingClientRect();
+      const scrollCenter = scrollRect.left + scrollRect.width / 2;
+      const focusedCard = [...node.querySelectorAll<HTMLElement>("article")].reduce<HTMLElement | null>(
+        (nearest, card) => {
+          if (!nearest) {
+            return card;
+          }
+
+          const cardCenter = card.getBoundingClientRect().left + card.getBoundingClientRect().width / 2;
+          const nearestCenter = nearest.getBoundingClientRect().left + nearest.getBoundingClientRect().width / 2;
+          return Math.abs(cardCenter - scrollCenter) < Math.abs(nearestCenter - scrollCenter) ? card : nearest;
+        },
+        null,
+      );
+
+      if (focusedCard?.id) {
+        setActiveId((current) => (current === focusedCard.id ? current : focusedCard.id));
+      }
     };
 
     update();
@@ -118,10 +142,53 @@ export function VerticalsSection() {
       </div>
 
       <ScrollReveal delay={220}>
+        <div className="mt-10 w-full md:mt-[56px]">
+          <div className="group relative h-svh min-h-[560px] overflow-hidden">
+            <Image
+              src="/images/home/verticals-gallery/partners-wide.png"
+              alt="Forum retail and office development with the MĀK and Forum marks."
+              fill
+              sizes="100vw"
+              className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+            />
+            <div className="absolute inset-0 flex items-end justify-start bg-black/65 p-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:p-10">
+              <p className="max-w-[620px] font-display text-[18px] leading-[1.35] text-white md:text-[24px]">The aggregated residential scale includes approximately 1.7 million sq. ft. within the non urban ecosystem and approximately 2 lakh sq. ft. across multiple projects.</p>
+            </div>
+          </div>
+          <div className="mt-1 grid grid-cols-1 gap-1 md:h-svh md:grid-cols-[3fr_2fr]">
+            <div className="group relative min-h-[70svh] overflow-hidden md:min-h-0">
+              <Image
+                src="/images/home/verticals-gallery/partners-left.png"
+                alt="Detail of the Forum development facade and retail frontage."
+                fill
+                sizes="(min-width: 768px) 60vw, 100vw"
+                className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+              />
+              <div className="absolute inset-0 flex items-end justify-start bg-black/65 p-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:p-10">
+                <p className="max-w-[620px] font-display text-[18px] leading-[1.35] text-white md:text-[24px]">The aggregated residential scale includes approximately 1.7 million sq. ft. within the non urban ecosystem and approximately 2 lakh sq. ft. across multiple projects.</p>
+              </div>
+            </div>
+            <div className="group relative min-h-[70svh] overflow-hidden md:min-h-0">
+              <Image
+                src="/images/home/verticals-gallery/partners-right.png"
+                alt="Detail of the Forum development's glazed office facade."
+                fill
+                sizes="(min-width: 768px) 40vw, 100vw"
+                className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+              />
+              <div className="absolute inset-0 flex items-end justify-start bg-black/65 p-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:p-10">
+                <p className="max-w-[620px] font-display text-[18px] leading-[1.35] text-white md:text-[24px]">The aggregated residential scale includes approximately 1.7 million sq. ft. within the non urban ecosystem and approximately 2 lakh sq. ft. across multiple projects.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ScrollReveal>
+
+      <ScrollReveal delay={220}>
         <div ref={arrowFrameRef} className="relative mt-10 md:mt-[56px]">
           <div
             ref={ref}
-            className={`no-scrollbar overflow-x-auto pb-4 select-none overscroll-x-contain md:[touch-action:pan-y] ${
+            className={`no-scrollbar snap-x snap-mandatory overflow-x-auto pb-4 select-none overscroll-x-contain md:snap-none md:[touch-action:pan-y] ${
               isDragging ? "cursor-grabbing" : "cursor-grab"
             }`}
             {...dragHandlers}
@@ -132,9 +199,10 @@ export function VerticalsSection() {
               }
             }}
           >
-            <div className="flex w-max items-start gap-5 pl-6 pr-6 md:gap-14 md:pl-20 md:pr-20">
+            <div className="flex w-max items-start gap-5 md:gap-14 md:pl-20 md:pr-20">
+              <div aria-hidden="true" className="w-[calc(50vw-161px)] shrink-0 md:hidden" />
               {verticalCards.map((card) => (
-                <div key={card.id} className="shrink-0">
+                <div key={card.id} className="shrink-0 snap-center">
                   <VerticalCard
                     card={card}
                     isActive={card.id === activeId}
@@ -147,6 +215,7 @@ export function VerticalsSection() {
                   />
                 </div>
               ))}
+              <div aria-hidden="true" className="w-[calc(50vw-161px)] shrink-0 md:hidden" />
             </div>
           </div>
 

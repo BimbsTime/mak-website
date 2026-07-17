@@ -2,8 +2,10 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import { X } from "lucide-react";
+import { createPortal } from "react-dom";
 
+import { ContactForm } from "@/components/contact-form";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { VerticalLineReveal } from "@/components/vertical-line-reveal";
 import { contactImage } from "@/lib/content";
@@ -12,11 +14,69 @@ function clamp(value: number, min: number, max: number) {
   return Math.min(Math.max(value, min), max);
 }
 
+function ContactModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+  useEffect(() => {
+    if (!isOpen) {
+      return;
+    }
+
+    const previousOverflow = document.body.style.overflow;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isOpen, onClose]);
+
+  if (!isOpen) {
+    return null;
+  }
+
+  return createPortal(
+    <div
+      role="presentation"
+      onMouseDown={onClose}
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/65 px-4 py-6 md:px-10"
+    >
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="contact-form-title"
+        onMouseDown={(event) => event.stopPropagation()}
+        className="relative max-h-full w-full max-w-[1110px] overflow-y-auto bg-[var(--background)]"
+      >
+        <button
+          type="button"
+          aria-label="Close contact form"
+          onClick={onClose}
+          className="absolute top-4 right-4 z-10 inline-flex size-10 items-center justify-center bg-white/90 text-[var(--brand)] transition-colors hover:bg-white"
+        >
+          <X className="size-5" strokeWidth={1.5} />
+        </button>
+        <h2 id="contact-form-title" className="sr-only">
+          Contact MĀK
+        </h2>
+        <ContactForm />
+      </div>
+    </div>,
+    document.body,
+  );
+}
+
 export function ContactSection() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const frameRef = useRef<number | null>(null);
   const [offsetY, setOffsetY] = useState(0);
   const [parallaxScale, setParallaxScale] = useState(1.18);
+  const [isFormOpen, setIsFormOpen] = useState(false);
 
   useEffect(() => {
     if (typeof window === "undefined" || !sectionRef.current) {
@@ -115,16 +175,18 @@ export function ContactSection() {
           </div>
           <ScrollReveal delay={340}>
             <div className="mt-2">
-              <Link
-                href="/contact"
-                className="inline-flex min-h-12 items-center justify-center bg-[var(--brand)] px-10 py-3 font-display text-[20px] leading-[21px] font-light text-[#f7f5f2] transition-colors duration-300 hover:bg-[var(--brand-hover)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--brand)] md:px-24"
+              <button
+                type="button"
+                onClick={() => setIsFormOpen(true)}
+                className="inline-flex min-h-12 items-center justify-center bg-white px-10 py-3 font-display text-[20px] leading-[21px] font-light text-[var(--brand)] transition-colors duration-300 hover:bg-white/85 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:px-24"
               >
                 Get in touch
-              </Link>
+              </button>
             </div>
           </ScrollReveal>
         </div>
       </div>
+      <ContactModal isOpen={isFormOpen} onClose={() => setIsFormOpen(false)} />
     </section>
   );
 }

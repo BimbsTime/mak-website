@@ -69,18 +69,18 @@ export function IntroLoader() {
     >
       <div className="absolute inset-0">
         <div
-          className={`absolute inset-y-0 left-0 w-1/2 bg-[var(--background)] shadow-[12px_0_40px_rgba(0,0,0,0.04)] transition-transform duration-[1050ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+          className={`absolute inset-y-0 left-0 w-1/2 bg-[var(--background)]  transition-transform duration-[1050ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
             isExiting ? "-translate-x-full" : "translate-x-0"
           }`}
         />
         <div
-          className={`absolute inset-y-0 right-0 w-1/2 bg-[var(--background)] shadow-[-12px_0_40px_rgba(0,0,0,0.04)] transition-transform duration-[1050ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+          className={`absolute inset-y-0 right-0 w-1/2 bg-[var(--background)]  transition-transform duration-[1050ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
             isExiting ? "translate-x-full" : "translate-x-0"
           }`}
         />
 
         <div
-          className={`absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-black/12 transition-all duration-[700ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+          className={`absolute left-1/2 top-0 h-full w-px -translate-x-1/2 transition-all duration-[700ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
             isExiting ? "scale-y-0 opacity-0" : "scale-y-100 opacity-100"
           }`}
         />

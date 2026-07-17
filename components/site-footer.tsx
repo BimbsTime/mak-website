@@ -54,7 +54,7 @@ export function SiteFooter() {
         <ScrollReveal delay={0}>
           <div className="flex max-w-[260px] flex-col gap-3">
             <Link href="/">
-              <Image src="/images/brand/mak-logo.png" alt="MĀK" width={80} height={38} className="h-[38px] w-20 md:-ml-2" />
+              <Image src="/images/brand/mak-logo.png" alt="MĀK" width={80} height={38} className="-ml-2 h-[38px] w-20 md:-ml-2" />
             </Link>
             <p className="font-body text-[12px] leading-4 tracking-[0.04em] text-black md:text-[14px] md:leading-[18px]">
               A Mumbai-based, design-led real estate developer.
