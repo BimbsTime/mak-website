@@ -16,8 +16,6 @@ export function VerticalsSection() {
   const { ref, isDragging, dragHandlers } = useDragScroll<HTMLDivElement>();
   const arrowFrameRef = useRef<HTMLDivElement | null>(null);
   const resetTimeoutRef = useRef<number | null>(null);
-  const mobileSettleTimeoutRef = useRef<number | null>(null);
-  const mobileCenterTimeoutRef = useRef<number | null>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
   const [arrowTop, setArrowTop] = useState<number | null>(null);
@@ -75,19 +73,16 @@ export function VerticalsSection() {
       return;
     }
 
-    const clearMobileCarouselTimers = () => {
-      if (mobileSettleTimeoutRef.current !== null) {
-        window.clearTimeout(mobileSettleTimeoutRef.current);
-        mobileSettleTimeoutRef.current = null;
+    const update = () => {
+      const maxScrollLeft = node.scrollWidth - node.clientWidth;
+      const nextScrollLeft = node.scrollLeft;
+      setCanScrollLeft(nextScrollLeft > 2);
+      setCanScrollRight(nextScrollLeft < maxScrollLeft - 2);
+
+      if (window.innerWidth >= 768) {
+        return;
       }
 
-      if (mobileCenterTimeoutRef.current !== null) {
-        window.clearTimeout(mobileCenterTimeoutRef.current);
-        mobileCenterTimeoutRef.current = null;
-      }
-    };
-
-    const focusClosestMobileCard = () => {
       const scrollRect = node.getBoundingClientRect();
       const scrollCenter = scrollRect.left + scrollRect.width / 2;
       const focusedCard = [...node.querySelectorAll<HTMLElement>("article")].reduce<HTMLElement | null>(
@@ -103,48 +98,9 @@ export function VerticalsSection() {
         null,
       );
 
-      if (!focusedCard?.id) {
-        return;
+      if (focusedCard?.id) {
+        setActiveId((current) => (current === focusedCard.id ? current : focusedCard.id));
       }
-
-      setActiveId((current) => (current === focusedCard.id ? current : focusedCard.id));
-
-      mobileCenterTimeoutRef.current = window.setTimeout(() => {
-        const activeCard = [...node.querySelectorAll<HTMLElement>("article")].find(
-          (card) => card.id === focusedCard.id,
-        );
-
-        if (!activeCard) {
-          return;
-        }
-
-        node.scrollTo({
-          left: activeCard.offsetLeft + activeCard.offsetWidth / 2 - node.clientWidth / 2,
-          behavior: "smooth",
-        });
-        mobileCenterTimeoutRef.current = null;
-      }, 520);
-    };
-
-    const update = () => {
-      const maxScrollLeft = node.scrollWidth - node.clientWidth;
-      const nextScrollLeft = node.scrollLeft;
-      setCanScrollLeft(nextScrollLeft > 2);
-      setCanScrollRight(nextScrollLeft < maxScrollLeft - 2);
-
-      if (window.innerWidth >= 768) {
-        clearMobileCarouselTimers();
-        return;
-      }
-
-      if (mobileSettleTimeoutRef.current !== null) {
-        window.clearTimeout(mobileSettleTimeoutRef.current);
-      }
-
-      mobileSettleTimeoutRef.current = window.setTimeout(() => {
-        focusClosestMobileCard();
-        mobileSettleTimeoutRef.current = null;
-      }, 150);
     };
 
     update();
@@ -152,7 +108,6 @@ export function VerticalsSection() {
     window.addEventListener("resize", update);
 
     return () => {
-      clearMobileCarouselTimers();
       node.removeEventListener("scroll", update);
       window.removeEventListener("resize", update);
     };
