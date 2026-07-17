@@ -27,6 +27,7 @@ export function VerticalCard({ card, isActive, onActivate }: VerticalCardProps) 
           alt={card.image.alt}
           fill
           draggable={false}
+          loading="eager"
           sizes={isActive ? "(min-width: 768px) 520px, 282px" : "(min-width: 768px) 400px, 226px"}
           className="pointer-events-none object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
         />
