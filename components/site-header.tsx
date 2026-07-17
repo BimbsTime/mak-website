@@ -299,7 +299,7 @@ export function SiteHeader({ activeNavKey, layout = "stacked" }: SiteHeaderProps
       >
         <div
           className={`mx-auto flex max-w-[1695px] items-center justify-between px-6 transition-[padding,gap] duration-300 md:px-20 ${desktopLayoutClass} ${
-            isCompact ? "py-0.5 md:gap-0" : "py-4 md:gap-2"
+            isCompact ? "py-0.5 md:gap-2" : "py-4 md:gap-4"
           }`}
         >
           <Link href="/" style={logoStyle}>
