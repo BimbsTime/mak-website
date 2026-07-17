@@ -109,7 +109,7 @@ export function PracticeSection() {
             {practiceMetrics.map((metric, index) => (
               <ScrollReveal key={metric.label} delay={280 + index * 140}>
                 <div className="flex max-w-[260px] flex-col gap-2">
-                  <p className="font-body text-[20px] leading-5 font-extralight md:text-[32px] md:leading-8">
+                  <p className="font-body text-[20px] leading-5 font-extralight md:text-[24px] md:leading-8">
                     {metric.value}
                   </p>
                   <p className="font-body text-[12px] leading-[13px] tracking-[0.04em] md:text-[16px] md:leading-[22px]">
