@@ -12,18 +12,18 @@ import type { NavKey } from "@/lib/types";
 
 type SiteHeaderProps = {
   activeNavKey?: NavKey;
-  forceTransparent?: boolean;
+  layout?: "stacked" | "inline";
 };
 
 type HeaderTone = "light" | "brand";
 
-function DesktopNav({ activeNavKey, tone, isCompact }: SiteHeaderProps & { tone: HeaderTone; isCompact: boolean }) {
+function DesktopNav({ activeNavKey, tone, isCompact, layout }: SiteHeaderProps & { tone: HeaderTone; isCompact: boolean }) {
   const isIntroComplete = useIntroAnimationStore((state) => state.isComplete);
   const textClass = tone === "light" ? "text-white hover:text-white/80" : "text-[var(--brand)] hover:text-black";
   const underlineClass = tone === "light" ? "bg-white" : "bg-[var(--brand)]";
 
   return (
-    <div className="hidden flex-1 items-center justify-end gap-14 md:flex">
+    <div className={`hidden items-center gap-14 md:flex ${layout === "inline" ? "flex-1 justify-end" : "justify-center"}`}>
       {navItems.map((item, index) => {
         const baseStyle = {
           opacity: isIntroComplete ? 1 : 0,
@@ -198,7 +198,7 @@ function MobileOverlay() {
   );
 }
 
-export function SiteHeader({ activeNavKey, forceTransparent = false }: SiteHeaderProps) {
+export function SiteHeader({ activeNavKey, layout = "stacked" }: SiteHeaderProps) {
   const { openMenu } = useMobileMenuStore();
   const [isOnHeroFold, setIsOnHeroFold] = useState(true);
   const [isVisible, setIsVisible] = useState(true);
@@ -229,12 +229,6 @@ export function SiteHeader({ activeNavKey, forceTransparent = false }: SiteHeade
         hideTimeoutRef.current = null;
       }, 300);
     };
-
-    if (forceTransparent) {
-      setIsOnHeroFold(true);
-      showHeader();
-      return;
-    }
 
     const update = () => {
       const currentScrollY = window.scrollY;
@@ -278,13 +272,13 @@ export function SiteHeader({ activeNavKey, forceTransparent = false }: SiteHeade
       window.removeEventListener("scroll", update);
       window.removeEventListener("resize", update);
     };
-  }, [forceTransparent]);
+  }, []);
 
-  const tone: HeaderTone = forceTransparent || isOnHeroFold ? "light" : "brand";
-  const isTransparent = forceTransparent || isOnHeroFold;
-  const isCompact = !isTransparent;
-  const headerTextClass = tone === "light" ? "text-white" : "text-[var(--brand)]";
-  const logoFilterClass = tone === "light" ? "brightness-0 invert" : "";
+  const tone: HeaderTone = "brand";
+  const isCompact = !isOnHeroFold;
+  const headerTextClass = "text-[var(--brand)]";
+  const logoFilterClass = "";
+  const desktopLayoutClass = layout === "inline" ? "md:flex-row md:justify-between md:gap-10" : "md:flex-col md:justify-center";
 
   const logoStyle = {
     opacity: isIntroComplete ? 1 : 0,
@@ -301,13 +295,11 @@ export function SiteHeader({ activeNavKey, forceTransparent = false }: SiteHeade
       <header
         className={`fixed inset-x-0 top-0 z-50 w-full border-b transition-[transform,opacity,background-color,border-color] duration-300 ${
           isVisible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none"
-        } ${
-          isTransparent ? "border-transparent bg-transparent" : "border-black/5 bg-[#fbfaf8]"
-        }`}
+        } border-black/5 bg-[#fbfaf8]`}
       >
         <div
-          className={`mx-auto flex max-w-[1695px] items-center justify-between px-6 transition-[padding] duration-300 md:flex-row md:gap-10 md:px-20 ${
-            isCompact ? "py-0.5 md:py-0.5" : "py-4 md:py-4"
+          className={`mx-auto flex max-w-[1695px] items-center justify-between px-6 transition-[padding,gap] duration-300 md:px-20 ${desktopLayoutClass} ${
+            isCompact ? "py-0.5 md:gap-0" : "py-4 md:gap-2"
           }`}
         >
           <Link href="/" style={logoStyle}>
@@ -322,7 +314,7 @@ export function SiteHeader({ activeNavKey, forceTransparent = false }: SiteHeade
               } ${logoFilterClass}`}
             />
           </Link>
-          <DesktopNav activeNavKey={activeNavKey} tone={tone} isCompact={isCompact} />
+          <DesktopNav activeNavKey={activeNavKey} tone={tone} isCompact={isCompact} layout={layout} />
           <button
             type="button"
             aria-label="Open navigation menu"

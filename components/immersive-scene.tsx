@@ -2,9 +2,9 @@ import Image from "next/image";
 import type { ReactNode } from "react";
 
 type ImmersiveSceneProps = {
-  backgroundSrc: string;
+  backgroundSrc?: string;
   foregroundSrc: string;
-  backgroundAlt: string;
+  backgroundAlt?: string;
   children: ReactNode;
 };
 
@@ -16,16 +16,18 @@ export function ImmersiveScene({
 }: ImmersiveSceneProps) {
   return (
     <section className="relative isolate min-h-[calc(100vh-70px)] overflow-hidden md:min-h-[calc(100vh-146px)]">
-      <div className="absolute inset-0">
-        <Image
-          src={backgroundSrc}
-          alt={backgroundAlt}
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
-      </div>
+      {backgroundSrc ? (
+        <div className="absolute inset-0">
+          <Image
+            src={backgroundSrc}
+            alt={backgroundAlt ?? ""}
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+        </div>
+      ) : null}
       <div className="absolute inset-0 scale-105 blur-md md:scale-110 md:blur-xl">
         <Image
           src={foregroundSrc}

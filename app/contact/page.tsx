@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <div className="min-h-screen bg-[var(--background)]">
-      <SiteHeader forceTransparent />
+      <SiteHeader />
       <ImmersiveScene
         backgroundSrc="/images/contact/background.png"
         foregroundSrc="/images/contact/foreground.png"

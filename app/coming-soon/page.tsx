@@ -20,11 +20,9 @@ export default async function ComingSoonPage({ searchParams }: ComingSoonPagePro
 
   return (
     <div className="min-h-screen bg-[var(--background)]">
-      <SiteHeader activeNavKey={activeNavKey} forceTransparent />
+      <SiteHeader activeNavKey={activeNavKey} />
       <ImmersiveScene
-        backgroundSrc="/images/coming-soon/background.png"
         foregroundSrc="/images/coming-soon/foreground.png"
-        backgroundAlt="Softly blurred architectural development view used as the MĀK coming soon background."
       >
         <div className="flex min-h-screen items-center justify-center px-6 pb-6 pt-[70px] md:pb-10 md:pt-20">
           <ScrollReveal delay={0}>

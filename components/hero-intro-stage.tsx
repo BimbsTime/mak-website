@@ -131,14 +131,16 @@ export function HeroIntroStage() {
   }, [introHeight]);
 
   return (
-    <div ref={stageRef} className="relative">
-      <div style={{ height: heroHeight }} />
-      <div ref={introMeasureRef} className="relative z-10">
-        <IntroSection />
-      </div>
-      <div style={{ height: heroHeight, ...heroStyle }}>
-        <div ref={heroMeasureRef}>
-          <Hero overlayOpacity={overlayOpacity} mediaScale={mediaScale} />
+    <div className="pt-[70px] md:pt-[104px]">
+      <div ref={stageRef} className="relative">
+        <div style={{ height: heroHeight }} />
+        <div ref={introMeasureRef} className="relative z-10">
+          <IntroSection />
+        </div>
+        <div style={{ height: heroHeight, ...heroStyle }}>
+          <div ref={heroMeasureRef}>
+            <Hero overlayOpacity={overlayOpacity} mediaScale={mediaScale} />
+          </div>
         </div>
       </div>
     </div>
