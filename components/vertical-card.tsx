@@ -15,7 +15,7 @@ export function VerticalCard({ card, isActive, onActivate }: VerticalCardProps) 
     <article
       id={card.id}
       data-active={isActive ? "true" : "false"}
-      className={`flex shrink-0 scroll-mt-28 flex-col gap-6 transition-[width] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] md:gap-8 ${
+      className={`flex shrink-0 scroll-mt-28 flex-col gap-6 transition-[width] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] md:gap-8 ${
         isActive ? "w-[282px] md:w-[520px]" : "w-[226px] md:w-[400px]"
       }`}
       onMouseEnter={onActivate}
@@ -28,11 +28,11 @@ export function VerticalCard({ card, isActive, onActivate }: VerticalCardProps) 
           fill
           draggable={false}
           sizes={isActive ? "(min-width: 768px) 520px, 282px" : "(min-width: 768px) 400px, 226px"}
-          className="pointer-events-none object-cover transition-transform duration-500"
+          className="pointer-events-none object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
         />
         <div
           aria-hidden="true"
-          className={`absolute inset-0 pointer-events-none transition-opacity duration-500 ${
+          className={`absolute inset-0 pointer-events-none transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
             isActive ? "opacity-0" : "bg-black/40 opacity-100"
           }`}
         />
