@@ -16,6 +16,7 @@ export function VerticalsSection() {
   const { ref, isDragging, dragHandlers } = useDragScroll<HTMLDivElement>();
   const arrowFrameRef = useRef<HTMLDivElement | null>(null);
   const resetTimeoutRef = useRef<number | null>(null);
+  const mobileFocusTimeoutRef = useRef<number | null>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
   const [arrowTop, setArrowTop] = useState<number | null>(null);
@@ -73,16 +74,14 @@ export function VerticalsSection() {
       return;
     }
 
-    const update = () => {
-      const maxScrollLeft = node.scrollWidth - node.clientWidth;
-      const nextScrollLeft = node.scrollLeft;
-      setCanScrollLeft(nextScrollLeft > 2);
-      setCanScrollRight(nextScrollLeft < maxScrollLeft - 2);
-
-      if (window.innerWidth >= 768) {
-        return;
+    const clearMobileFocusTimeout = () => {
+      if (mobileFocusTimeoutRef.current !== null) {
+        window.clearTimeout(mobileFocusTimeoutRef.current);
+        mobileFocusTimeoutRef.current = null;
       }
+    };
 
+    const focusClosestMobileCard = () => {
       const scrollRect = node.getBoundingClientRect();
       const scrollCenter = scrollRect.left + scrollRect.width / 2;
       const focusedCard = [...node.querySelectorAll<HTMLElement>("article")].reduce<HTMLElement | null>(
@@ -103,11 +102,30 @@ export function VerticalsSection() {
       }
     };
 
+    const update = () => {
+      const maxScrollLeft = node.scrollWidth - node.clientWidth;
+      const nextScrollLeft = node.scrollLeft;
+      setCanScrollLeft(nextScrollLeft > 2);
+      setCanScrollRight(nextScrollLeft < maxScrollLeft - 2);
+
+      if (window.innerWidth >= 768) {
+        clearMobileFocusTimeout();
+        return;
+      }
+
+      clearMobileFocusTimeout();
+      mobileFocusTimeoutRef.current = window.setTimeout(() => {
+        focusClosestMobileCard();
+        mobileFocusTimeoutRef.current = null;
+      }, 180);
+    };
+
     update();
     node.addEventListener("scroll", update, { passive: true });
     window.addEventListener("resize", update);
 
     return () => {
+      clearMobileFocusTimeout();
       node.removeEventListener("scroll", update);
       window.removeEventListener("resize", update);
     };
