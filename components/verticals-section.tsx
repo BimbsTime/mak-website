@@ -200,7 +200,7 @@ export function VerticalsSection() {
             className="group relative h-[55svh] min-h-[340px] cursor-pointer overflow-hidden focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--brand)] md:h-[75svh] md:min-h-[500px]"
           >
             <Image
-              src="/images/home/verticals-gallery/partners-wide.png"
+              src="/images/home/verticals-gallery/partners-wide.webp"
               alt="Forum retail and office development with the MĀK and Forum marks."
               fill
               sizes="100vw"
@@ -224,7 +224,7 @@ export function VerticalsSection() {
               className="group relative h-[50svh] min-h-[320px] cursor-pointer overflow-hidden focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--brand)] md:h-auto md:min-h-0"
             >
               <Image
-                src="/images/home/verticals-gallery/partners-left.png"
+                src="/images/home/verticals-gallery/partners-left.webp"
                 alt="Detail of the Forum development facade and retail frontage."
                 fill
                 sizes="(min-width: 768px) 60vw, 100vw"
@@ -247,7 +247,7 @@ export function VerticalsSection() {
               className="group relative h-[50svh] min-h-[320px] cursor-pointer overflow-hidden focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--brand)] md:h-auto md:min-h-0"
             >
               <Image
-                src="/images/home/verticals-gallery/partners-right.png"
+                src="/images/home/verticals-gallery/partners-right.webp"
                 alt="Detail of the Forum development's glazed office facade."
                 fill
                 sizes="(min-width: 768px) 40vw, 100vw"

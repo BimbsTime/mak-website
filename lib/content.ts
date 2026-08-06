@@ -39,7 +39,7 @@ export const navItems: NavItem[] = [
 ];
 
 export const heroImage = {
-  src: "/images/home/hero-desktop.png",
+  src: "/images/home/hero-desktop.webp",
   alt: "Exterior view of a design-led mixed-use development with glass towers and layered podium architecture.",
 };
 
@@ -76,7 +76,7 @@ export const verticalCards: VerticalCard[] = [
       "Over 5,000 acres aggregated to date, alongside complex regulatory approvals managed for public and private sector projects.",
     href: comingSoonHref("aggregation"),
     image: {
-      src: "/images/home/land-desktop.png",
+      src: "/images/home/land-desktop.webp",
       alt: "Aerial coastal land parcel and infrastructure context photographed from above.",
     },
     wide: true,
@@ -88,7 +88,7 @@ export const verticalCards: VerticalCard[] = [
       "Projects of varying scale in closely identified micro markets, with particular attention to design, materiality and spatial planning.",
     href: comingSoonHref("residential"),
     image: {
-      src: "/images/home/residential-desktop.png",
+      src: "/images/home/residential-desktop.webp",
       alt: "Grand residential entry with warm lighting, stone detailing, and layered planting.",
     },
     wide: true,
@@ -100,7 +100,7 @@ export const verticalCards: VerticalCard[] = [
       "Shaping environments that feel intuitive, refined and experience-led, with a vision that carries across every development.",
     href: comingSoonHref("hospitality"),
     image: {
-      src: "/images/home/hospitality-desktop.png",
+      src: "/images/home/hospitality-desktop.webp",
       alt: "Hospitality courtyard with a sweeping canopy, water element, and tropical landscape.",
     },
   },
@@ -111,7 +111,7 @@ export const verticalCards: VerticalCard[] = [
       "Living environments informed by a growing focus on quality of life, with spaces designed to support balance, comfort and ease.",
     href: comingSoonHref("wellness"),
     image: {
-      src: "/images/home/wellness-desktop.png",
+      src: "/images/home/wellness-desktop.webp",
       alt: "Calm wellness interior with sculpted stone forms, filtered light, and quiet seating.",
     },
   },
@@ -133,7 +133,7 @@ export const verticalCards: VerticalCard[] = [
       "Boutique offices set within larger commercial developments, balancing scale with proportion and considered design.",
     href: comingSoonHref("commercial"),
     image: {
-      src: "/images/home/commercial-desktop.png",
+      src: "/images/home/commercial-desktop.webp",
       alt: "Architectural interior with sculpted stone surfaces suited to a boutique office environment.",
     },
   },
@@ -146,7 +146,7 @@ export const verticalGalleryCaptions = [
 ];
 
 export const approachImage = {
-  src: "/images/home/approach-desktop.png",
+  src: "/images/home/approach-desktop.webp",
   alt: "Evening view over a hospitality-led development with glowing circulation and layered built form.",
 };
 
@@ -182,7 +182,7 @@ export const growthCards: GrowthCard[] = [
       "Boutique commercial and office developments, integrated within larger mixed-use environments and positioned in carefully selected micro markets.",
     href: comingSoonHref("commercial"),
     image: {
-      src: "/images/home/growth-commercial-desktop.png",
+      src: "/images/home/growth-commercial-desktop.webp",
       alt: "Commercial frontage at dusk with warm-lit glazing and layered retail edges.",
     },
   },
@@ -193,14 +193,14 @@ export const growthCards: GrowthCard[] = [
       "Continued expansion across residential development, with multiple new launches concentrated in strategically selected micro markets spanning urban and non-urban contexts.",
     href: comingSoonHref("residential"),
     image: {
-      src: "/images/home/growth-nonurban-desktop.png",
+      src: "/images/home/growth-nonurban-desktop.webp",
       alt: "Arrival court for a non-urban expansion with lush landscape and sculpted columns.",
     },
   },
 ];
 
 export const contactImage = {
-  src: "/images/home/contact-desktop.png",
+  src: "/images/home/contact-desktop.webp",
   alt: "Architectural arrival court with tropical planting and a refined branded entry.",
 };
 

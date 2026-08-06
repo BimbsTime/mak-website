@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     description: siteMeta.description,
     images: [
       {
-        url: "/images/home/hero-desktop.png",
+        url: "/images/home/hero-desktop.webp",
         width: 3390,
         height: 1922,
         alt: "MĀK premium real estate homepage hero image",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteMeta.title,
     description: siteMeta.description,
-    images: ["/images/home/hero-desktop.png"],
+    images: ["/images/home/hero-desktop.webp"],
   },
 };
 
