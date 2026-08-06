@@ -8,7 +8,7 @@ import { ScrollReveal } from "@/components/scroll-reveal";
 import { VerticalCard } from "@/components/vertical-card";
 import { VerticalLineReveal } from "@/components/vertical-line-reveal";
 import { useDragScroll } from "@/hooks/use-drag-scroll";
-import { verticalCards } from "@/lib/content";
+import { verticalCards, verticalGalleryCaptions } from "@/lib/content";
 
 export function VerticalsSection() {
   const defaultActiveId = verticalCards[0]?.id ?? "";
@@ -172,17 +172,17 @@ export function VerticalsSection() {
         <div className="flex flex-col gap-4 md:max-w-[1114px] md:flex-row md:items-end md:gap-14">
           <h2 className="max-w-[510px] font-display text-[24px] leading-[26px] text-[var(--brand)] md:text-[36px] md:leading-[40px]">
             <ScrollReveal as="span" delay={0} distance={18} className="block whitespace-normal md:whitespace-nowrap">
-              An Active Presence
+              An Active Presence Across
             </ScrollReveal>
             <ScrollReveal as="span" delay={120} distance={18} className="block whitespace-normal md:whitespace-nowrap">
-              across Multiple Verticals.
+              Multiple Verticals
             </ScrollReveal>
           </h2>
           <div className="flex max-w-[524px] items-end gap-5">
             <VerticalLineReveal className="hidden h-[106px] w-px bg-black md:block" delay={120} />
             <ScrollReveal delay={140}>
               <p className="max-w-[296px] font-body text-[12px] leading-4 tracking-[0.04em] text-black md:max-w-[492px] md:text-[16px] md:leading-[22px]">
-                Bringing together residential and hospitality, as well as lifestyle-oriented, leisure-based retail and wellness components within integrated developments.
+                MĀK&apos;s active and pipeline engagements span commercial, residential, hospitality, retail and wellness formats, positioned across dense urban contexts as well as lower-density, lifestyle-led markets.
               </p>
             </ScrollReveal>
           </div>
@@ -197,7 +197,7 @@ export function VerticalsSection() {
             aria-pressed={activeGalleryIndex === 0}
             onClick={() => toggleGalleryPanel(0)}
             onKeyDown={(event) => handleGalleryPanelKeyDown(event, 0)}
-            className="group relative h-[60svh] min-h-[360px] cursor-pointer overflow-hidden focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--brand)] md:h-svh md:min-h-[560px]"
+            className="group relative h-[55svh] min-h-[340px] cursor-pointer overflow-hidden focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--brand)] md:h-[85svh] md:min-h-[520px]"
           >
             <Image
               src="/images/home/verticals-gallery/partners-wide.png"
@@ -208,10 +208,10 @@ export function VerticalsSection() {
                 activeGalleryIndex === 0 ? "scale-[1.02]" : "group-hover:scale-[1.02]"
               }`}
             />
-            <div className={`absolute inset-0 flex items-end justify-start bg-black/65 p-6 transition-opacity duration-300 md:p-10 ${
+            <div className={`absolute inset-0 flex items-center justify-center bg-black/65 p-6 text-center transition-opacity duration-300 md:p-10 ${
               activeGalleryIndex === 0 ? "opacity-100" : "opacity-0 group-hover:opacity-100"
             }`}>
-              <p className="max-w-[620px] font-display text-[16px] leading-[1.35] text-white md:text-[24px]">The aggregated residential scale includes approximately 1.7 million sq. ft. within the non urban ecosystem and approximately 2 lakh sq. ft. across multiple projects.</p>
+              <p className="max-w-[620px] font-display text-[16px] leading-[1.35] text-white md:text-[24px]">{verticalGalleryCaptions[0]}</p>
             </div>
           </div>
           <div className="mt-1 grid grid-cols-1 gap-1 md:h-svh md:grid-cols-[3fr_2fr] md:min-h-0">
@@ -232,10 +232,10 @@ export function VerticalsSection() {
                   activeGalleryIndex === 1 ? "scale-[1.02]" : "group-hover:scale-[1.02]"
                 }`}
               />
-              <div className={`absolute inset-0 flex items-end justify-start bg-black/65 p-6 transition-opacity duration-300 md:p-10 ${
+              <div className={`absolute inset-0 flex items-center justify-center bg-black/65 p-6 text-center transition-opacity duration-300 md:p-10 ${
                 activeGalleryIndex === 1 ? "opacity-100" : "opacity-0 group-hover:opacity-100"
               }`}>
-                <p className="max-w-[620px] font-display text-[16px] leading-[1.35] text-white md:text-[24px]">The aggregated residential scale includes approximately 1.7 million sq. ft. within the non urban ecosystem and approximately 2 lakh sq. ft. across multiple projects.</p>
+                <p className="max-w-[620px] font-display text-[16px] leading-[1.35] text-white md:text-[24px]">{verticalGalleryCaptions[1]}</p>
               </div>
             </div>
             <div
@@ -255,10 +255,10 @@ export function VerticalsSection() {
                   activeGalleryIndex === 2 ? "scale-[1.02]" : "group-hover:scale-[1.02]"
                 }`}
               />
-              <div className={`absolute inset-0 flex items-end justify-start bg-black/65 p-6 transition-opacity duration-300 md:p-10 ${
+              <div className={`absolute inset-0 flex items-center justify-center bg-black/65 p-6 text-center transition-opacity duration-300 md:p-10 ${
                 activeGalleryIndex === 2 ? "opacity-100" : "opacity-0 group-hover:opacity-100"
               }`}>
-                <p className="max-w-[620px] font-display text-[16px] leading-[1.35] text-white md:text-[24px]">The aggregated residential scale includes approximately 1.7 million sq. ft. within the non urban ecosystem and approximately 2 lakh sq. ft. across multiple projects.</p>
+                <p className="max-w-[620px] font-display text-[16px] leading-[1.35] text-white md:text-[24px]">{verticalGalleryCaptions[2]}</p>
               </div>
             </div>
           </div>

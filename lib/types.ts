@@ -1,4 +1,8 @@
 export type NavKey =
+  | "verticals"
+  | "approach"
+  | "growth"
+  | "contact"
   | "residential"
   | "commercial"
   | "aggregation"

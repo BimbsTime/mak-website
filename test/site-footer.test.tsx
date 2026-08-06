@@ -8,7 +8,7 @@ describe("SiteFooter", () => {
   it("renders disabled legal labels without links", () => {
     render(<SiteFooter />);
 
-    expect(screen.getByRole("link", { name: /contact/i })).toHaveAttribute("href", "/contact");
+    expect(screen.getByRole("link", { name: /contact/i })).toHaveAttribute("href", "/#contact");
     expect(screen.queryByRole("link", { name: /privacy/i })).not.toBeInTheDocument();
     expect(screen.queryByRole("link", { name: /terms/i })).not.toBeInTheDocument();
     expect(screen.queryByRole("link", { name: /rera disclosure/i })).not.toBeInTheDocument();

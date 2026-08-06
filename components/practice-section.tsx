@@ -95,12 +95,12 @@ export function PracticeSection() {
           <div className="flex max-w-[344px] flex-col gap-3 md:max-w-none md:gap-3">
             <ScrollReveal delay={0}>
               <h2 className="font-display text-[32px] leading-[32px] md:text-[36px] md:leading-[36px]">
-                The Practice.
+                The Practice
               </h2>
             </ScrollReveal>
             <ScrollReveal delay={140}>
               <p className="max-w-[206px] font-body text-[12px] leading-4 tracking-[0.04em] md:max-w-[344px] md:text-[16px] md:leading-6">
-                An integrated practice. Translating land into built form through a process that is both precise and considered.
+                An integrated practice, translating strategic assets into built form through a process that is at once precise and considered.
               </p>
             </ScrollReveal>
           </div>

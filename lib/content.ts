@@ -31,21 +31,11 @@ export function resolveNavKey(value: string | undefined): NavKey {
 }
 
 export const navItems: NavItem[] = [
-  {
-    key: "residential",
-    label: "Residential",
-    href: comingSoonHref("residential"),
-    children: [
-      { label: "Urban Residential", href: comingSoonHref("residential") },
-      { label: "Non-urban Residential", href: comingSoonHref("residential") },
-    ],
-  },
-  { key: "commercial", label: "Commercial", href: comingSoonHref("commercial") },
-  { key: "aggregation", label: "Aggregation", href: comingSoonHref("aggregation") },
-  { key: "wellness", label: "Wellness", href: comingSoonHref("wellness") },
-  { key: "hospitality", label: "Hospitality", href: comingSoonHref("hospitality") },
-  { key: "retail-dining", label: "Retail & Dining", href: comingSoonHref("retail-dining") },
-  { key: "partners", label: "Our Partners", href: comingSoonHref("partners") },
+  { key: "verticals", label: "Verticals", href: "/#verticals" },
+  { key: "approach", label: "Approach", href: "/#approach" },
+  { key: "growth", label: "Growth", href: "/#growth" },
+  { key: "partners", label: "Partners", href: comingSoonHref("partners") },
+  { key: "contact", label: "Contact", href: "/#contact" },
 ];
 
 export const heroImage = {
@@ -56,16 +46,16 @@ export const heroImage = {
 export const introContent = {
   title: "Considered places.\nComposed to endure.",
   summary:
-    "A Mumbai-based, design-led real estate developer with expertise spanning land aggregation, regulatory liaisoning, clearances, and execution shaped by design and strong architectural intent.",
+    "A Mumbai-based, design-led real estate development practice, engaging across the full spectrum of the development value chain; from strategic asset identification, aggregation and acquisition, through funding, regulatory liaisoning and approvals, to design development, execution and market delivery.",
   paragraphs: [
-    "MĀK operates with an integrated approach across the full development lifecycle, from land aggregation and regulatory liaisoning to securing clearances and executing projects with architectural clarity. This integrated capability allows for a seamless progression from acquisition to delivery, maintaining control over both process and outcome.",
-    "Its developments are guided by a consistent philosophy. To create environments that move beyond functional real estate and instead offer a more refined, experience-driven way of living. Each project is approached as a spatial composition, where planning, materiality and proportion are calibrated to deliver clarity, comfort and longevity.",
+    "MĀK operates with an integrated capability that allows it to move fluidly across this spectrum, engaging on an opportunity-specific basis shaped through strategic development partners.",
+    "Underlying this is a consistent design philosophy: environments composed with attention to light, ventilation, proportion and material restraint, with a recurring instinct toward lifestyle-inflected living, extending design intent beyond the individual residence into the broader development envelope.",
   ],
 };
 
 export const practiceMetrics: Metric[] = [
-  { value: "2 million sq. ft.", label: "Aggregated development potential" },
-  { value: "₹2600 to 2800 Cr.", label: "GDV (Current portfolio value)" },
+  { value: "~ 4 - 4.5 million sq. ft.", label: "Targeted Aggregate Development Potential" },
+  { value: "INR ~ 4,750 - 5,250 Cr.", label: "Targeted Asset Realisation Value" },
 ];
 
 export const practiceImage = {
@@ -80,10 +70,22 @@ export const practiceVideo = {
 
 export const verticalCards: VerticalCard[] = [
   {
+    id: "land-aggregation",
+    title: "Asset Aggregation",
+    description:
+      "Over 5,000 acres aggregated to date, alongside complex regulatory approvals managed for public and private sector projects.",
+    href: comingSoonHref("aggregation"),
+    image: {
+      src: "/images/home/land-desktop.png",
+      alt: "Aerial coastal land parcel and infrastructure context photographed from above.",
+    },
+    wide: true,
+  },
+  {
     id: "residential",
     title: "Residential",
     description:
-      "The aggregated residential scale includes approximately 1.7 million sq. ft. within the non-urban ecosystem and approximately 2 lakh sq. ft. across multiple projects.",
+      "Projects of varying scale in closely identified micro markets, with particular attention to design, materiality and spatial planning.",
     href: comingSoonHref("residential"),
     image: {
       src: "/images/home/residential-desktop.png",
@@ -95,7 +97,7 @@ export const verticalCards: VerticalCard[] = [
     id: "hospitality",
     title: "Hospitality",
     description:
-      "150 serviced suites (~550 sq. ft.) for short and extended stays within the larger development.",
+      "Shaping environments that feel intuitive, refined and experience-led, with a vision that carries across every development.",
     href: comingSoonHref("hospitality"),
     image: {
       src: "/images/home/hospitality-desktop.png",
@@ -106,7 +108,7 @@ export const verticalCards: VerticalCard[] = [
     id: "wellness",
     title: "Wellness",
     description:
-      "A pioneering, members-only wellness club. A first of its kind at this scale.",
+      "Living environments informed by a growing focus on quality of life, with spaces designed to support balance, comfort and ease.",
     href: comingSoonHref("wellness"),
     image: {
       src: "/images/home/wellness-desktop.png",
@@ -115,9 +117,9 @@ export const verticalCards: VerticalCard[] = [
   },
   {
     id: "retail-dining",
-    title: "Boutique Retail and Dining",
+    title: "Boutique Retail and F&B",
     description:
-      "An 80,000 sq. ft. design-led retail destination combining curated dining, shopping, and leisure within a hospitality-driven lifestyle experience.",
+      "Design-led retail destinations combining curated dining, shopping and leisure within thoughtfully composed lifestyle experiences.",
     href: comingSoonHref("retail-dining"),
     image: {
       src: "/images/home/retail-dining-desktop.png",
@@ -128,24 +130,19 @@ export const verticalCards: VerticalCard[] = [
     id: "commercial",
     title: "Commercial",
     description:
-      "A boutique office concept within larger commercial developments, balancing scale with thoughtful, design-led workspaces.",
+      "Boutique offices set within larger commercial developments, balancing scale with proportion and considered design.",
     href: comingSoonHref("commercial"),
     image: {
       src: "/images/home/commercial-desktop.png",
       alt: "Architectural interior with sculpted stone surfaces suited to a boutique office environment.",
     },
   },
-  {
-    id: "land-aggregation",
-    title: "land Aggregation",
-    description:
-      "Beyond development, MĀK has aggregated over 5,000 acres of land and managed complex regulatory approvals for public and private sector projects.",
-    href: comingSoonHref("aggregation"),
-    image: {
-      src: "/images/home/land-desktop.png",
-      alt: "Aerial coastal land parcel and infrastructure context photographed from above.",
-    },
-  },
+];
+
+export const verticalGalleryCaptions = [
+  "Spaces that carry a quiet sense of intention, where light, proportion and material come together in ways that feel instinctive rather than imposed.",
+  "An approach shaped by restraint, where nothing feels excessive, yet every element holds presence, allowing the architecture to unfold with clarity and ease.",
+  "Environments that are not defined by design alone, but by the way they are experienced: subtle, balanced and deeply attuned to how life moves through them.",
 ];
 
 export const approachImage = {
@@ -165,15 +162,16 @@ export const approachPoints: ApproachPoint[] = [
       "A seamless progression from acquisition to delivery. Land aggregation, regulatory liaisoning, clearances and execution, held within a single, coherent practice.",
   },
   {
-    title: "Spatial Intent",
+    title: "Architectural Intent",
     description:
-      "Each development is approached as a spatial composition, where planning, materiality and proportion are calibrated to create clarity, comfort and lasting value.",
+      "Each development is approached as a considered composition, where planning, materiality and proportion are calibrated for clarity, comfort and lasting value, with particular emphasis on light, shadow and volumetrics.",
   },
-  {
-    title: "Micro-Hospitality",
-    description:
-      "Hospitality thinking informs arrival, circulation and amenity design, shaping environments that feel more intuitive, refined and experience-led in everyday use.",
-  },
+];
+
+export const growthOverview = [
+  "MĀK is scaling its practice significantly over the next phase of growth, targeting an asset realisation value of INR 4,500 to 5,000 Cr. over the next 24 months, allowing the firm to reach a holistic realisation potential of INR 10,000 Cr. through strategic development partners. This spans multiple new launches across residential, commercial and industrial verticals, focused in strategically selected micro markets.",
+  "The primary direction of this growth is into industrial and infrastructure-linked development, including IT parks and data centre-enabled real estate; sectors especially suited to MĀK's existing strength in asset aggregation, regulatory liaisoning and entitlement, given the scale, power and connectivity considerations such projects demand. As across the rest of the practice, engagement will flex by opportunity.",
+  "This ranges from asset assembly and approvals through to full-cycle development and delivery, structured through the same partnership models MĀK applies across its portfolio. Through all of this, MĀK's approach remains constant: engage across the value chain with precision, structure participation where value is best created, and deliver environments defined by design clarity and enduring outcomes.",
 ];
 
 export const growthCards: GrowthCard[] = [
@@ -181,7 +179,7 @@ export const growthCards: GrowthCard[] = [
     id: "commercial-development",
     title: "Commercial Development",
     description:
-      "Entry into the commercial segment with a focus on boutique office environments, integrated within larger, expansive commercial developments.",
+      "Boutique commercial and office developments, integrated within larger mixed-use environments and positioned in carefully selected micro markets.",
     href: comingSoonHref("commercial"),
     image: {
       src: "/images/home/growth-commercial-desktop.png",
@@ -189,10 +187,10 @@ export const growthCards: GrowthCard[] = [
     },
   },
   {
-    id: "non-urban-expansion",
-    title: "Non-Urban Expansion",
+    id: "residential-development",
+    title: "Residential Development",
     description:
-      "Further development of the hospitality-led model, bringing together residential, retail, wellness and F&B components within cohesive, lifestyle-driven environments.",
+      "Continued expansion across residential development, with multiple new launches concentrated in strategically selected micro markets spanning urban and non-urban contexts.",
     href: comingSoonHref("residential"),
     image: {
       src: "/images/home/growth-nonurban-desktop.png",
@@ -207,9 +205,9 @@ export const contactImage = {
 };
 
 export const footerPrimaryLinks: FooterLink[] = [
-  { label: "Portfolio", href: "/#verticals" },
+  { label: "Verticals", href: "/#verticals" },
   { label: "Approach", href: "/#approach" },
-  { label: "Land", href: "/#land-aggregation" },
+  { label: "Aggregation", href: "/#land-aggregation" },
 ];
 
 export const footerSecondaryLinks: FooterLink[] = [

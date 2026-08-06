@@ -1,5 +1,5 @@
 import React from "react";
-import { fireEvent, render, screen, within } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { beforeEach, describe, expect, it } from "vitest";
 
 import { SiteHeader } from "@/components/site-header";
@@ -18,38 +18,31 @@ describe("SiteHeader", () => {
     expect(screen.getByLabelText("Close navigation menu")).toBeInTheDocument();
   });
 
-  it("toggles the residential submenu inside the mobile overlay", () => {
+  it("renders the new section links inside the mobile overlay", () => {
     render(<SiteHeader />);
 
     fireEvent.click(screen.getByLabelText("Open navigation menu"));
-    fireEvent.click(screen.getByRole("button", { name: /residential/i }));
 
-    const mobileSubmenu = screen.getByRole("button", { name: /residential/i }).closest("div");
-    expect(mobileSubmenu).not.toBeNull();
-    expect(within(mobileSubmenu as HTMLElement).getByText("Urban Residential")).toBeInTheDocument();
-    expect(within(mobileSubmenu as HTMLElement).getByText("Non-urban Residential")).toBeInTheDocument();
+    expect(screen.getAllByRole("link", { name: "Verticals" }).at(-1)).toHaveAttribute("href", "/#verticals");
+    expect(screen.getAllByRole("link", { name: "Approach" }).at(-1)).toHaveAttribute("href", "/#approach");
+    expect(screen.getAllByRole("link", { name: "Growth" }).at(-1)).toHaveAttribute("href", "/#growth");
+    expect(screen.getAllByRole("link", { name: "Contact" }).at(-1)).toHaveAttribute("href", "/#contact");
   });
 
-  it("links the logo home and desktop nav to coming soon routes", () => {
+  it("links the logo home and partners to the coming soon route", () => {
     render(<SiteHeader activeNavKey="hospitality" />);
 
     expect(screen.getByRole("link", { name: "MĀK" })).toHaveAttribute("href", "/");
-    expect(screen.getByRole("link", { name: /commercial/i })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: "Partners" })).toHaveAttribute(
       "href",
-      "/coming-soon?tab=commercial",
+      "/coming-soon?tab=partners",
     );
   });
 
-  it("renders the residential desktop submenu links", () => {
+  it("replaces the old navigation labels", () => {
     render(<SiteHeader />);
 
-    expect(screen.getByRole("link", { name: "Urban Residential" })).toHaveAttribute(
-      "href",
-      "/coming-soon?tab=residential",
-    );
-    expect(screen.getByRole("link", { name: "Non-urban Residential" })).toHaveAttribute(
-      "href",
-      "/coming-soon?tab=residential",
-    );
+    expect(screen.queryByRole("link", { name: "Residential" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: "Commercial" })).not.toBeInTheDocument();
   });
 });

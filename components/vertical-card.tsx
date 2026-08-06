@@ -1,7 +1,6 @@
 import Image from "next/image";
 
 import { ScrollReveal } from "@/components/scroll-reveal";
-import { ExploreLink } from "@/components/ui/explore-link";
 import type { VerticalCard as VerticalCardData } from "@/lib/types";
 
 type VerticalCardProps = {
@@ -49,7 +48,6 @@ export function VerticalCard({ card, isActive, onActivate }: VerticalCardProps) 
               {card.description}
             </p>
           </div>
-          <ExploreLink href={card.href} />
         </div>
       </ScrollReveal>
     </article>

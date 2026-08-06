@@ -1,70 +1,49 @@
 "use client";
 
 import Image from "next/image";
-import { useRef } from "react";
-
 import { ScrollReveal } from "@/components/scroll-reveal";
-import { ExploreLink } from "@/components/ui/explore-link";
-import { VerticalLineReveal } from "@/components/vertical-line-reveal";
-import { useHorizontalScroll } from "@/hooks/use-horizontal-scroll";
-import { growthCards } from "@/lib/content";
+import { growthCards, growthOverview } from "@/lib/content";
 
 export function GrowthSectionV2() {
-  const pinnedSectionRef = useRef<HTMLElement | null>(null);
-  const trackRef = useRef<HTMLDivElement | null>(null);
-
-  const isDesktopMotionEnabled = useHorizontalScroll({
-    sectionRef: pinnedSectionRef,
-    trackRef,
-  });
-
   return (
-    <section className="w-full py-8 md:pt-12 md:pb-24">
-      <div className="mx-auto max-w-[1615px] px-6 md:px-20">
-        <div className="flex flex-col gap-4 md:max-w-[1114px] md:flex-row md:items-end md:gap-14">
-          <h2 className="max-w-[510px] font-display text-[24px] leading-[26px] text-[var(--brand)] md:text-[36px] md:leading-[40px]">
+    <section id="growth" className="w-full py-8 md:pt-12 md:pb-24">
+      <div className="w-full px-6 md:px-80">
+        <div className="mx-auto flex max-w-[1177px] flex-col items-center gap-14 text-center md:gap-12">
+          <h2 className="font-display text-[32px] leading-[32px] text-[var(--brand)] md:text-[48px] md:leading-[48px]">
             <ScrollReveal as="span" delay={0} distance={18} className="block whitespace-normal md:whitespace-nowrap">
-              Project Pipeline and<br />
-              Growth.
+              Project Pipeline &amp;<br />
+              Growth
             </ScrollReveal>
           </h2>
 
-          <div className="flex max-w-[524px] items-end gap-5">
-            <VerticalLineReveal className="hidden h-[106px] w-px bg-black md:block" delay={120} />
-            <ScrollReveal delay={140}>
-              <p className="max-w-[600px] font-body text-[12px] leading-4 tracking-[0.04em] text-black md:max-w-[492px] md:text-[16px] md:leading-[22px]">
-                The firm is set to launch 3-4 new projects across residential and commercial sectors, with a projected portfolio expansion of ₹4000-5000 Cr. GDV over the next two years.
-              </p>
-            </ScrollReveal>
+          <ScrollReveal delay={140}>
+            <p className="max-w-[342px] font-body text-[12px] leading-4 tracking-[0.04em] text-black md:max-w-[1177px] md:text-[16px] md:leading-[22px]">
+              {growthOverview[0]}
+            </p>
+          </ScrollReveal>
+
+          <div className="grid max-w-[1177px] gap-6 text-justify md:grid-cols-2 md:gap-12">
+            {growthOverview.slice(1).map((paragraph, index) => (
+              <ScrollReveal key={paragraph} delay={260 + index * 120}>
+                <p className="max-w-[342px] font-body text-[12px] leading-4 tracking-[0.04em] text-black md:max-w-none md:text-[16px] md:leading-[22px]">
+                  {paragraph}
+                </p>
+              </ScrollReveal>
+            ))}
           </div>
         </div>
       </div>
 
-      <section
-        ref={pinnedSectionRef}
-        aria-label="Project pipeline"
-        className={`no-scrollbar mt-8 overflow-x-auto md:mt-8 ${
-          isDesktopMotionEnabled ? "md:h-[100vh] md:overflow-hidden" : ""
-        }`}
-      >
-        <div
-          ref={trackRef}
-          className={`flex w-max items-start gap-8 px-6 ${
-            isDesktopMotionEnabled ? "md:h-full md:w-max md:flex-row md:gap-[4vw] md:px-[6vw]" : ""
-          }`}
-        >
+      <div aria-label="Project pipeline" className="mt-8 md:mt-12">
+        <div className="mx-auto flex max-w-[1615px] flex-col gap-12 px-6 md:gap-20 md:px-20">
           {growthCards.map((card) => (
             <article
               key={card.id}
               id={card.id}
               data-growth-card
-              className={`w-[78vw] shrink-0 ${
-                isDesktopMotionEnabled
-                  ? "md:flex md:h-full md:w-[72vw] md:items-center"
-                  : ""
-              }`}
+              className="w-full"
             >
-              <div className="w-full max-w-[1051px] md:max-w-none">
+              <div className="w-full">
                 <div className="relative aspect-[316/178] overflow-hidden bg-[#d8d2c7] md:aspect-[1051/594]">
                   <Image
                     src={card.image.src}
@@ -88,15 +67,12 @@ export function GrowthSectionV2() {
                       {card.description}
                     </p>
                   </div>
-                  <div className="mt-6 shrink-0 md:mt-0">
-                    <ExploreLink href={card.href} />
-                  </div>
                 </div>
               </div>
             </article>
           ))}
         </div>
-      </section>
+      </div>
     </section>
   );
 }
