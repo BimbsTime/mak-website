@@ -122,7 +122,7 @@ export const verticalCards: VerticalCard[] = [
       "Design-led retail destinations combining curated dining, shopping and leisure within thoughtfully composed lifestyle experiences.",
     href: comingSoonHref("retail-dining"),
     image: {
-      src: "/images/home/retail-dining-desktop.png",
+      src: "/images/home/retail-dining-desktop.webp",
       alt: "Editorial dining table scene with plated dishes and warm hospitality styling.",
     },
   },
