@@ -7,7 +7,7 @@ import { growthCards, growthOverview } from "@/lib/content";
 export function GrowthSectionV2() {
   return (
     <section id="growth" className="w-full py-8 md:pt-12 md:pb-24">
-      <div className="w-full px-6 md:px-12 lg:px-20 xl:px-32 2xl:px-48">
+      <div className="w-full px-6 md:px-12 xl:px-80">
         <div className="mx-auto flex max-w-[1177px] flex-col items-center gap-14 text-center md:gap-12">
           <h2 className="font-display text-[32px] leading-[32px] text-[var(--brand)] md:text-[48px] md:leading-[48px]">
             <ScrollReveal as="span" delay={0} distance={18} className="block whitespace-normal md:whitespace-nowrap">
@@ -21,7 +21,7 @@ export function GrowthSectionV2() {
             </p>
           </ScrollReveal>
 
-          <div className="grid max-w-[1177px] gap-6 text-justify lg:grid-cols-2 lg:gap-12">
+          <div className="grid max-w-[1177px] gap-6 text-justify xl:grid-cols-2 xl:gap-12">
             {growthOverview.slice(1).map((paragraph, index) => (
               <ScrollReveal key={paragraph} delay={260 + index * 120}>
                 <p className="max-w-[342px] font-body text-[12px] leading-4 tracking-[0.04em] text-black md:max-w-none md:text-[16px] md:leading-[22px]">
