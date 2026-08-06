@@ -38,7 +38,7 @@ export function ApproachSection() {
       className="relative w-full py-[48px] before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-black/20 before:to-transparent after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-gradient-to-r after:from-transparent after:via-black/20 after:to-transparent md:py-[96px] md:before:hidden md:after:hidden"
     >
       <ApproachIntro />
-      <div className="mx-auto mt-8 grid max-w-[1615px] gap-8 px-6 md:mt-14 md:grid-cols-[minmax(0,980px)_360px] md:items-start md:gap-12 md:px-20">
+      <div className="mx-auto mt-8 grid max-w-[1615px] gap-8 px-6 md:mt-14 md:ml-0 md:mr-20 md:max-w-none md:grid-cols-[minmax(0,980px)_360px] md:items-start md:gap-12 md:px-0">
         <ScrollReveal delay={220}>
           <div className="relative aspect-square overflow-hidden bg-[#d8d2c7] md:h-[520px] md:aspect-auto">
             <video
