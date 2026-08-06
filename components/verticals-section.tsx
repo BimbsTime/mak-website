@@ -209,9 +209,8 @@ export function VerticalsSection() {
               }`}
             />
             <div className={`absolute inset-0 flex items-center justify-center bg-black/65 p-6 text-center transition-opacity duration-300 md:p-10 ${
-              activeGalleryIndex === 0 ? "opacity-100" : "opacity-0 group-hover:opacity-100"
-            }`}>
-              <p className="max-w-[620px] font-body text-[14px] leading-7 font-extralight tracking-[0.04em] text-white md:text-[20px] md:leading-10">{verticalGalleryCaptions[0]}</p>
+              activeGalleryIndex === 0 ? "opacity-100" : "opacity-0 group-hover:opacity-100"            }`}>
+              <p className="max-w-[550px] font-body text-[14px] leading-7 font-extralight tracking-[0.04em] text-white md:text-[20px] md:leading-10">{verticalGalleryCaptions[0]}</p>
             </div>
           </div>
           <div className="mt-1 grid grid-cols-1 gap-1 md:h-[65svh] md:min-h-[440px] md:grid-cols-[3fr_2fr]">
@@ -235,7 +234,7 @@ export function VerticalsSection() {
               <div className={`absolute inset-0 flex items-center justify-center bg-black/65 p-6 text-center transition-opacity duration-300 md:p-10 ${
                 activeGalleryIndex === 1 ? "opacity-100" : "opacity-0 group-hover:opacity-100"
               }`}>
-                <p className="max-w-[620px] font-body text-[14px] leading-7 font-extralight tracking-[0.04em] text-white md:text-[20px] md:leading-10">{verticalGalleryCaptions[1]}</p>
+                <p className="max-w-[550px] font-body text-[14px] leading-7 font-extralight tracking-[0.04em] text-white md:text-[20px] md:leading-10">{verticalGalleryCaptions[1]}</p>
               </div>
             </div>
             <div

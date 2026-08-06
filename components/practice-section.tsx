@@ -87,7 +87,7 @@ export function PracticeSection() {
           <source src={practiceVideo.src} type="video/mp4" />
         </video>
       </div>
-      <div className="absolute inset-0 bg-linear-to-b from-black/10 via-black/10 to-black/80 md:bg-[linear-gradient(197deg,rgba(0,0,0,0.10)_19%,rgba(0,0,0,0.80)_76%)]" />
+      <div className="absolute inset-0 bg-linear-to-b from-black/25 via-black/40 to-black/70 md:bg-[linear-gradient(197deg,rgba(0,0,0,0.10)_19%,rgba(0,0,0,0.80)_76%)]" />
 
       <div className="relative mx-auto flex min-h-[560px] max-w-[1695px] items-end gap-6 px-6 py-[48px] text-[#f7f5f2] md:min-h-[97vh] md:gap-10 md:px-20 md:py-[48px]">
         <VerticalLineReveal className="mt-2 h-[245px] w-px shrink-0 bg-[#f7f5f2] md:h-[248px]" />
@@ -108,7 +108,7 @@ export function PracticeSection() {
           <div className="mt-10 grid gap-8 md:mt-8 md:grid-cols-2 md:gap-24">
             {practiceMetrics.map((metric, index) => (
               <ScrollReveal key={metric.label} delay={280 + index * 140}>
-                <div className="flex max-w-[260px] flex-col gap-2">
+                <div className="flex max-w-[300px] flex-col gap-2">
                   <p className="font-body text-[20px] leading-5 font-extralight md:text-[24px] md:leading-8">
                     {metric.value}
                   </p>

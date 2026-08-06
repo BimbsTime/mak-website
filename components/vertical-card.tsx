@@ -21,15 +21,17 @@ export function VerticalCard({ card, isActive, onActivate }: VerticalCardProps) 
       onFocus={onActivate}
     >
       <div className="relative h-[330px] overflow-hidden bg-[#d8d2c7] md:h-[480px] md:aspect-auto">
-        <Image
-          src={card.image.src}
-          alt={card.image.alt}
-          fill
-          draggable={false}
-          loading="eager"
-          sizes={isActive ? "(min-width: 768px) 520px, 282px" : "(min-width: 768px) 400px, 226px"}
-          className="pointer-events-none object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
-        />
+        <div className="relative h-full w-[282px] shrink-0 md:w-[520px]">
+          <Image
+            src={card.image.src}
+            alt={card.image.alt}
+            fill
+            draggable={false}
+            loading="eager"
+            sizes="(min-width: 768px) 520px, 282px"
+            className="pointer-events-none object-cover"
+          />
+        </div>
         <div
           aria-hidden="true"
           className={`absolute inset-0 pointer-events-none transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${

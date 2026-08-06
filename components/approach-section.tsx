@@ -22,7 +22,7 @@ function ApproachIntro() {
         <div className="flex max-w-[524px] items-end gap-5">
           <VerticalLineReveal className="hidden h-[106px] w-px bg-black md:block" delay={120} />
           <ScrollReveal delay={140}>
-            <p className="max-w-[296px] font-body text-[12px] leading-4 tracking-[0.04em] text-black md:max-w-[492px] md:text-[16px] md:leading-[22px]">
+            <p className="max-w-[326px] font-body text-[12px] leading-4 tracking-[0.04em] text-black md:max-w-[450px] md:text-[16px] md:leading-[22px]">
               Delivering high-quality projects with an emphasis on spatial experience, creating developments that are functional, thoughtful and enduring.
             </p>
           </ScrollReveal>
