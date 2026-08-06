@@ -48,8 +48,8 @@ export const introContent = {
   summary:
     "A Mumbai-based, design-led real estate development practice, engaging across the full spectrum of the development value chain; from strategic asset identification, aggregation and acquisition, through funding, regulatory liaisoning and approvals, to design development, execution and market delivery.",
   paragraphs: [
-    "MĀK operates with an integrated capability that allows it to move fluidly across this spectrum, engaging on an opportunity-specific basis shaped through strategic development partners.",
-    "Underlying this is a consistent design philosophy: environments composed with attention to light, ventilation, proportion and material restraint, with a recurring instinct toward lifestyle-inflected living, extending design intent beyond the individual residence into the broader development envelope.",
+    "MĀK operates with an integrated capability that allows it to move fluidly across this spectrum, engaging on an opportunity-specific basis shaped through strategic development partners. Underlying this is a consistent design philosophy.",
+    "Environments composed with attention to light, ventilation, proportion and material restraint, with a recurring instinct toward lifestyle-inflected living, extending design intent beyond the individual residence into the broader development envelope.",
   ],
 };
 
