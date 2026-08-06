@@ -49,7 +49,7 @@ function FooterUtilityRow() {
 
 export function SiteFooter() {
   return (
-    <footer className="w-full bg-[#fbfaf8] px-6 py-8 md:px-20 md:py-10">
+    <footer className="w-full bg-[var(--background)] px-6 py-8 md:px-20 md:py-10">
       <div className="mx-auto flex max-w-[1695px] flex-col gap-8 md:flex-row md:items-end md:justify-between">
         <ScrollReveal delay={0}>
           <div className="flex max-w-[260px] flex-col gap-3">

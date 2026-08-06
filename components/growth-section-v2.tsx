@@ -11,8 +11,7 @@ export function GrowthSectionV2() {
         <div className="mx-auto flex max-w-[1177px] flex-col items-center gap-14 text-center md:gap-12">
           <h2 className="font-display text-[32px] leading-[32px] text-[var(--brand)] md:text-[48px] md:leading-[48px]">
             <ScrollReveal as="span" delay={0} distance={18} className="block whitespace-normal md:whitespace-nowrap">
-              Project Pipeline &amp;<br />
-              Growth
+              Project Pipeline &amp; Growth
             </ScrollReveal>
           </h2>
 

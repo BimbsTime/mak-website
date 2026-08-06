@@ -211,7 +211,7 @@ export function VerticalsSection() {
             <div className={`absolute inset-0 flex items-center justify-center bg-black/65 p-6 text-center transition-opacity duration-300 md:p-10 ${
               activeGalleryIndex === 0 ? "opacity-100" : "opacity-0 group-hover:opacity-100"
             }`}>
-              <p className="max-w-[620px] font-display text-[16px] leading-[1.35] text-white md:text-[24px]">{verticalGalleryCaptions[0]}</p>
+              <p className="max-w-[620px] font-body text-[16px] leading-[1.35] text-white">{verticalGalleryCaptions[0]}</p>
             </div>
           </div>
           <div className="mt-1 grid grid-cols-1 gap-1 md:h-svh md:grid-cols-[3fr_2fr] md:min-h-0">
@@ -235,7 +235,7 @@ export function VerticalsSection() {
               <div className={`absolute inset-0 flex items-center justify-center bg-black/65 p-6 text-center transition-opacity duration-300 md:p-10 ${
                 activeGalleryIndex === 1 ? "opacity-100" : "opacity-0 group-hover:opacity-100"
               }`}>
-                <p className="max-w-[620px] font-display text-[16px] leading-[1.35] text-white md:text-[24px]">{verticalGalleryCaptions[1]}</p>
+                <p className="max-w-[620px] font-body text-[16px] leading-[1.35] text-white">{verticalGalleryCaptions[1]}</p>
               </div>
             </div>
             <div
@@ -258,7 +258,7 @@ export function VerticalsSection() {
               <div className={`absolute inset-0 flex items-center justify-center bg-black/65 p-6 text-center transition-opacity duration-300 md:p-10 ${
                 activeGalleryIndex === 2 ? "opacity-100" : "opacity-0 group-hover:opacity-100"
               }`}>
-                <p className="max-w-[620px] font-display text-[16px] leading-[1.35] text-white md:text-[24px]">{verticalGalleryCaptions[2]}</p>
+                <p className="max-w-[620px] font-body text-[16px] leading-[1.35] text-white">{verticalGalleryCaptions[2]}</p>
               </div>
             </div>
           </div>

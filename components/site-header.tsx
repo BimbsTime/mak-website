@@ -128,7 +128,7 @@ function MobileOverlay() {
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex flex-col bg-[#fbfaf8] md:hidden">
+    <div className="fixed inset-0 z-50 flex flex-col bg-[var(--background)] md:hidden">
       <div className="flex h-[70px] items-center justify-between px-6 pt-4">
         <div className="w-6" />
         <Link href="/" onClick={closeMenu}>
@@ -295,7 +295,7 @@ export function SiteHeader({ activeNavKey, layout = "stacked" }: SiteHeaderProps
       <header
         className={`fixed inset-x-0 top-0 z-50 w-full border-b transition-[transform,opacity,background-color,border-color] duration-300 ${
           isVisible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none"
-        } border-black/5 bg-[#fbfaf8]`}
+        } border-black/5 bg-[var(--background)]`}
       >
         <div
           className={`mx-auto flex max-w-[1695px] items-center justify-between px-6 transition-[padding,gap] duration-300 md:px-20 ${desktopLayoutClass} ${
