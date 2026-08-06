@@ -59,7 +59,7 @@ export function ApproachSection() {
         <div className="flex flex-col md:pt-6" aria-label="Approach principles">
           {approachPoints.map((point, index) => (
             <Fragment key={point.title}>
-              {index > 0 ? <div aria-hidden="true" className="h-px w-full bg-black/20" /> : null}
+              {index > 0 ? <div aria-hidden="true" className="hidden h-px w-full bg-black/20 md:block" /> : null}
               <ScrollReveal delay={280 + index * 100} className={index === 0 ? "pb-8 md:pb-10" : "pt-8 md:pt-10"}>
                 <article data-approach-point className="flex flex-col gap-3 md:gap-4">
                   <h3 className="font-display text-[20px] leading-[21px] text-black md:text-[24px] md:leading-[24px]">

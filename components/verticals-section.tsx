@@ -197,7 +197,7 @@ export function VerticalsSection() {
             aria-pressed={activeGalleryIndex === 0}
             onClick={() => toggleGalleryPanel(0)}
             onKeyDown={(event) => handleGalleryPanelKeyDown(event, 0)}
-            className="group relative h-[55svh] min-h-[340px] cursor-pointer overflow-hidden focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--brand)] md:h-[85svh] md:min-h-[520px]"
+            className="group relative h-[55svh] min-h-[340px] cursor-pointer overflow-hidden focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--brand)] md:h-[75svh] md:min-h-[500px]"
           >
             <Image
               src="/images/home/verticals-gallery/partners-wide.png"
@@ -214,7 +214,7 @@ export function VerticalsSection() {
               <p className="max-w-[620px] font-body text-[20px] leading-10 font-extralight tracking-[0.04em] text-white">{verticalGalleryCaptions[0]}</p>
             </div>
           </div>
-          <div className="mt-1 grid grid-cols-1 gap-1 md:h-svh md:grid-cols-[3fr_2fr] md:min-h-0">
+          <div className="mt-1 grid grid-cols-1 gap-1 md:h-[65svh] md:min-h-[440px] md:grid-cols-[3fr_2fr]">
             <div
               role="button"
               tabIndex={0}
