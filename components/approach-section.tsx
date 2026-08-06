@@ -1,10 +1,11 @@
 "use client";
 
 import { Fragment } from "react";
+import Image from "next/image";
 
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { VerticalLineReveal } from "@/components/vertical-line-reveal";
-import { approachImage, approachPoints, approachVideo } from "@/lib/content";
+import { approachImage, approachPoints } from "@/lib/content";
 
 function ApproachIntro() {
   return (
@@ -41,18 +42,13 @@ export function ApproachSection() {
       <div className="mx-auto mt-8 grid max-w-[1615px] gap-8 px-6 md:mt-14 md:ml-0 md:mr-20 md:max-w-none md:grid-cols-[minmax(0,980px)_360px] md:items-start md:gap-12 md:px-0">
         <ScrollReveal delay={220}>
           <div className="relative aspect-square overflow-hidden bg-[#d8d2c7] md:h-[520px] md:aspect-auto">
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              aria-label={approachImage.alt}
-              poster={approachVideo.poster}
-              className="absolute inset-0 h-full w-full object-cover"
-            >
-              <source src={approachVideo.src} type="video/mp4" />
-            </video>
+            <Image
+              src={approachImage.src}
+              alt={approachImage.alt}
+              fill
+              sizes="(min-width: 768px) 980px, 100vw"
+              className="object-cover"
+            />
           </div>
         </ScrollReveal>
 
