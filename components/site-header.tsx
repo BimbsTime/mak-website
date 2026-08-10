@@ -17,8 +17,9 @@ type SiteHeaderProps = {
 
 type HeaderTone = "light" | "brand";
 
-function DesktopNav({ activeNavKey, tone, isCompact, layout }: SiteHeaderProps & { tone: HeaderTone; isCompact: boolean }) {
+function DesktopNav({ activeNavKey, tone, isCompact, layout, isShellShown }: SiteHeaderProps & { tone: HeaderTone; isCompact: boolean; isShellShown: boolean }) {
   const isIntroComplete = useIntroAnimationStore((state) => state.isComplete);
+  const contentReady = isShellShown && isIntroComplete;
   const textClass = tone === "light" ? "text-white hover:text-white/80" : "text-[var(--brand)] hover:text-black";
   const underlineClass = tone === "light" ? "bg-white" : "bg-[var(--brand)]";
 
@@ -26,13 +27,13 @@ function DesktopNav({ activeNavKey, tone, isCompact, layout }: SiteHeaderProps &
     <div className={`hidden items-center gap-14 md:flex ${layout === "inline" ? "flex-1 justify-end" : "justify-center"}`}>
       {navItems.map((item, index) => {
         const baseStyle = {
-          opacity: isIntroComplete ? 1 : 0,
-          transform: isIntroComplete ? "translate3d(0,0,0)" : "translate3d(0, 14px, 0)",
+          opacity: contentReady ? 1 : 0,
+          transform: contentReady ? "translate3d(0,0,0)" : "translate3d(0, 14px, 0)",
           transitionProperty: "opacity, transform",
           transitionDuration: "700ms",
           transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)",
-          transitionDelay: `${400 + index * 90}ms`,
-          pointerEvents: isIntroComplete ? ("auto" as const) : ("none" as const),
+          transitionDelay: `${isShellShown ? 90 + index * 80 : 0}ms`,
+          pointerEvents: contentReady ? ("auto" as const) : ("none" as const),
         };
 
         if (!item.children) {
@@ -203,8 +204,17 @@ export function SiteHeader({ activeNavKey, layout = "stacked" }: SiteHeaderProps
   const [isOnHeroFold, setIsOnHeroFold] = useState(true);
   const [isVisible, setIsVisible] = useState(true);
   const isIntroComplete = useIntroAnimationStore((state) => state.isComplete);
+  const [isShellShown, setIsShellShown] = useState(false);
   const lastScrollYRef = useRef(0);
   const hideTimeoutRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    if (!isIntroComplete) {
+      return;
+    }
+    const id = window.setTimeout(() => setIsShellShown(true), 40);
+    return () => window.clearTimeout(id);
+  }, [isIntroComplete]);
 
   useEffect(() => {
     const clearHideTimeout = () => {
@@ -280,21 +290,29 @@ export function SiteHeader({ activeNavKey, layout = "stacked" }: SiteHeaderProps
   const logoFilterClass = "";
   const desktopLayoutClass = layout === "inline" ? "md:flex-row md:justify-between md:gap-10" : "md:flex-col md:justify-center";
 
-  const logoStyle = {
-    opacity: isIntroComplete ? 1 : 0,
-    transform: isIntroComplete ? "translate3d(0,0,0)" : "translate3d(0, 14px, 0)",
-    transitionProperty: "opacity, transform",
-    transitionDuration: "800ms",
+  const shellStyle = {
+    transform: isShellShown ? "translate3d(0,0,0)" : "translate3d(0, -110%, 0)",
+    transitionProperty: "transform",
+    transitionDuration: "680ms",
     transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)",
-    transitionDelay: "220ms",
-    pointerEvents: isIntroComplete ? ("auto" as const) : ("none" as const),
+  } as React.CSSProperties;
+
+  const logoStyle = {
+    opacity: isShellShown && isIntroComplete ? 1 : 0,
+    transform: isShellShown && isIntroComplete ? "translate3d(0,0,0)" : "translate3d(0, 14px, 0)",
+    transitionProperty: "opacity, transform",
+    transitionDuration: "760ms",
+    transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)",
+    transitionDelay: isShellShown ? "30ms" : "0ms",
+    pointerEvents: isShellShown && isIntroComplete ? ("auto" as const) : ("none" as const),
   };
 
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-0 z-50 w-full border-b transition-[transform,opacity,background-color,border-color] duration-300 ${
-          isVisible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none"
+        style={shellStyle}
+        className={`fixed inset-x-0 top-0 z-50 w-full border-b transition-[opacity,background-color,border-color] duration-300 ${
+          isVisible ? "opacity-100" : "opacity-0 pointer-events-none"
         } border-black/5 bg-[var(--background)]`}
       >
         <div
@@ -314,7 +332,7 @@ export function SiteHeader({ activeNavKey, layout = "stacked" }: SiteHeaderProps
               } ${logoFilterClass}`}
             />
           </Link>
-          <DesktopNav activeNavKey={activeNavKey} tone={tone} isCompact={isCompact} layout={layout} />
+          <DesktopNav activeNavKey={activeNavKey} tone={tone} isCompact={isCompact} layout={layout} isShellShown={isShellShown} />
           <button
             type="button"
             aria-label="Open navigation menu"

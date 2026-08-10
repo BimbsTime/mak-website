@@ -131,7 +131,7 @@ export function HeroIntroStage() {
   }, [introHeight]);
 
   return (
-    <div className="pt-[70px] md:pt-[104px]">
+    <div className="pt-0">
       <div ref={stageRef} className="relative">
         <div style={{ height: heroHeight }} />
         <div ref={introMeasureRef} className="relative z-10">
