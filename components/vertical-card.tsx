@@ -30,7 +30,7 @@ export function VerticalCard({ card, isActive, onActivate }: VerticalCardProps) 
             loading="eager"
             sizes="(min-width: 768px) 520px, 282px"
             className={`pointer-events-none object-cover will-change-transform transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-              isActive ? "scale-[1.06]" : "scale-100"
+              isActive ? "scale-[1.20]" : "scale-100"
             }`}
           />
         </div>
