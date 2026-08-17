@@ -31,11 +31,11 @@ export function resolveNavKey(value: string | undefined): NavKey {
 }
 
 export const navItems: NavItem[] = [
-  { key: "verticals", label: "Verticals", href: "/#verticals" },
-  { key: "approach", label: "Approach", href: "/#approach" },
-  { key: "growth", label: "Growth", href: "/#growth" },
-  { key: "partners", label: "Partners", href: comingSoonHref("partners") },
-  { key: "contact", label: "Contact", href: "/#contact" },
+  { key: "verticals", label: "Our Verticals", href: "/#verticals" },
+  { key: "approach", label: "Core Identity & Approach", href: "/#approach" },
+  { key: "growth", label: "Project Pipeline", href: "/#growth" },
+  { key: "partners", label: "Strategic Partners", href: comingSoonHref("partners") },
+  { key: "contact", label: "Contact Us", href: "/#contact" },
 ];
 
 export const heroImage = {
@@ -94,6 +94,17 @@ export const verticalCards: VerticalCard[] = [
     wide: true,
   },
   {
+    id: "commercial",
+    title: "Commercial",
+    description:
+      "Boutique offices set within larger commercial developments, balancing scale with proportion and considered design.",
+    href: comingSoonHref("commercial"),
+    image: {
+      src: "/images/home/commercial-desktop.webp",
+      alt: "Architectural interior with sculpted stone surfaces suited to a boutique office environment.",
+    },
+  },
+  {
     id: "hospitality",
     title: "Hospitality",
     description:
@@ -117,24 +128,13 @@ export const verticalCards: VerticalCard[] = [
   },
   {
     id: "retail-dining",
-    title: "Boutique Retail and F&B",
+    title: "Boutique Retail & F&B",
     description:
       "Design-led retail destinations combining curated dining, shopping and leisure within thoughtfully composed lifestyle experiences.",
     href: comingSoonHref("retail-dining"),
     image: {
       src: "/images/home/retail-dining-desktop.webp",
       alt: "Editorial dining table scene with plated dishes and warm hospitality styling.",
-    },
-  },
-  {
-    id: "commercial",
-    title: "Commercial",
-    description:
-      "Boutique offices set within larger commercial developments, balancing scale with proportion and considered design.",
-    href: comingSoonHref("commercial"),
-    image: {
-      src: "/images/home/commercial-desktop.webp",
-      alt: "Architectural interior with sculpted stone surfaces suited to a boutique office environment.",
     },
   },
 ];

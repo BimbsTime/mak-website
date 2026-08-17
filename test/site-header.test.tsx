@@ -23,17 +23,17 @@ describe("SiteHeader", () => {
 
     fireEvent.click(screen.getByLabelText("Open navigation menu"));
 
-    expect(screen.getAllByRole("link", { name: "Verticals" }).at(-1)).toHaveAttribute("href", "/#verticals");
-    expect(screen.getAllByRole("link", { name: "Approach" }).at(-1)).toHaveAttribute("href", "/#approach");
-    expect(screen.getAllByRole("link", { name: "Growth" }).at(-1)).toHaveAttribute("href", "/#growth");
-    expect(screen.getAllByRole("link", { name: "Contact" }).at(-1)).toHaveAttribute("href", "/#contact");
+    expect(screen.getAllByRole("link", { name: "Our Verticals" }).at(-1)).toHaveAttribute("href", "/#verticals");
+    expect(screen.getAllByRole("link", { name: "Core Identity & Approach" }).at(-1)).toHaveAttribute("href", "/#approach");
+    expect(screen.getAllByRole("link", { name: "Project Pipeline" }).at(-1)).toHaveAttribute("href", "/#growth");
+    expect(screen.getAllByRole("link", { name: "Contact Us" }).at(-1)).toHaveAttribute("href", "/#contact");
   });
 
   it("links the logo home and partners to the coming soon route", () => {
     render(<SiteHeader activeNavKey="hospitality" />);
 
     expect(screen.getByRole("link", { name: "MĀK" })).toHaveAttribute("href", "/");
-    expect(screen.getByRole("link", { name: "Partners" })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: "Strategic Partners" })).toHaveAttribute(
       "href",
       "/coming-soon?tab=partners",
     );

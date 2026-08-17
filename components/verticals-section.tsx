@@ -167,7 +167,7 @@ export function VerticalsSection() {
   };
 
   return (
-    <section id="verticals" className="w-full pt-[48px] md:pt-[96px] md:pb-[48px]">
+    <section id="verticals" className="w-full pt-10 md:pt-[48px] md:pb-[48px]">
       <div className="mx-auto max-w-[1615px] px-6 md:px-20">
         <div className="flex flex-col gap-4 md:max-w-[1114px] md:flex-row md:items-end md:gap-14">
           <h2 className="max-w-[510px] font-display text-[24px] leading-[26px] text-[var(--brand)] md:text-[36px] md:leading-[40px]">
@@ -190,7 +190,7 @@ export function VerticalsSection() {
       </div>
 
       <ScrollReveal delay={220}>
-        <div className="mt-10 w-full md:mt-[56px]">
+        <div className="mt-10 w-full md:mt-[48px]">
           <div
             role="button"
             tabIndex={0}
@@ -265,7 +265,7 @@ export function VerticalsSection() {
       </ScrollReveal>
 
       <ScrollReveal delay={220}>
-        <div ref={arrowFrameRef} className="relative mt-10 md:mt-[56px]">
+        <div ref={arrowFrameRef} className="relative mt-10 md:mt-[48px]">
           <div
             ref={ref}
             className={`no-scrollbar snap-x snap-mandatory overflow-x-auto pb-4 select-none overscroll-x-contain md:snap-none md:[touch-action:pan-y] ${

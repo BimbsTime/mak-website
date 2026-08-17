@@ -6,7 +6,7 @@ import { growthCards, growthOverview } from "@/lib/content";
 
 export function GrowthSectionV2() {
   return (
-    <section id="growth" className="w-full py-8 md:pt-12 md:pb-24">
+    <section id="growth" className="w-full py-8 md:pt-0 md:pb-12">
       <div className="w-full px-6 md:px-12 xl:px-80">
         <div className="mx-auto flex max-w-[1177px] flex-col items-center gap-14 text-center md:gap-12">
           <h2 className="font-display text-[32px] leading-[32px] text-[var(--brand)] md:text-[48px] md:leading-[48px]">
