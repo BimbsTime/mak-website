@@ -11,7 +11,7 @@ import { useDragScroll } from "@/hooks/use-drag-scroll";
 import { verticalCards, verticalGalleryCaptions } from "@/lib/content";
 
 export function VerticalsSection() {
-  const defaultActiveId = verticalCards[0]?.id ?? "";
+  const defaultActiveId = "";
   const [activeId, setActiveId] = useState(defaultActiveId);
   const { ref, isDragging, dragHandlers } = useDragScroll<HTMLDivElement>();
   const arrowFrameRef = useRef<HTMLDivElement | null>(null);
@@ -300,7 +300,7 @@ export function VerticalsSection() {
                 <div
                   key={card.id}
                   data-card-wrapper
-                  className={`shrink-0 snap-start ${index === 0 ? "md:pl-20" : "md:pl-0"}`}
+                  className={`shrink-0 snap-start ${index === 0 ? "md:pl-16" : "md:pl-8"} ${index === verticalCards.length - 1 ? "md:pr-16" : ""}`}
                 >
                   <VerticalCard
                     card={card}

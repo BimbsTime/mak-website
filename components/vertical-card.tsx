@@ -14,14 +14,14 @@ export function VerticalCard({ card, isActive, onActivate }: VerticalCardProps) 
     <article
       id={card.id}
       data-active={isActive ? "true" : "false"}
-      className={`flex shrink-0 scroll-mt-28 w-[282px] md:w-[480px] flex-col items-center gap-6 md:gap-8`}
+      className={`flex shrink-0 scroll-mt-28 w-[282px] md:w-[440px] flex-col items-center gap-6 md:gap-8`}
       onMouseEnter={onActivate}
       onFocus={onActivate}
     >
       <div
         className={`relative overflow-hidden bg-[#d8d2c7] transition-[width,height] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
           isActive
-            ? "w-[282px] h-[330px] md:w-[480px] md:h-[480px] md:aspect-auto"
+            ? "w-[282px] h-[330px] md:w-[440px] md:h-[480px] md:aspect-auto"
             : "w-[226px] h-[330px] md:w-[400px] md:h-[480px] md:aspect-auto"
         }`}
       >
@@ -31,9 +31,9 @@ export function VerticalCard({ card, isActive, onActivate }: VerticalCardProps) 
           fill
           draggable={false}
           loading="eager"
-          sizes="(min-width: 768px) 480px, 282px"
+          sizes="(min-width: 768px) 440px, 282px"
           className={`pointer-events-none object-cover will-change-transform transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-            isActive ? "scale-[1.20]" : "scale-100"
+            isActive ? "scale-[1.10]" : "scale-100"
           }`}
         />
         <div
@@ -47,7 +47,7 @@ export function VerticalCard({ card, isActive, onActivate }: VerticalCardProps) 
       <ScrollReveal delay={140}>
         <div
           className={`flex flex-col items-start gap-3 md:gap-6 transition-[width] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-            isActive ? "w-[282px] md:w-[480px]" : "w-[226px] md:w-[400px]"
+            isActive ? "w-[282px] md:w-[440px]" : "w-[226px] md:w-[400px]"
           }`}
         >
           <div className="flex w-full flex-col gap-3 md:gap-6">
