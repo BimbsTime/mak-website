@@ -178,7 +178,7 @@ export function ContactSection() {
               <button
                 type="button"
                 onClick={() => setIsFormOpen(true)}
-                className="inline-flex min-h-12 items-center justify-center bg-[rgba(247,242,233,0.65)] px-10 py-3 font-display text-[20px] leading-[21px] font-light text-[var(--brand)] transition-[background-color] duration-300 hover:bg-[rgba(247,242,233,1)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:px-24"
+                className="inline-flex min-h-12 items-center justify-center bg-[rgba(247,242,233,0.35)] px-10 py-3 font-display text-[20px] leading-[21px] font-light text-white transition-[background-color,color] duration-300 hover:bg-[rgba(247,242,233,1)] hover:text-[var(--brand)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:px-24"
               >
                 Get in touch
               </button>
