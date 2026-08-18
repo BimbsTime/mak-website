@@ -160,10 +160,25 @@ export function VerticalsSection() {
       return;
     }
 
-    const firstCard = node.querySelector("article");
-    const gap = window.innerWidth >= 768 ? 56 : 20;
-    const step = (firstCard?.getBoundingClientRect().width ?? node.clientWidth * 0.85) + gap;
-    node.scrollBy({ left: step * direction, behavior: "smooth" });
+    const wrappers = [...node.querySelectorAll<HTMLElement>("[data-card-wrapper]")];
+    if (wrappers.length === 0) {
+      return;
+    }
+
+    const scrollLeft = node.scrollLeft;
+    let closestIndex = 0;
+    let closestDistance = Infinity;
+    wrappers.forEach((wrapper, index) => {
+      const distance = Math.abs(wrapper.offsetLeft - scrollLeft);
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        closestIndex = index;
+      }
+    });
+
+    const nextIndex = Math.max(0, Math.min(wrappers.length - 1, closestIndex + direction));
+    const nextOffset = wrappers[nextIndex].offsetLeft;
+    node.scrollTo({ left: nextOffset, behavior: "smooth" });
   };
 
   return (
@@ -268,7 +283,7 @@ export function VerticalsSection() {
         <div ref={arrowFrameRef} className="relative mt-10 md:mt-[48px]">
           <div
             ref={ref}
-            className={`no-scrollbar snap-x snap-mandatory overflow-x-auto pb-4 select-none overscroll-x-contain md:snap-none md:[touch-action:pan-y] ${
+            className={`no-scrollbar snap-x snap-mandatory overflow-x-auto pb-4 select-none overscroll-x-contain md:[touch-action:pan-y] px-6 md:px-0 scroll-pl-6 scroll-pr-6 md:scroll-pl-0 md:scroll-pr-0 ${
               isDragging ? "cursor-grabbing" : "cursor-grab"
             }`}
             {...dragHandlers}
@@ -279,10 +294,14 @@ export function VerticalsSection() {
               }
             }}
           >
-            <div className="flex w-max items-start gap-5 md:gap-14 md:pl-20 md:pr-20">
+            <div className="flex w-max items-start gap-5 md:gap-2">
               <div aria-hidden="true" className="w-[calc(50vw-161px)] shrink-0 md:hidden" />
-              {verticalCards.map((card) => (
-                <div key={card.id} className="shrink-0 snap-center">
+              {verticalCards.map((card, index) => (
+                <div
+                  key={card.id}
+                  data-card-wrapper
+                  className={`shrink-0 snap-start ${index === 0 ? "md:pl-20" : "md:pl-0"}`}
+                >
                   <VerticalCard
                     card={card}
                     isActive={card.id === activeId}
