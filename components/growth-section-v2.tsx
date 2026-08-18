@@ -34,7 +34,7 @@ export function GrowthSectionV2() {
       </div>
 
       <div aria-label="Project pipeline" className="mt-8 md:mt-12">
-        <div className="mx-auto flex max-w-[1615px] flex-col gap-12 px-6 md:gap-20 md:px-20">
+        <div className="mx-auto flex max-w-[1615px] flex-col gap-12 px-6 md:gap-12 md:px-20">
           {growthCards.map((card) => (
             <article
               key={card.id}
