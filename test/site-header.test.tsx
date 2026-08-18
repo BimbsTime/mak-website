@@ -24,7 +24,7 @@ describe("SiteHeader", () => {
     fireEvent.click(screen.getByLabelText("Open navigation menu"));
 
     expect(screen.getAllByRole("link", { name: "Our Verticals" }).at(-1)).toHaveAttribute("href", "/#verticals");
-    expect(screen.getAllByRole("link", { name: "Core Identity & Approach" }).at(-1)).toHaveAttribute("href", "/#approach");
+    expect(screen.getAllByRole("link", { name: "Identity & Approach" }).at(-1)).toHaveAttribute("href", "/#approach");
     expect(screen.getAllByRole("link", { name: "Project Pipeline" }).at(-1)).toHaveAttribute("href", "/#growth");
     expect(screen.getAllByRole("link", { name: "Contact Us" }).at(-1)).toHaveAttribute("href", "/#contact");
   });

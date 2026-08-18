@@ -32,7 +32,7 @@ export function resolveNavKey(value: string | undefined): NavKey {
 
 export const navItems: NavItem[] = [
   { key: "verticals", label: "Our Verticals", href: "/#verticals" },
-  { key: "approach", label: "Core Identity & Approach", href: "/#approach" },
+  { key: "approach", label: "Identity & Approach", href: "/#approach" },
   { key: "growth", label: "Project Pipeline", href: "/#growth" },
   { key: "partners", label: "Strategic Partners", href: comingSoonHref("partners") },
   { key: "contact", label: "Contact Us", href: "/#contact" },
