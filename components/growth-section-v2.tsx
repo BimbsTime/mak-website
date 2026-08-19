@@ -16,7 +16,7 @@ export function GrowthSectionV2() {
           </h2>
 
           <ScrollReveal delay={140}>
-            <p className="max-w-[342px] font-body text-[12px] leading-4 tracking-[0.04em] text-black text-left md:max-w-[1177px] md:text-center md:text-[16px] md:leading-[22px]">
+            <p className="max-w-[300px] font-body text-[12px] leading-4 tracking-[0.04em] text-black text-left md:max-w-[1177px] md:text-center md:text-[16px] md:leading-[22px]">
               {growthOverview[0]}
             </p>
           </ScrollReveal>
@@ -24,7 +24,7 @@ export function GrowthSectionV2() {
           <div className="grid max-w-[1177px] gap-6 text-justify xl:grid-cols-2 xl:gap-12">
             {growthOverview.slice(1).map((paragraph, index) => (
               <ScrollReveal key={paragraph} delay={260 + index * 120}>
-                <p className="max-w-[342px] font-body text-[12px] leading-4 tracking-[0.04em] text-black md:max-w-none md:text-[16px] md:leading-[22px]">
+                <p className="max-w-[300px] font-body text-[12px] leading-4 tracking-[0.04em] text-black md:max-w-none md:text-[16px] md:leading-[22px]">
                   {paragraph}
                 </p>
               </ScrollReveal>
