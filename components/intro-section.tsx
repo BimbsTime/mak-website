@@ -9,7 +9,7 @@ export function IntroSection() {
       id="considered-places"
       className="w-full bg-[var(--background)] px-6 py-[48px] md:px-12 md:py-[48px] xl:px-80"
     >
-      <div className="mx-auto flex max-w-[1177px] flex-col items-center gap-14 md:gap-12">
+      <div className="mx-auto flex max-w-[1177px] flex-col items-center gap-6 md:gap-12">
         <div className="flex max-w-[1177px] flex-col items-center gap-4 text-center md:gap-6">
           <ScrollReveal delay={100}>
             <h1 className="max-w-[342px] whitespace-pre-line font-display text-[32px] leading-[32px] text-[var(--brand)] md:max-w-none md:text-[48px] md:leading-[48px]">

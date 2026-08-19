@@ -8,7 +8,7 @@ export function GrowthSectionV2() {
   return (
     <section id="growth" className="w-full py-8 md:pt-0 md:pb-12">
       <div className="w-full px-6 md:px-12 xl:px-80">
-        <div className="mx-auto flex max-w-[1177px] flex-col items-center gap-14 text-center md:gap-12">
+        <div className="mx-auto flex max-w-[1177px] flex-col items-center gap-6 text-center md:gap-12">
           <h2 className="font-display text-[32px] leading-[32px] text-[var(--brand)] md:text-[48px] md:leading-[48px]">
             <ScrollReveal as="span" delay={0} distance={18} className="block whitespace-normal md:whitespace-nowrap">
               Project Pipeline &amp; Growth
@@ -16,7 +16,7 @@ export function GrowthSectionV2() {
           </h2>
 
           <ScrollReveal delay={140}>
-            <p className="max-w-[342px] font-body text-[12px] leading-4 tracking-[0.04em] text-black md:max-w-[1177px] md:text-[16px] md:leading-[22px]">
+            <p className="max-w-[342px] font-body text-[12px] leading-4 tracking-[0.04em] text-black text-left md:max-w-[1177px] md:text-center md:text-[16px] md:leading-[22px]">
               {growthOverview[0]}
             </p>
           </ScrollReveal>
