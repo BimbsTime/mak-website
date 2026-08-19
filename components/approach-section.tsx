@@ -55,20 +55,20 @@ export function ApproachSection() {
             </div>
           </ScrollReveal>
 
-          <div className="mx-auto w-full max-w-[520px] px-6 xl:mx-0 xl:box-border xl:flex xl:w-full xl:max-w-none xl:items-center xl:pl-10 xl:pr-[max(5vw,24px)]">
+          <div className="mx-auto w-full px-6 md:mx-auto md:max-w-none md:px-20 xl:mx-0 xl:box-border xl:flex xl:w-full xl:max-w-none xl:items-center xl:px-0 xl:pl-10 xl:pr-[max(5vw,24px)]">
             <div
-              className="flex w-full flex-col xl:mx-auto xl:w-full xl:max-w-[480px]"
+              className="flex w-full max-w-[520px] flex-col md:mx-auto md:w-full md:max-w-none xl:mx-auto xl:w-full xl:max-w-[480px]"
               aria-label="Approach principles"
             >
               {approachPoints.map((point, index) => (
                 <Fragment key={point.title}>
-                  {index > 0 ? <div aria-hidden="true" className="hidden h-px w-full bg-black/20 xl:block" /> : null}
-                  <ScrollReveal delay={280 + index * 100} className={index === 0 ? "pb-8 xl:pb-10" : "pt-8 xl:pt-10"}>
-                    <article data-approach-point className="mx-auto flex w-full max-w-[520px] flex-col gap-3 xl:mx-0 xl:w-full xl:max-w-none xl:gap-4">
-                      <h3 className="font-display text-[22px] leading-[24px] text-black xl:text-[24px] xl:leading-[24px]">
+                  {index > 0 ? <div aria-hidden="true" className="hidden h-px w-full bg-black/20 md:block" /> : null}
+                  <ScrollReveal delay={280 + index * 100} className={index === 0 ? "pb-8 md:pb-10 xl:pb-10" : "pt-8 md:pt-10 xl:pt-10"}>
+                    <article data-approach-point className="mx-auto flex w-full max-w-[520px] flex-col gap-3 md:mx-auto md:w-full md:max-w-none md:gap-4 xl:mx-0 xl:w-full xl:max-w-none xl:gap-4">
+                      <h3 className="font-display text-[22px] leading-[24px] text-black md:text-[24px] md:leading-[24px] xl:text-[24px] xl:leading-[24px]">
                         {point.title}
                       </h3>
-                      <p className="font-body text-[14px] leading-[20px] tracking-[0.04em] text-black xl:text-[16px] xl:leading-[22px]">
+                      <p className="font-body text-[14px] leading-[20px] tracking-[0.04em] text-black md:text-[16px] md:leading-[22px] xl:text-[16px] xl:leading-[22px]">
                         {point.description}
                       </p>
                     </article>

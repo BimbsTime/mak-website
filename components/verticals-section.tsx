@@ -165,11 +165,18 @@ export function VerticalsSection() {
       return;
     }
 
+    const isDesktop = globalThis.matchMedia?.("(min-width: 768px)").matches ?? false;
+    const viewportWidth = node.clientWidth;
     const scrollLeft = node.scrollLeft;
+
     let closestIndex = 0;
     let closestDistance = Infinity;
     wrappers.forEach((wrapper, index) => {
-      const distance = Math.abs(wrapper.offsetLeft - scrollLeft);
+      const wrapperCenter = wrapper.offsetLeft + wrapper.offsetWidth / 2;
+      const currentScrollCenter = scrollLeft + viewportWidth / 2;
+      const distance = isDesktop
+        ? Math.abs(wrapper.offsetLeft - scrollLeft)
+        : Math.abs(wrapperCenter - currentScrollCenter);
       if (distance < closestDistance) {
         closestDistance = distance;
         closestIndex = index;
@@ -177,7 +184,10 @@ export function VerticalsSection() {
     });
 
     const nextIndex = Math.max(0, Math.min(wrappers.length - 1, closestIndex + direction));
-    const nextOffset = wrappers[nextIndex].offsetLeft;
+    const nextWrapper = wrappers[nextIndex];
+    const nextOffset = isDesktop
+      ? nextWrapper.offsetLeft
+      : nextWrapper.offsetLeft + nextWrapper.offsetWidth / 2 - viewportWidth / 2;
     node.scrollTo({ left: nextOffset, behavior: "smooth" });
   };
 
@@ -283,7 +293,7 @@ export function VerticalsSection() {
         <div ref={arrowFrameRef} className="relative mt-10 md:mt-[48px]">
           <div
             ref={ref}
-            className={`no-scrollbar snap-x snap-mandatory overflow-x-auto pb-4 select-none overscroll-x-contain md:[touch-action:pan-y] px-6 md:px-0 scroll-pl-6 scroll-pr-6 md:scroll-pl-0 md:scroll-pr-0 ${
+            className={`no-scrollbar snap-x snap-mandatory overflow-x-auto pb-4 select-none overscroll-x-contain md:[touch-action:pan-y] px-6 md:px-0 scroll-p[x-clamp(0px,50vw,50vw)] md:scroll-pl-0 md:scroll-pr-0 ${
               isDragging ? "cursor-grabbing" : "cursor-grab"
             }`}
             {...dragHandlers}
@@ -295,12 +305,12 @@ export function VerticalsSection() {
             }}
           >
             <div className="flex w-max items-start gap-5 md:gap-2">
-              <div aria-hidden="true" className="w-[calc(50vw-161px)] shrink-0 md:hidden" />
+              <div aria-hidden="true" className="w-[50vw] shrink-0 md:hidden" />
               {verticalCards.map((card, index) => (
                 <div
                   key={card.id}
                   data-card-wrapper
-                  className={`shrink-0 snap-start ${index === 0 ? "md:pl-16" : "md:pl-8"} ${index === verticalCards.length - 1 ? "md:pr-16" : ""}`}
+                  className={`shrink-0 snap-center md:snap-start ${index === 0 ? "md:pl-16" : "md:pl-8"} ${index === verticalCards.length - 1 ? "md:pr-16" : ""}`}
                 >
                   <VerticalCard
                     card={card}
@@ -314,7 +324,7 @@ export function VerticalsSection() {
                   />
                 </div>
               ))}
-              <div aria-hidden="true" className="w-[calc(50vw-161px)] shrink-0 md:hidden" />
+              <div aria-hidden="true" className="w-[50vw] shrink-0 md:hidden" />
             </div>
           </div>
 
