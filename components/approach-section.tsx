@@ -41,36 +41,41 @@ export function ApproachSection() {
       className="relative w-full pb-8 before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-black/20 before:to-transparent after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-gradient-to-r after:from-transparent after:via-black/20 after:to-transparent md:pb-[64px] md:before:hidden md:after:hidden"
     >
       <ApproachIntro />
-      <div className="mx-auto mt-8 max-w-[1615px] px-6 md:mt-[40px] lg:mt-[48px] xl:px-20">
-        <div className="grid gap-8 xl:mt-[48px] xl:grid-cols-[minmax(0,980px)_minmax(0,1fr)] xl:items-center xl:gap-[80px]">
-          <ScrollReveal delay={220} className="xl:-ml-20">
-            <div className="relative aspect-square overflow-hidden bg-[#d8d2c7] xl:h-[520px] xl:aspect-auto">
+      <div className="mt-8 md:mt-[40px] lg:mt-[48px] xl:mt-[48px]">
+        <div className="grid gap-8 xl:grid-cols-[minmax(0,75vw)_minmax(0,1fr)] xl:gap-0">
+          <ScrollReveal delay={220}>
+            <div className="relative aspect-square overflow-hidden bg-[#d8d2c7] xl:w-full xl:aspect-[21/9] xl:min-h-[520px]">
               <Image
                 src={approachImage.src}
                 alt={approachImage.alt}
                 fill
-                sizes="(min-width: 1200px) 1140px, 100vw"
+                sizes="(min-width: 1200px) 75vw, 100vw"
                 className="object-cover"
               />
             </div>
           </ScrollReveal>
 
-          <div className="flex flex-col" aria-label="Approach principles">
-            {approachPoints.map((point, index) => (
-              <Fragment key={point.title}>
-                {index > 0 ? <div aria-hidden="true" className="hidden h-px w-full bg-black/20 xl:block" /> : null}
-                <ScrollReveal delay={280 + index * 100} className={index === 0 ? "pb-8 xl:pb-10" : "pt-8 xl:pt-10"}>
-                  <article data-approach-point className="mx-auto flex w-full max-w-[520px] flex-col gap-3 xl:mx-auto xl:max-w-[400px] xl:gap-4 xl:px-[20px]">
-                    <h3 className="font-display text-[22px] leading-[24px] text-black xl:text-[24px] xl:leading-[24px]">
-                      {point.title}
-                    </h3>
-                    <p className="font-body text-[14px] leading-[20px] tracking-[0.04em] text-black xl:text-[16px] xl:leading-[22px]">
-                      {point.description}
-                    </p>
-                  </article>
-                </ScrollReveal>
-              </Fragment>
-            ))}
+          <div className="mx-auto w-full max-w-[520px] px-6 xl:mx-0 xl:box-border xl:flex xl:w-full xl:max-w-none xl:items-center xl:pl-10 xl:pr-[max(5vw,24px)]">
+            <div
+              className="flex w-full flex-col xl:mx-auto xl:w-full xl:max-w-[480px]"
+              aria-label="Approach principles"
+            >
+              {approachPoints.map((point, index) => (
+                <Fragment key={point.title}>
+                  {index > 0 ? <div aria-hidden="true" className="hidden h-px w-full bg-black/20 xl:block" /> : null}
+                  <ScrollReveal delay={280 + index * 100} className={index === 0 ? "pb-8 xl:pb-10" : "pt-8 xl:pt-10"}>
+                    <article data-approach-point className="mx-auto flex w-full max-w-[520px] flex-col gap-3 xl:mx-0 xl:w-full xl:max-w-none xl:gap-4">
+                      <h3 className="font-display text-[22px] leading-[24px] text-black xl:text-[24px] xl:leading-[24px]">
+                        {point.title}
+                      </h3>
+                      <p className="font-body text-[14px] leading-[20px] tracking-[0.04em] text-black xl:text-[16px] xl:leading-[22px]">
+                        {point.description}
+                      </p>
+                    </article>
+                  </ScrollReveal>
+                </Fragment>
+              ))}
+            </div>
           </div>
         </div>
       </div>

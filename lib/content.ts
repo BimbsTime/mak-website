@@ -10,7 +10,7 @@ import type {
 } from "@/lib/types";
 
 export const siteMeta = {
-  title: "MĀK | Real Estate Development",
+  title: "MAK | Real Estate Development",
   description:
     "A Mumbai-based, design-led real estate developer with expertise spanning land aggregation, regulatory liaisoning, clearances, and execution shaped by design and strong architectural intent.",
 };
